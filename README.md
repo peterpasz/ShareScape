@@ -14,3 +14,6 @@ Geolocation image share social platform.
     * [ ] Allow user to use image as template for drawing interface
   4. User Interface
     * [ ] Create template for UI
+      * [ ] Map Container
+      * [ ] Upload Picture Button
+      * [ ] 
