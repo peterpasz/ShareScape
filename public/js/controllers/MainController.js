@@ -9,10 +9,25 @@ angular.module("myApp", [])
 		  $scope.posts = posts
 		}),
 		
-		$scope.createPost = function(text) {
+		$scope.createPost = function() {
+			if ($scope.title) {
+				$http.post('/api/posts', {
+					title: $scope.title,
+					rating: $scope.rating
+				}).success(function (post) {
+					$scope.posts.unshift(post)
+					$scope.title = null
+				})	
+			}
+		}
+
+
+		
+		/*
+		$scope.createPost = function(title, rating) {
 			$scope.posts.push({
-				author: username, 
-				text: text, 
+				title: title,
+				rating: rating, 
 				pos: {
 					lat: usrLat, 
 					lng: usrLng
@@ -20,6 +35,8 @@ angular.module("myApp", [])
 			});
 			console.log($scope.posts);
 		};
+		*/
+		
 	}])
 	.directive("postInfo", function() {
 		return {
