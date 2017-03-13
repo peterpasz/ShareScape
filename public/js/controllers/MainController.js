@@ -1,9 +1,11 @@
+var endpoint = "http://localhost:3000/api/posts" || "https://sharescape.herokuapp.com";
+
 //Angular JS
 angular.module("myApp", [])
 	.controller("MainController", ["$scope", "$http", function($scope, $http) {
 		$scope.message = "Hello World!",
 		
-		$http.get('https://sharescape.herokuapp.com/api/posts')
+		$http.get(endpoint)
 		.success(function (posts) {
 			console.log(posts)
 		  $scope.posts = posts
