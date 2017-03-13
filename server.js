@@ -1,6 +1,7 @@
 var express = require('express')
 var bodyParser = require('body-parser')
 var Post = require('./models/postcollection')
+var port = process.env.PORT || 3000;
 
 var app = express()
 app.use(bodyParser.json())
@@ -29,6 +30,6 @@ app.post('/api/posts', function (req, res, next) {
   })
 })
 
-app.listen(3000, function () {
-  console.log('Server listening on', 3000)
+app.listen(port, function () {
+console.log('Server listening on', port)
 })
