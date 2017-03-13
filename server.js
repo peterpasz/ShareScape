@@ -22,6 +22,7 @@ app.post('/api/posts', function (req, res, next) {
 		lat: req.body.lat,
 		lon: req.body.lon
 	},
+	imglink: req.body.imglink,
 	rating: req.body.rating
   })
   post.save(function (err, post) {

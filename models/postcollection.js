@@ -5,6 +5,7 @@ var Post = db.model('postcollection', {
 	lat: {type: Number},
 	lon: {type: Number}
   },
+  imglink: { type: String},
   rating: { type: Number}
 })
 module.exports = Post

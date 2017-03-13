@@ -13,7 +13,8 @@ angular.module("myApp", [])
 			if ($scope.title) {
 				$http.post('/api/posts', {
 					title: $scope.title,
-					rating: $scope.rating
+					rating: $scope.rating,
+					imglink: $scope.imglink
 				}).success(function (post) {
 					$scope.posts.unshift(post)
 					$scope.title = null
@@ -21,22 +22,6 @@ angular.module("myApp", [])
 			}
 		}
 
-
-		
-		/*
-		$scope.createPost = function(title, rating) {
-			$scope.posts.push({
-				title: title,
-				rating: rating, 
-				pos: {
-					lat: usrLat, 
-					lng: usrLng
-				}
-			});
-			console.log($scope.posts);
-		};
-		*/
-		
 	}])
 	.directive("postInfo", function() {
 		return {

@@ -20,14 +20,14 @@ html, body {
 
 #post_entry {
 	margin: 10px;
-	width: 100$;
+	width: 1000$;
 	height: 70px;
 }
 
 #post_entry input {
-	float: right;
-	height: 100%;
-	width: 70px;
+	float: left;
+	height: 50px;
+	width: 200px;
 }
 
 #post_entry textarea {
