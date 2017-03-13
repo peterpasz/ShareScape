@@ -3,7 +3,7 @@ angular.module("myApp", [])
 	.controller("MainController", ["$scope", "$http", function($scope, $http) {
 		$scope.message = "Hello World!",
 		
-		$http.get('http://localhost:3000/api/posts')
+		$http.get('https://sharescape.herokuapp.com/api/posts')
 		.success(function (posts) {
 			console.log(posts)
 		  $scope.posts = posts
@@ -52,6 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //Geolocation success callback
 function geolocationSuccess(position) {
+	console.log(position);
 	usrLat = position.coords.latitude;
 	usrLng = position.coords.longitude;
 	
@@ -65,8 +66,9 @@ function geolocationFailure(error) {
 }
 
 //Initializes without placing a marker
-function mapInit(x, y) {
+function mapInit() {
     var pos = {lat: x, lng: y};
+	console.log(pos);
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 15,
         center: pos
