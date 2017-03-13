@@ -2,7 +2,7 @@
   "name": "cps630",
   "version": "1.0.0",
   "description": "Geolocation image sharing social application",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,4 +21,7 @@
     "express": "^4.15.2",
     "mongoose": "^4.8.7"
   }
+  "engines": {
+    "node": "6.9.5"
+  },
 }
