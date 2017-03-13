@@ -1,5 +1,5 @@
 {
-  "name": "cps630",
+  "name": "sharescape",
   "version": "1.0.0",
   "description": "Geolocation image sharing social application",
   "main": "server.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/peterpasz/CPS630ShareScape.git"
+    "url": "git+https://github.com/peterpasz/ShareScape.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/peterpasz/CPS630ShareScape/issues"
+    "url": "https://github.com/peterpasz/ShareScape/issues"
   },
-  "homepage": "https://github.com/peterpasz/CPS630ShareScape#readme",
+  "homepage": "https://github.com/peterpasz/ShareScape#readme",
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
