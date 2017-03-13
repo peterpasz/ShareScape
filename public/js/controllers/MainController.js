@@ -1,25 +1,14 @@
 //Angular JS
 angular.module("myApp", [])
-	.controller("MainController", ["$scope", function($scope) {
+	.controller("MainController", ["$scope", "$http", function($scope, $http) {
 		$scope.message = "Hello World!",
-		$scope.posts = [
-			{
-				author: "Peter",
-				text: "Hey Alex, work on the UI stuff",
-				pos: {
-					lat: 43.6576585, 
-					lng: -79.3788017
-				}
-			},
-			{
-				author: "Alex",
-				text: "Okay Peter",
-				pos: {
-					lat: 43.6556761, 
-					lng: -79.3828745
-				}
-			},
-		],
+		
+		$http.get('http://localhost:3000/api/posts')
+		.success(function (posts) {
+			console.log(posts)
+		  $scope.posts = posts
+		}),
+		
 		$scope.createPost = function(text) {
 			$scope.posts.push({
 				author: username, 
