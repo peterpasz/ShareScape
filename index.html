@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ShareScape</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link type="text/css" rel="stylesheet" href="css/stylesheet.css"/>
+	<!-- Angular JS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<!-- Google Maps -->
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHA5cxSt3ZGQpALXemSm48kTnYgclUQzA&callback=mapInit"></script>
+</head>
+
+<body ng-app="myApp">
+	
+	<!-- Banner -->
+	<div id="banner">ShareScape</div>
+	
+	<!-- Map -->
+	<div id="map"></div>
+	
+	<!-- Post entry toggle -->
+	<input type="checkbox" id="post_entry_toggle" ng-model="toggle">
+	
+	<!-- Main page content -->
+	<div id="content" ng-controller="MainController">
+		
+		<!-- Post submission -->
+		<form id="post_entry" ng-submit="createPost(text)" ng-show="toggle">
+			<input type="submit" id="post_entry_button" value="Post">
+			<textarea id="post_entry_text" ng-model="text"></textarea>
+		</form>
+		
+		<!-- Posts -->
+		<div ng-repeat="post in posts">
+			<post-info info="post"></post-info>
+		</div>
+		
+	</div>
+	
+	<!-- Controllers -->
+    <script src="js/controllers/MainController.js"></script>
+	
+</body>
