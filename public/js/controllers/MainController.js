@@ -1,4 +1,4 @@
-var endpoint = "http://localhost:3000/api/posts" || "https://sharescape.herokuapp.com";
+var endpoint = "https://sharescape.herokuapp.com";
 
 //Angular JS
 angular.module("myApp", [])
