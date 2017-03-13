@@ -66,7 +66,7 @@ function geolocationFailure(error) {
 }
 
 //Initializes without placing a marker
-function mapInit() {
+function mapInit(x, y) {
     var pos = {lat: x, lng: y};
 	console.log(pos);
     var map = new google.maps.Map(document.getElementById('map'), {
