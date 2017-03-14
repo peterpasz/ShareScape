@@ -17,16 +17,16 @@ angular.module("myApp", [])
 			}),
 		
 		$scope.createPost = function() {
+			console.log(userPos);
 			if ($scope.title) {
 				$http.post('/api/posts', {
 					title: $scope.title,
-					pos: {
-						lat: usrLat,
-						lng: usrLng
-					},
+					pos: userPos,
+					//pos: {lat: 1, lon: 2},
 					rating: $scope.rating,
-					imglink: $scope.imglink
-				}).success(function (post) {
+					imglink: $scope.imglink,
+				})
+				.success(function (post) {
 					$scope.posts.unshift(post)
 					$scope.title = null
 				})	
@@ -44,8 +44,7 @@ angular.module("myApp", [])
 	});
 
 //Global variables
-var usrLat;
-var usrLng;
+var userPos;
 
 //On page load
 document.addEventListener("DOMContentLoaded", function() {
@@ -61,10 +60,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //Geolocation success callback
 function geolocationSuccess(position) {
-	usrLat = position.coords.latitude;
-	usrLng = position.coords.longitude;
+	userPos = {lat: position.coords.latitude, lon: position.coords.longitude};
 	
-	mapInit(usrLat, usrLng);
+	mapInit(userPos.lat, userPos.lon);
 }
 
 //Geolocation failure callback
