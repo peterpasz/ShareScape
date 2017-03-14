@@ -11,7 +11,7 @@
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHA5cxSt3ZGQpALXemSm48kTnYgclUQzA&callback=mapInit"></script>
 </head>
 
-<body ng-app="myApp">
+<body ng-app="myApp" ng-controller="MainController">
 	
 	<!-- Banner -->
 	<div id="banner">ShareScape</div>
@@ -19,20 +19,37 @@
 	<!-- Map -->
 	<div id="map"></div>
 	
-	<!-- Post entry toggle -->
-	<input type="checkbox" id="post_entry_toggle" ng-model="toggle"> Toggle submission interface
+	<!-- Post entry toggle button -->
+	<button id="post_entry_toggle" ng-click="toggle=!toggle" onClick=changeContentHeight()>
+		{{ toggle ? 'x' : '+' }}
+	</button>
+	
+	<!-- Toggles the height of the "content" element -->
+	<script>
+		var postMode = false;
+		function changeContentHeight() {
+			if(postMode){
+				document.getElementById('content').style.height = "calc(60% - 30px)";
+				console.log(document.getElementById('content').style.height);
+				postMode = false;
+			} else {
+				document.getElementById('content').style.height = "calc(60% - 80px)";
+				postMode = true;
+			}
+		}
+	</script>
+	
+	<!-- Post entry fields -->
+	<form id="post_entry" ng-submit="createPost()" ng-show="toggle">
+		<input type="submit" id="post_entry_button"  value="Post">
+		<input type="text" 	 id="post_entry_title" 	 ng-model="title"   placeholder="Title">
+		<input type="text"   id="post_entry_imglink" ng-model="imglink" placeholder="Image Link">
+		<input type="number" id="post_entry_rating"  ng-model="rating"  placeholder="Rating">
+	</form>
 	
 	<!-- Main page content -->
-	<div id="content" ng-controller="MainController">
-		
-		<!-- Post submission -->
-		<form id="post_entry" ng-submit="createPost()" ng-show="toggle">
-			<input type="submit" id="post_entry_button" value="Post">
-			<input type="text" id="post_entry_title" ng-model="title" placeholder="Title">
-			<input type="text" id="post_entry_imglink" ng-model="imglink" placeholder="Image Link">
-			<input type="number" id="post_entry_rating" ng-model="rating" placeholder="Rating">
-		</form>
-		
+	<div id="content">
+
 		<!-- Posts -->
 		<div ng-repeat="post in posts | orderBy: 'title'">
 			<post-info info="post"></post-info>

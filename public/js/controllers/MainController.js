@@ -11,15 +11,19 @@ angular.module("myApp", [])
 		*/
 		
 		$http.get('http://localhost:3000/api/posts')
-		.success(function (posts) {
-			console.log(posts)
-		  $scope.posts = posts
-		}),
+			.success(function (posts) {
+				console.log(posts)
+				$scope.posts = posts
+			}),
 		
 		$scope.createPost = function() {
 			if ($scope.title) {
 				$http.post('/api/posts', {
 					title: $scope.title,
+					pos: {
+						lat: usrLat,
+						lng: usrLng
+					},
 					rating: $scope.rating,
 					imglink: $scope.imglink
 				}).success(function (post) {
@@ -28,7 +32,6 @@ angular.module("myApp", [])
 				})	
 			}
 		}
-
 	}])
 	.directive("postInfo", function() {
 		return {
@@ -40,8 +43,7 @@ angular.module("myApp", [])
 		};
 	});
 
-//Global variables	
-var username = "hunter2";
+//Global variables
 var usrLat;
 var usrLng;
 
@@ -59,12 +61,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //Geolocation success callback
 function geolocationSuccess(position) {
-	console.log(position);
 	usrLat = position.coords.latitude;
 	usrLng = position.coords.longitude;
 	
 	mapInit(usrLat, usrLng);
-	//mapInit(43.6560852, -79.38021909999999);
 }
 
 //Geolocation failure callback
@@ -75,23 +75,9 @@ function geolocationFailure(error) {
 //Initializes without placing a marker
 function mapInit(x, y) {
     var pos = {lat: x, lng: y};
-	console.log(pos);
+	console.log("Your postition: " + pos.lat + ", " + pos.lng);
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 15,
         center: pos
     });
 }
-
-//Initializes map
-/*
-function initMap(x, y) {
-    var uluru = {lat: x, lng: y};
-    var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 15,
-        center: uluru
-    });
-    var marker = new google.maps.Marker({
-        position: uluru,
-        map: map
-    });
-}*/
