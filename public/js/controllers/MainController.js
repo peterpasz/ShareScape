@@ -10,7 +10,7 @@ angular.module("myApp", [])
 		'https://sharescape.herokuapp.com/api/posts'
 		*/
 		
-		$http.get('https://sharescape.herokuapp.com/api/posts')
+		$http.get('http://localhost:3000/api/posts')
 			.success(function (posts) {
 				console.log(posts)
 				$scope.posts = posts
@@ -25,7 +25,7 @@ angular.module("myApp", [])
 						lat: userPos.lat,
 						lon: userPos.lon
 					},
-					rating: $scope.rating,
+					rating: 0,
 					imglink: $scope.imglink,
 				})
 				.success(function (post) {
