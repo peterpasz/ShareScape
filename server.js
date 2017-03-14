@@ -19,13 +19,13 @@ app.post('/api/posts', function (req, res, next) {
   var post = new Post({
     title: req.body.title,
     pos: {
-		lat: req.body.lat,
-		lon: req.body.lon
-	},
-	imglink: req.body.imglink,
-	rating: req.body.rating
-  })
-  post.save(function (err, post) {
+		lat: req.body.pos.lat,
+		lon: req.body.pos.lon
+    },
+    imglink: req.body.imglink,
+    rating: req.body.rating
+    })
+    post.save(function (err, post) {
     if (err) { return next(err) }
     res.json(201, post)
   })

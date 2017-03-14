@@ -22,7 +22,7 @@ angular.module("myApp", [])
 					title: $scope.title,
 					pos: {
 						lat: usrLat,
-						lng: usrLng
+						lon: usrLng
 					},
 					rating: $scope.rating,
 					imglink: $scope.imglink
