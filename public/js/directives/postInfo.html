@@ -1,7 +1,15 @@
-<div class="post" ng-controller="MainController">
-	<div class="title">{{ info.title }}</div>
-	<div class="lat">Lat: {{ info.pos.lat }}</div>
-	<div class="lon">Lon: {{ info.pos.lon }}</div>
-	<div class="rating">Rating: {{ info.rating }}</div>
-	<img ng-src="{{info.imglink}}" style="height:100px; width:100px"/>
+
+<div class="post">
+	<div class="left">
+		<button class="upvote" ng-click="upvote($index)">+</button>
+		<div class="rating">{{ info.rating | rating }}</div>
+		<button class="downvote" ng-click="upvote($index)">‒</button>
+	</div>
+	<style="clear:both;"/>
+	<div class="right">
+		<div class="title">{{ info.title }}</div>
+		<div class="lat">Lat: {{ info.pos.lat }}</div>
+		<div class="lon">Lon: {{ info.pos.lon }}</div>
+		<img ng-src="{{info.imglink}}" style="height:100px; width:100px"/>
+	</div>
 </div>

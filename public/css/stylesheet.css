@@ -19,7 +19,7 @@ html, body {
 
 #map {
 	width: 100%;
-	height: calc(40% - 45px); /* 40% - #banner height */
+	height: calc(40% - 45px);	/* 40% - #banner height */
 }
 
 #post_entry_toggle {
@@ -40,6 +40,7 @@ html, body {
 	float: left;
 	border: 1px solid lightgrey;
 	height: 100%;
+	padding-left: 10px;
 }
 
 #post_entry_button {
@@ -63,14 +64,48 @@ html, body {
 
 #content {
 	width: 100%;
-	height: calc(60% - 30px); /* 60% - #post-entry_toggle height */
+	height: calc(60% - 30px); 	/* 60% - #post-entry_toggle height */
 	overflow: scroll;
 }
 
 .post {
-	background-color: lightgrey;
-	padding: 10px;
+	background-color: white;
+	border: 1px solid lightgrey;
 	margin: 10px;
+	overflow: hidden;
+}
+
+.left {
+	text-align:center;
+	line-height: 30px;
+	display: table-cell;
+	padding: 10px;
+	width: 60px;
+	float: left;
+}
+
+.rating {
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.upvote, .downvote {
+	width: 30px;
+	height: 30px;
+	font-weight: bold;
+	font-size: 20px;
+	cursor: pointer;
+	background-color: white;
+	color: grey;
+	border: 1px solid lightgrey;
+}
+
+.right {
+	background-color: lightgrey;
+	display: table-cell;
+	padding: 10px;
+	width: calc(100% - 60px);	/* 100% - .left width */
+	float: right;
 }
 
 .title {

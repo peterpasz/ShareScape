@@ -1,7 +1,7 @@
 //Angular JS
 angular.module("myApp", [])
 	.controller("MainController", ["$scope", "$http", function($scope, $http) {
-		$scope.message = "Hello World!",
+		$scope.message = "Hello World!";
 		
 		/*
 		When deploying to heroku, change 
@@ -14,8 +14,9 @@ angular.module("myApp", [])
 			.success(function (posts) {
 				console.log(posts)
 				$scope.posts = posts
-			}),
+			});
 		
+		//Creates a post
 		$scope.createPost = function() {
 			console.log(userPos);
 			if ($scope.title) {
@@ -33,8 +34,20 @@ angular.module("myApp", [])
 					$scope.title = null
 				})	
 			}
-		}
+		};
+		
+		//Increments post rating (non-functional atm because of scope issues due to calling it from a directive)
+		$scope.upvote = function(index) {
+			console.log("u tryna upboat fam xDD");
+			$scope.posts[index].rating += 1;
+		};
+		
+		//Decrements post rating (non-functional atm because of scope issues due to calling it from a directive)
+		$scope.downvote = function(index) {
+			$scope.posts[index].rating -= 1;
+		};
 	}])
+	
 	.directive("postInfo", function() {
 		return {
 			restrict: "E",
@@ -43,7 +56,18 @@ angular.module("myApp", [])
 			},
 			templateUrl: "js/directives/postInfo.html"
 		};
-	});
+	})
+	
+	//Converts a number to string and adds a + in front if it is positive
+	.filter('rating', function() {
+		return function(x) {
+			if(x > 0) {
+				return "+" + x.toString();
+			} else {
+				return x.toString();
+			}
+		};
+	})
 
 //Global variables
 var userPos;
