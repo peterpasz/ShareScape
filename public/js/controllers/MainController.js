@@ -44,6 +44,7 @@ angular.module("myApp", [])
 		
 		//Decrements post rating (non-functional atm because of scope issues due to calling it from a directive)
 		$scope.downvote = function(index) {
+			console.log("downboats lololo");
 			$scope.posts[index].rating -= 1;
 		};
 	}])

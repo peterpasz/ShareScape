@@ -1,14 +1,26 @@
 <div class="post">
+
+	<!-- Left portion of post -->
 	<div class="left">
+		<!-- Upvote button -->
 		<button class="upvote" ng-click="upvote($index)">+</button>
+		<!-- Post rating -->
 		<div class="rating">{{ info.rating | rating }}</div>
+		<!-- Downvote button -->
 		<button class="downvote" ng-click="upvote($index)">‒</button>
 	</div>
+	
 	<style="clear:both;"/>
+	
+	<!-- Right portion of post -->
 	<div class="right">
+		<!-- Post title -->
 		<div class="title">{{ info.title }}</div>
+		<!-- Post position -->
 		<div class="lat">Lat: {{ info.pos.lat }}</div>
 		<div class="lon">Lon: {{ info.pos.lon }}</div>
+		<!-- Post image -->
 		<img ng-src="{{info.imglink}}" style="height:100px; width:100px"/>
 	</div>
+	
 </div>

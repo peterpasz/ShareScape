@@ -38,29 +38,40 @@ html, body {
 
 #post_entry input {
 	float: left;
-	border: 1px solid lightgrey;
 	height: 100%;
 	padding-left: 10px;
 }
 
 #post_entry_button {
+	border-top: none;
+	border-bottom: 1px solid lightgrey;
+	border-left: none;
+	border-right: 1px solid lightgrey;
 	font-weight: bold;
 	cursor: pointer;
-	width: 10%;
+	width: 72px;
 	background-color: white;
 }
 
 #post_entry_title {
-	width: 40%;
+	border-top: none;
+	border-bottom: 1px solid lightgrey;
+	border-left: none;	
+	border-right: 1px solid lightgrey;
+	width: calc((100% - 72px) / 2);	/* 100% - post_entry_button width / 2 */
 }
 
 #post_entry_imglink {
-	width: 40%;
+	border-top: none;
+	border-bottom: 1px solid lightgrey;
+	border-left: none;
+	border-right: none;
+	width: calc((100% - 72px) / 2);	/* 100% - post_entry_button width / 2 */
 }
 
-#post_entry_rating {
+/*#post_entry_rating {
 	width: 10%;
-}
+}*/
 
 #content {
 	width: 100%;
@@ -105,6 +116,7 @@ html, body {
 	display: table-cell;
 	padding: 10px;
 	width: calc(100% - 60px);	/* 100% - .left width */
+	height: 100%;
 	float: right;
 }
 
