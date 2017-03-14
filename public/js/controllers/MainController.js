@@ -26,7 +26,7 @@ angular.module("myApp", [])
 						lat: userPos.lat,
 						lon: userPos.lon
 					},
-					rating: $scope.rating,
+					rating: 0,
 					imglink: $scope.imglink,
 				})
 				.success(function (post) {
