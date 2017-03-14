@@ -22,8 +22,8 @@ angular.module("myApp", [])
 				$http.post('/api/posts', {
 					title: $scope.title,
 					pos: {
-						lat: usrLat,
-						lon: usrLng
+						lat: userPos.lat,
+						lon: userPos.lon
 					},
 					rating: $scope.rating,
 					imglink: $scope.imglink,
