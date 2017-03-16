@@ -61,14 +61,6 @@ html, body {
 	width: calc((100% - 144px) / 2);	/* 100% - post_entry_button width / 2 */
 }
 
-#post_entry_imglink {
-	border-top: none;
-	border-bottom: 1px solid lightgrey;
-	border-left: none;	
-	border-right: 1px solid lightgrey;
-	width: calc((100% - 144px) / 2);	/* 100% - post_entry_button width / 2 */
-}
-
 #post_image_select {
 	border-top: none;
 	border-bottom: 1px solid lightgrey;
@@ -78,6 +70,14 @@ html, body {
 	cursor: pointer;
 	width: 72px;
 	background-color: white;
+}
+
+#post_entry_imglink {
+	border-top: none;
+	border-bottom: 1px solid lightgrey;
+	border-left: none;	
+	border-right: 1px solid lightgrey;
+	width: calc((100% - 144px) / 2);	/* 100% - post_entry_button width / 2 */
 }
 
 #post_image_upload {
