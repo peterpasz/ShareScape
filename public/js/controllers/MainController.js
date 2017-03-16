@@ -1,4 +1,6 @@
 //Angular JS
+var map;
+
 angular.module("myApp", [])
 	.controller("MainController", ["$scope", "$http", function($scope, $http) {
 		$scope.message = "Hello World!";
@@ -12,7 +14,9 @@ angular.module("myApp", [])
 		
 		$http.get('http://localhost:3000/api/posts')
 			.success(function (posts) {
-				console.log(posts)
+				console.log(posts[0].pos.lat)
+				console.log(posts[0].pos.lon)
+				mapMarker(posts[0].pos.lat, posts[0].pos.lon, map)
 				$scope.posts = posts
 			});
 		
@@ -103,7 +107,7 @@ function geolocationFailure(error) {
 function mapInit(x, y) {
     var pos = {lat: x, lng: y};
 	console.log("Your postition: " + pos.lat + ", " + pos.lng);
-    var map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('map'), {
         zoom: 15,
         center: pos
     });
