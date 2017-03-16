@@ -58,15 +58,30 @@ html, body {
 	border-bottom: 1px solid lightgrey;
 	border-left: none;	
 	border-right: 1px solid lightgrey;
-	width: calc((100% - 72px) / 2);	/* 100% - post_entry_button width / 2 */
+	width: calc((100% - 144px) / 2);	/* 100% - post_entry_button width / 2 */
 }
 
 #post_entry_imglink {
 	border-top: none;
 	border-bottom: 1px solid lightgrey;
+	border-left: none;	
+	border-right: 1px solid lightgrey;
+	width: calc((100% - 144px) / 2);	/* 100% - post_entry_button width / 2 */
+}
+
+#post_image_select {
+	border-top: none;
+	border-bottom: 1px solid lightgrey;
 	border-left: none;
 	border-right: none;
-	width: calc((100% - 72px) / 2);	/* 100% - post_entry_button width / 2 */
+	font-weight: bold;
+	cursor: pointer;
+	width: 72px;
+	background-color: white;
+}
+
+#post_image_upload {
+	display: none;
 }
 
 /*#post_entry_rating {

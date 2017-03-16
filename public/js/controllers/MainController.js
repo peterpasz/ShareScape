@@ -83,6 +83,8 @@ document.addEventListener("DOMContentLoaded", function() {
 		console.log("This browser doesn't support geolocation.");
 	}
 	
+	document.getElementById("post_image_select").addEventListener("click", imageUpload);
+	
 });
 
 //Geolocation success callback
@@ -105,4 +107,23 @@ function mapInit(x, y) {
         zoom: 15,
         center: pos
     });
+}
+
+//Uploads an image on imgur and pastes the link to into post_entry_imglink
+function imageUpload(file) {
+	if (!file || !file.type.match(/image.*/)) return;
+    
+	var link;
+    var fd = new FormData();
+    fd.append("image", file);
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://api.imgur.com/3/image.json");
+    xhr.onload = function() {
+		link = JSON.parse(xhr.responseText).data.link.toString();
+		document.getElementById("post_entry_imglink").value = link;
+		$scope.imglink = link;
+    }
+        
+    xhr.setRequestHeader('Authorization', 'Client-ID 37aa31c2a25b049');
+    xhr.send(fd);
 }
