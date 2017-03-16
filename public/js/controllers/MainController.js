@@ -14,12 +14,10 @@ angular.module("myApp", [])
 		
 		$http.get('http://localhost:3000/api/posts')
 			.success(function (posts) {
-				console.log(posts[0].pos.lat)
-				console.log(posts[0].pos.lon)
-				mapMarker(posts[0].pos.lat, posts[0].pos.lon, map)
+				
 				$scope.posts = posts
 			});
-		
+
 		//Creates a post
 		$scope.createPost = function() {
 			console.log(userPos);
@@ -40,6 +38,16 @@ angular.module("myApp", [])
 			}
 		};
 		
+		$scope.makeMarker = function(x, y) {
+			console.log(x, y)
+			console.log(map)
+			console.log($scope.posts)
+			var marker = new google.maps.Marker({
+				position: {lat: x, lng: y},
+				map: map
+   			 })
+		};
+
 		//Increments post rating (non-functional atm because of scope issues due to calling it from a directive)
 		$scope.upvote = function(index) {
 			console.log("u tryna upboat fam xDD");
@@ -111,10 +119,12 @@ function mapInit(x, y) {
         zoom: 15,
         center: pos
     });
+	console.log(map);
 	mapMarker(x, y, map);
 }
 
-function mapMarker(x, y, map) {
+function mapMarker(x, y) {
+	console.log(x, y)
 	var marker = new google.maps.Marker({
         position: {lat: x, lng: y},
         map: map

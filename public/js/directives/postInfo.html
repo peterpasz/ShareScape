@@ -1,4 +1,4 @@
-<div class="post">
+<div class="post" ng-controller="MainController">
 
 	<!-- Left portion of post -->
 	<div class="left">
@@ -21,6 +21,7 @@
 		<div class="lon">Lon: {{ info.pos.lon }}</div>
 		<!-- Post image -->
 		<img ng-src="{{ info.imglink }}" style="height:100px; width:100px"/>
+		<button ng-click="makeMarker(this.info.pos.lat, this.info.pos.lon)">Where Was This Posted?</button>
 	</div>
 	
 </div>
