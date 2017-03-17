@@ -12,7 +12,7 @@ angular.module("myApp", [])
 		'https://sharescape.herokuapp.com/api/posts'
 		*/
 		
-		$http.get('http://localhost:3000/api/posts')
+		$http.get('https://sharescape.herokuapp.com/api/posts')
 			.success(function (posts) {
 				for(var i=0; i<posts.length; i++){
 					$scope.makeMarker(posts[i].pos.lat, posts[i].pos.lon)
