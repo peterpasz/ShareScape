@@ -1,6 +1,4 @@
 //Angular JS
-var map;
-
 angular.module("myApp", [])
 	.controller("MainController", ["$scope", "$http", function($scope, $http) {
 		$scope.message = "Hello World!";
@@ -27,8 +25,8 @@ angular.module("myApp", [])
 				$http.post('/api/posts', {
 					title: $scope.title,
 					pos: {
-						lat: userPos.lat,
-						lon: userPos.lon
+						lat: $scope.userPos.lat,
+						lon: $scope.userPos.lon
 					},
 					rating: 0,
 					imglink: $scope.imglink,
@@ -40,13 +38,14 @@ angular.module("myApp", [])
 			}
 		};
 		
+		//Places a marker at the specified lat and lon
 		$scope.makeMarker = function(x, y) {
 			console.log(x, y)
-			console.log(map)
+			console.log($scope.map)
 			console.log($scope.posts)
 			var marker = new google.maps.Marker({
 				position: {lat: x, lng: y},
-				map: map
+				map: $scope.map
    			 })
 		};
 
@@ -61,6 +60,10 @@ angular.module("myApp", [])
 			console.log("downboats lololo");
 			$scope.posts[index].rating -= 1;
 		};
+		
+		$scope.userPos;
+		
+		$scope.map;
 	}])
 	
 	.directive("postInfo", function() {
@@ -83,70 +86,3 @@ angular.module("myApp", [])
 			}
 		};
 	})
-
-//Global variables
-var userPos;
-
-//On page load
-document.addEventListener("DOMContentLoaded", function() {
-	
-	//Checks if geolocation is available for browser
-	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationFailure);
-	} else {
-		console.log("This browser doesn't support geolocation.");
-	}
-	
-	document.getElementById("post_image_select").addEventListener("click", imageUpload);
-	
-});
-
-//Geolocation success callback
-function geolocationSuccess(position) {
-	userPos = {lat: position.coords.latitude, lon: position.coords.longitude};
-	
-	mapInit(userPos.lat, userPos.lon);
-}
-
-//Geolocation failure callback
-function geolocationFailure(error) {
-	console.log ("Geolocation failed: " + error.message); 
-}
-
-//Initializes without placing a marker
-function mapInit(x, y) {
-    var pos = {lat: x, lng: y};
-	console.log("Your postition: " + pos.lat + ", " + pos.lng);
-    map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 15,
-        center: pos
-    });
-	console.log(map);
-	mapMarker(x, y, map);
-}
-
-function mapMarker(x, y) {
-	console.log(x, y)
-	var marker = new google.maps.Marker({
-        position: {lat: x, lng: y},
-        map: map
-    });
-}
-
-//Uploads an image on imgur and pastes the link to into post_entry_imglink
-function imageUpload(file) {
-	if (!file || !file.type.match(/image.*/)) return;
-    
-	var link;
-    var fd = new FormData();
-    fd.append("image", file);
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://api.imgur.com/3/image.json");
-    xhr.onload = function() {
-		link = JSON.parse(xhr.responseText).data.link;
-		document.getElementById("post_entry_imglink").value = link;
-    }
-        
-    xhr.setRequestHeader('Authorization', 'Client-ID 37aa31c2a25b049');
-    xhr.send(fd);
-}

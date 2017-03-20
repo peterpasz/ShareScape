@@ -91,7 +91,7 @@ html, body {
 #content {
 	width: 100%;
 	height: calc(60% - 30px); 	/* 60% - #post-entry_toggle height */
-	overflow: scroll;
+	overflow-y: auto;
 }
 
 .post {
