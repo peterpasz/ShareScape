@@ -12,11 +12,30 @@ angular.module("myApp", [])
 		
 		$http.get('http://localhost:3000/api/posts')
 			.success(function (posts) {
+				$scope.posts = posts
+			});
+			
+		$scope.makeMarkers = function() {
+			for(var i = 0; i < $scope.posts.length; i++){
+				$scope.makeMarker($scope.posts[i].pos.lat, $scope.posts[i].pos.lon)
+				console.log(
+					"Post marked: " +
+					$scope.posts[i].pos.lat.toFixed(7) + ", " + 
+					$scope.posts[i].pos.lon.toFixed(7) + ", " + 
+					$scope.posts[i].title
+				)
+			}
+		}
+		
+		/*
+		$http.get('http://localhost:3000/api/posts')
+			.success(function (posts) {
 				for(var i=0; i<posts.length; i++){
 					$scope.makeMarker(posts[i].pos.lat, posts[i].pos.lon)
 				}	
 				$scope.posts = posts
 			});
+		*/
 
 		//Creates a post
 		$scope.createPost = function() {
@@ -36,17 +55,20 @@ angular.module("myApp", [])
 					$scope.title = null
 				})	
 			}
+			//Clears title and imglink fields
+			$scope.title = "";
+			$scope.imglink = "";
 		};
 		
 		//Places a marker at the specified lat and lon
 		$scope.makeMarker = function(x, y) {
-			console.log(x, y)
-			console.log($scope.map)
-			console.log($scope.posts)
+			//console.log(x, y)
+			//console.log($scope.map)
+			//console.log($scope.posts)
 			var marker = new google.maps.Marker({
 				position: {lat: x, lng: y},
 				map: $scope.map
-   			 })
+   			})
 		};
 
 		//Increments post rating (non-functional atm because of scope issues due to calling it from a directive)
@@ -61,11 +83,14 @@ angular.module("myApp", [])
 			$scope.posts[index].rating -= 1;
 		};
 		
+		//Position of the user, set by "js/scripts/script.js" when the user shares position
 		$scope.userPos;
 		
+		//Map, set by "js/scripts/script.js" when the user shares position
 		$scope.map;
 	}])
 	
+	//Post template
 	.directive("postInfo", function() {
 		return {
 			restrict: "E",
@@ -76,13 +101,13 @@ angular.module("myApp", [])
 		};
 	})
 	
-	//Converts a number to string and adds a + in front if it is positive
+	//Adds a "+" in front of a number if it is positive
 	.filter('rating', function() {
 		return function(x) {
 			if(x > 0) {
-				return "+" + x.toString();
+				return "+" + x;
 			} else {
-				return x.toString();
+				return x;
 			}
 		};
 	})

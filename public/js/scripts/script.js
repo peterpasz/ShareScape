@@ -22,6 +22,7 @@ function geolocationSuccess(position) {
 	angular.element(document.querySelector("body")).scope().userPos = userPos;
 	
 	mapInit(userPos.lat, userPos.lon);
+	angular.element(document.querySelector("body")).scope().makeMarkers();
 }
 
 //Geolocation failure callback
@@ -38,7 +39,8 @@ function mapInit(x, y) {
         center: pos
     });
 	angular.element(document.querySelector("body")).scope().map = map;
-	console.log(map);
+	console.log("Map loaded")
+	//console.log(map);
 	var marker = new google.maps.Marker({
         position: {lat: x, lng: y},
         map: map
