@@ -10,12 +10,6 @@ angular.module("myApp", [])
 		'https://sharescape.herokuapp.com/api/posts'
 		*/
 		
-		$http.get('https://sharescape.herokuapp.com/api/posts')
-			.success(function (posts) {
-				$scope.posts = posts
-			});
-		
-		/*//Old version, tries to place map markers before map is loaded (sometimes?)
 		$http.get('http://localhost:3000/api/posts')
 			.success(function (posts) {
 				$scope.posts = posts
@@ -27,7 +21,9 @@ angular.module("myApp", [])
 				$scope.posts = posts
 			});
 		
-		/*//Old version, tries to place map markers before map is loaded (sometimes?)
+		/*
+		
+		/*/
 		$http.get('http://localhost:3000/api/posts')
 			.success(function (posts) {
 				for(var i=0; i<posts.length; i++){
@@ -35,7 +31,7 @@ angular.module("myApp", [])
 				}	
 				$scope.posts = posts
 			});
-		*/
+		
 
 		//Creates a post
 		$scope.createPost = function() {

@@ -50,12 +50,12 @@ function mapInit(x, y) {
 //Uploads an image on imgur and pastes the link to into post_entry_imglink
 function imageUpload(file) {
 	if (!file || !file.type.match(/image.*/)) return;
-    
 	var link;
     var fd = new FormData();
     fd.append("image", file);
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://api.imgur.com/3/image.json");
+	angular.element(document.querySelector("body")).scope().imglink = "Generating image link...";
     xhr.onload = function() {
 		link = JSON.parse(xhr.responseText).data.link;
 		angular.element(document.querySelector("body")).scope().imglink = link;
