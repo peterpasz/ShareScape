@@ -59,6 +59,7 @@ function imageUpload(file) {
     xhr.onload = function() {
 		link = JSON.parse(xhr.responseText).data.link;
 		angular.element(document.querySelector("body")).scope().imglink = link;
+		document.getElementById("post_entry_imglink").value = link;
     }
         
     xhr.setRequestHeader('Authorization', 'Client-ID 37aa31c2a25b049');
