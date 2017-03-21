@@ -20,7 +20,32 @@
 		<div class="lat">Lat: {{ info.pos.lat }}</div>
 		<div class="lon">Lon: {{ info.pos.lon }}</div>
 		<!-- Post image -->
-		<img ng-src="{{ info.imglink }}" style="height:100px; width:100px"/>
+		<img id="image" ng-src="{{ info.imglink }}" style="width:200px"/>
+		<!-- The Modal -->
+		<div id="imageModal" class="modal">
+		<!-- The Close Button -->
+		<span class="close" onclick="document.getElementById('imageModal').style.display='none'">&times;</span>
+		<!-- Modal Content (The Image) -->
+		<img class="modal-content" id="img01">
 	</div>
+	
+	<script>
+		var modal = document.getElementById('imageModal');
+		console.log("Hello");
+	
+		var image = document.getElementById('image');
+		var modalImg = document.getElementById("img01");
+		image.onclick = function(){
+			modal.style.display = "block";
+			modalImg.src = image.ng-src;
+			console.log("You clicked on " + image.ng-src);
+		}
+		
+		var span = document.getElementsByClassName("close")[0];
+		
+		span.onclick = function() {
+			modal.style.display = "none";
+		}
+	</script>
 	
 </div>

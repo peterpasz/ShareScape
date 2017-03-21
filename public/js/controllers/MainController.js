@@ -14,20 +14,8 @@ angular.module("myApp", [])
 			.success(function (posts) {
 				$scope.posts = posts
 			});
-			
-		$scope.makeMarkers = function() {
-			for(var i = 0; i < $scope.posts.length; i++){
-				$scope.makeMarker($scope.posts[i].pos.lat, $scope.posts[i].pos.lon)
-				console.log(
-					"Post marked: " +
-					$scope.posts[i].pos.lat.toFixed(7) + ", " + 
-					$scope.posts[i].pos.lon.toFixed(7) + ", " + 
-					$scope.posts[i].title
-				)
-			}
-		}
 		
-		/*
+		/*//Old version, tries to place map markers before map is loaded (sometimes?)
 		$http.get('http://localhost:3000/api/posts')
 			.success(function (posts) {
 				for(var i=0; i<posts.length; i++){
@@ -70,6 +58,19 @@ angular.module("myApp", [])
 				map: $scope.map
    			})
 		};
+		
+		//Places markers for all posts in $scope.posts
+		$scope.makeMarkers = function() {
+			for(var i = 0; i < $scope.posts.length; i++){
+				$scope.makeMarker($scope.posts[i].pos.lat, $scope.posts[i].pos.lon)
+				console.log(
+					"Post marked: " +
+					$scope.posts[i].pos.lat.toFixed(7) + ", " + 
+					$scope.posts[i].pos.lon.toFixed(7) + ", " + 
+					$scope.posts[i].title
+				)
+			}
+		}
 
 		//Increments post rating (non-functional atm because of scope issues due to calling it from a directive)
 		$scope.upvote = function(index) {
