@@ -77,7 +77,7 @@
 		</div>
 
 		<!-- Posts -->
-		<div ng-repeat="post in posts | orderBy: 'title'">
+		<div ng-repeat="post in posts | orderBy: '-rating'">
 			<post-info info="post"></post-info>
 		</div>
 		
