@@ -60,9 +60,17 @@
 		<!-- Folder browser -->
 		<input type="file" 	 id="post_image_upload" style="visibility: collapse; width: 0px;" onchange="imageUpload(this.files[0])">
 	</form>
-	
+
 	<!-- Main page content -->
 	<div id="content">
+
+		<!-- Hidden Image Enlargement Overlay -->
+		<div id="myNav" class="overlay">
+  			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  			<div class="overlay-content">
+				<img src="" id="bigImage" class="bigImage"></img>
+  			</div>
+		</div>
 
 		<!-- Posts -->
 		<div ng-repeat="post in posts | orderBy: 'title'">

@@ -1,4 +1,13 @@
 <div class="post" ng-controller="MainController">
+	
+<div id="myNav" class="overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <div class="overlay-content">
+	<img src="" id="bigImage"></img>
+  </div>
+</div>
+
+
 
 	<!-- Left portion of post -->
 	<div class="left">
@@ -20,7 +29,9 @@
 		<div class="lat">Lat: {{ info.pos.lat }}</div>
 		<div class="lon">Lon: {{ info.pos.lon }}</div>
 		<!-- Post image -->
-		<img id="image" ng-src="{{ info.imglink }}" style="width:200px" class="bigImage"/>
+		<span style="cursor:pointer" ng-click="openNav(this.info.imglink)"> 
+		<img id="image" ng-src="{{ info.imglink }}" style="width:200px"/>
+		</span>
 		<!-- The Modal -->
 		<div id="imageModal" class="modal">
 		<!-- The Close Button -->

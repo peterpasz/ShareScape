@@ -67,3 +67,8 @@ function imageUpload(file) {
     xhr.setRequestHeader('Authorization', 'Client-ID 37aa31c2a25b049');
     xhr.send(fd);
 }
+
+
+function closeNav() {
+    document.getElementById("myNav").style.width = "0%";
+}

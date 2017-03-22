@@ -90,8 +90,14 @@ angular.module("myApp", [])
 		//Decrements post rating (non-functional atm because of scope issues due to calling it from a directive)
 		$scope.downvote = function(index) {
 			console.log("downboats lololo");
+			console.log($scope.posts[index]);
 			$scope.posts[index].rating -= 1;
 		};
+
+		$scope.openNav = function(link) {
+			document.getElementById("bigImage").src = link;
+   			document.getElementById("myNav").style.width = "100%";
+		}
 		
 		//Position of the user, set by "js/scripts/script.js" when the user shares position
 		$scope.userPos;
