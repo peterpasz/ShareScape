@@ -49,11 +49,12 @@ angular.module("myApp", [])
 				.success(function (post) {
 					$scope.posts.unshift(post)
 					$scope.title = null
+					//Clears title and imglink fields
+					$scope.title = "";
+					$scope.imglink = "";
 				})	
 			}
-			//Clears title and imglink fields
-			$scope.title = "";
-			$scope.imglink = "";
+
 		};
 		
 		//Places a marker at the specified lat and lon

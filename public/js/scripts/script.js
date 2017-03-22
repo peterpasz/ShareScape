@@ -55,11 +55,13 @@ function imageUpload(file) {
     fd.append("image", file);
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://api.imgur.com/3/image.json");
-	angular.element(document.querySelector("body")).scope().imglink = "Generating image link...";
+	document.getElementById("post_entry_imglink").value = "Generating image link...";
+	document.getElementById("post_entry_imglink").disabled = true;
     xhr.onload = function() {
 		link = JSON.parse(xhr.responseText).data.link;
 		angular.element(document.querySelector("body")).scope().imglink = link;
 		document.getElementById("post_entry_imglink").value = link;
+		document.getElementById("post_entry_imglink").disabled = false;
     }
         
     xhr.setRequestHeader('Authorization', 'Client-ID 37aa31c2a25b049');
