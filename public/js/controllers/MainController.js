@@ -77,7 +77,8 @@ angular.module("myApp", [])
 			var marker = new google.maps.Marker({
 				position: {lat: x, lng: y},
 				map: $scope.map,
-				title: markerTitle
+				title: markerTitle,
+				icon: '../../images/ShareScapeMapIcon2.png'
    			})
 			$scope.markers[count] = marker
 			

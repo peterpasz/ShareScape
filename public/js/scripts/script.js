@@ -40,11 +40,6 @@ function mapInit(x, y) {
     });
 	angular.element(document.querySelector("body")).scope().map = map;
 	console.log("Map loaded")
-	//console.log(map);
-	var marker = new google.maps.Marker({
-        position: {lat: x, lng: y},
-        map: map
-    });
 }
 
 //Uploads an image on imgur and pastes the link to into post_entry_imglink
