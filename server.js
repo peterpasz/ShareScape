@@ -32,6 +32,30 @@ app.post('/api/posts', function (req, res, next) {
   })
 })
 
+app.put('/api/posts/:post_id', function (req, res, next) {
+  Post.findById(req.params.post_id, function(err, post) {
+    if (err) { return next(err) }
+    post.rating = req.body.rating
+    post.save(function(err){
+      if(err) res.send(err)
+      res.json({newrating:post.rating})
+    })
+  })
+})
+
+/*
+app.put('api/posts/:post_id', function(req, res) {
+  Post.findById(req.params.post_id, function(err, post){
+    if(err) { return next(err) }
+    post.rating = req.body.rating
+    post.save(function(err){
+      if(err){ return next(err) }
+      res.json({message: 'Post updated!'})
+    })
+  })
+})
+*/
+
 app.listen(port, function () {
 console.log('Server listening on', port)
 })

@@ -1,20 +1,11 @@
 <div class="post" ng-controller="MainController">
 	
-<div id="myNav" class="overlay">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <div class="overlay-content">
-	<img src="" id="bigImage"></img>
-  </div>
-</div>
-
-
-
 	<!-- Left portion of post -->
 	<div class="left">
 		<!-- Upvote button -->
-		<button class="upvote" ng-click="upvote($index)">+</button>
+		<button class="upvote" ng-click="updateRating(this.info._id, this.info.rating)">+</button>
 		<!-- Post rating -->
-		<div class="rating">{{ info.rating | rating }}</div>
+		<div id="post1" ng-model="rating" class="rating">{{ info.rating }}</div>
 		<!-- Downvote button -->
 		<button class="downvote" ng-click="downvote($index)">‒</button>
 	</div>
@@ -32,31 +23,6 @@
 		<span style="cursor:pointer" ng-click="openNav(this.info.imglink)"> 
 		<img id="image" ng-src="{{ info.imglink }}" style="width:200px"/>
 		</span>
-		<!-- The Modal -->
-		<div id="imageModal" class="modal">
-		<!-- The Close Button -->
-		<span class="close" onclick="document.getElementById('imageModal').style.display='none'">&times;</span>
-		<!-- Modal Content (The Image) -->
-		<img class="modal-content" id="img01">
 	</div>
-	
-	<script>
-		var modal = document.getElementById('imageModal');
-		console.log("Hello");
-	
-		var image = document.getElementById('image');
-		var modalImg = document.getElementById("img01");
-		image.onclick = function(){
-			modal.style.display = "block";
-			modalImg.src = image.ng-src;
-			console.log("You clicked on " + image.ng-src);
-		}
-		
-		var span = document.getElementsByClassName("close")[0];
-		
-		span.onclick = function() {
-			modal.style.display = "none";
-		}
-	</script>
 	
 </div>

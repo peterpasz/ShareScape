@@ -24,7 +24,7 @@ angular.module("myApp", [])
 		/*
 		
 		/*/
-		$http.get('http://localhost:3000/api/posts')
+		$http.get('/api/posts')
 			.success(function (posts) {
 				for(var i=0; i<posts.length; i++){
 					$scope.makeMarker(posts[i].pos.lat, posts[i].pos.lon)
@@ -54,8 +54,17 @@ angular.module("myApp", [])
 					$scope.imglink = "";
 				})	
 			}
-
 		};
+
+		$scope.updateRating = function(postid, postrating){
+			$http.put('/api/posts/' + postid, {
+				rating: postrating + 1
+			})
+			.success(function(post) {
+				console.log("upvote succeeded -- refresh")
+			})
+			
+		}
 		
 		//Places a marker at the specified lat and lon
 		$scope.makeMarker = function(x, y) {
