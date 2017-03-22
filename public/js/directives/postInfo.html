@@ -1,5 +1,12 @@
 <div class="post" ng-controller="MainController">
 	
+	<div id="myNav" class="overlay">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<div class="overlay-content">
+			<img src="" id="bigImage"></img>
+		</div>
+	</div>
+
 	<!-- Left portion of post -->
 	<div class="left">
 		<!-- Upvote button -->
@@ -21,7 +28,7 @@
 		<div class="lon">Lon: {{ info.pos.lon }}</div>
 		<!-- Post image -->
 		<span style="cursor:pointer" ng-click="openNav(this.info.imglink)"> 
-		<img id="image" ng-src="{{ info.imglink }}" style="width:200px"/>
+			<img id="image" ng-src="{{ info.imglink }}" style="width:200px"/>
 		</span>
 	</div>
 	

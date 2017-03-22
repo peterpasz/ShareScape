@@ -103,9 +103,9 @@ angular.module("myApp", [])
 			$scope.posts[index].rating -= 1;
 		};
 
+		//Opens the image view overlay
 		$scope.openNav = function(link) {
-			document.getElementById("bigImage").src = link;
-   			document.getElementById("myNav").style.width = "100%";
+			openNav(link);
 		}
 		
 		//Position of the user, set by "js/scripts/script.js" when the user shares position

@@ -14,7 +14,7 @@
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHA5cxSt3ZGQpALXemSm48kTnYgclUQzA"></script>
 </head>
 
-<body ng-app="myApp" ng-controller="MainController">
+<body ng-app="myApp" ng-controller="MainController" onkeyup="inputKeyUp(event)">
 	
 	<!-- Banner -->
 	<div id="banner">
@@ -66,10 +66,14 @@
 
 		<!-- Hidden Image Enlargement Overlay -->
 		<div id="myNav" class="overlay">
-  			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  			<div class="overlay-content">
-				<img src="" id="bigImage" class="bigImage"></img>
-  			</div>
+			<!-- Area outside of the image clicking on which closes the viewer -->
+			<div id="closeArea" onclick="closeNav()"></div>
+			<!-- Close button -->
+  			<a href="javascript:void(0)" id="closebtn" class="closebtn" onclick="closeNav()">&times;</a>
+			<!-- Helper container to center image -->
+			<span class="helper"></span>
+			<!-- Image -->
+			<img src="" id="bigImage" class="bigImage"></img>
 		</div>
 
 		<!-- Posts -->
