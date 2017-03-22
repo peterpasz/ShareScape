@@ -86,15 +86,14 @@ angular.module("myApp", [])
   			})
 		};
 
+		//Creates info window and centers map on clicked post
 		$scope.openInfo = function(x, y, title) {
 			infowindow = new google.maps.InfoWindow({
-				content: title
+				content: title,
+				position: {lat:x, lng:y},
+				pixelOffset: new google.maps.Size(0, -35)
 			})
-			var marker = new google.maps.Marker({
-				position: {lat: x, lng: y},
-				map: $scope.map
-   			})
-   			infowindow.open(map, marker)
+   			infowindow.open(map)
 			map.setCenter({lat:x, lng:y})
 		}
 		
