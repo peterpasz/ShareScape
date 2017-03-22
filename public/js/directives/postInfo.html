@@ -1,5 +1,5 @@
 <div class="post" ng-controller="MainController">
-	
+	<span ng-click="openInfo(this.info.pos.lat, this.info.pos.lon, this.info.title)">
 	<div id="myNav" class="overlay">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 		<div class="overlay-content">
@@ -31,5 +31,5 @@
 			<img id="image" ng-src="{{ info.imglink }}" style="width:200px"/>
 		</span>
 	</div>
-	
+	</span>
 </div>

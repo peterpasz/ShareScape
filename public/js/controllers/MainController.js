@@ -67,7 +67,7 @@ angular.module("myApp", [])
 		}
 		
 		//Places a marker at the specified lat and lon
-		$scope.makeMarker = function(x, y, markerTitle) {
+		$scope.makeMarker = function(x, y, markerTitle, count) {
 			//console.log(x, y)
 			//console.log($scope.map)
 			//console.log($scope.posts)
@@ -79,15 +79,28 @@ angular.module("myApp", [])
 				map: $scope.map,
 				title: markerTitle
    			})
+			$scope.markers[count] = marker
+			
 			marker.addListener('click', function() {
    				infowindow.open(map, marker)
   			})
 		};
+
+		$scope.openInfo = function(x, y, title) {
+			infowindow = new google.maps.InfoWindow({
+				content: title
+			})
+			var marker = new google.maps.Marker({
+				position: {lat: x, lng: y},
+				map: $scope.map
+   			})
+   			infowindow.open(map, marker)
+		}
 		
 		//Places markers for all posts in $scope.posts
 		$scope.makeMarkers = function() {
 			for(var i = 0; i < $scope.posts.length; i++){
-				$scope.makeMarker($scope.posts[i].pos.lat, $scope.posts[i].pos.lon, $scope.posts[i].title)
+				$scope.makeMarker($scope.posts[i].pos.lat, $scope.posts[i].pos.lon, $scope.posts[i].title, i)
 				console.log(
 					"Post marked: " +
 					$scope.posts[i].pos.lat.toFixed(7) + ", " + 
@@ -120,6 +133,8 @@ angular.module("myApp", [])
 		
 		//Map, set by "js/scripts/script.js" when the user shares position
 		$scope.map;
+
+		$scope.markers = [];
 	}])
 	
 	//Post template
