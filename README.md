@@ -3,11 +3,11 @@ Location-based image-sharing social platform.
 
 #### TODO
   1. Map
-    * [ ] Track user's movement
-    * [ ] Create markers using post position data
+    * [x] Track user's movement
+    * [x] Create markers using post position data
   2. Imgur Uploading
-    * [ ] Take picture using device camera
-    * [ ] Upload picture to imgur album through app
+    * [x] Take picture using device camera
+    * [x] Upload picture to imgur album through app
   3. Drawing Canvas
     * [ ] Create interface for drawing
     * [ ] Allow user to use image as template for drawing interface
