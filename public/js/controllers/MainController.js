@@ -67,20 +67,27 @@ angular.module("myApp", [])
 		}
 		
 		//Places a marker at the specified lat and lon
-		$scope.makeMarker = function(x, y) {
+		$scope.makeMarker = function(x, y, markerTitle) {
 			//console.log(x, y)
 			//console.log($scope.map)
 			//console.log($scope.posts)
+			var infowindow = new google.maps.InfoWindow({
+    			content: "\"" + markerTitle + "\""
+  			})
 			var marker = new google.maps.Marker({
 				position: {lat: x, lng: y},
-				map: $scope.map
+				map: $scope.map,
+				title: markerTitle
    			})
+			marker.addListener('click', function() {
+   				infowindow.open(map, marker)
+  			})
 		};
 		
 		//Places markers for all posts in $scope.posts
 		$scope.makeMarkers = function() {
 			for(var i = 0; i < $scope.posts.length; i++){
-				$scope.makeMarker($scope.posts[i].pos.lat, $scope.posts[i].pos.lon)
+				$scope.makeMarker($scope.posts[i].pos.lat, $scope.posts[i].pos.lon, $scope.posts[i].title)
 				console.log(
 					"Post marked: " +
 					$scope.posts[i].pos.lat.toFixed(7) + ", " + 
