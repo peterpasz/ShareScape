@@ -68,7 +68,28 @@ function imageUpload(file) {
     xhr.send(fd);
 }
 
+//Opens the image view overlay
+function openNav(link) {
+	document.getElementById("bigImage").src = link;
+   	document.getElementById("myNav").style.width = "100%";
+	document.getElementById("myNav").style.backgroundColor = "rgba(0, 0, 0, 0.9)";
+	document.getElementById("bigImage").style.opacity = "1";
+	document.getElementById("closebtn").style.opacity = "1";
+}
 
+//Closes the image view overlay
 function closeNav() {
     document.getElementById("myNav").style.width = "0%";
+	document.getElementById("myNav").style.backgroundColor = "rgba(0, 0, 0, 0.0)";
+	document.getElementById("bigImage").style.opacity = "0.0";
+	document.getElementById("closebtn").style.opacity = "0";
+}
+
+//Handles key input
+function inputKeyUp(e) {
+    e.which = e.which || e.keyCode;
+	//Closes the image view overlay on ESC
+    if(e.which == 27) {
+        closeNav();
+    }
 }
