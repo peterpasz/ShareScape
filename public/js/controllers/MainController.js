@@ -95,6 +95,7 @@ angular.module("myApp", [])
 				map: $scope.map
    			})
    			infowindow.open(map, marker)
+			map.setCenter({lat:x, lng:y})
 		}
 		
 		//Places markers for all posts in $scope.posts
