@@ -97,6 +97,13 @@ angular.module("myApp", [])
    			infowindow.open(map)
 			map.setCenter({lat:x, lng:y})
 		}
+
+		//Centers map on user location
+		$scope.centerOnUser = function() {
+			if($scope.userPos) {
+				map.setCenter({lat: $scope.userPos.lat, lng: $scope.userPos.lon});
+			}
+		}
 		
 		//Places markers for all posts in $scope.posts
 		$scope.makeMarkers = function() {

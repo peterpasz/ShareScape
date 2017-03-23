@@ -8,7 +8,7 @@ app.use(bodyParser.json())
 
 app.use('/', express.static('public'))
 app.use('/camera', express.static('public/camera'))
-app.use('/camera', express.static('public/test.html'))
+app.use('/camera', express.static('public/mobile.html'))
 
 app.get('/api/posts', function (req, res, next) {
   Post.find(function(err, posts) {

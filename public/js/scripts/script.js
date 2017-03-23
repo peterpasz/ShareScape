@@ -36,7 +36,8 @@ function mapInit(x, y) {
 	console.log("Your postition: " + pos.lat + ", " + pos.lng);
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 15,
-        center: pos
+        center: pos,
+		streetViewControl: false
     });
 	angular.element(document.querySelector("body")).scope().map = map;
 	console.log("Map loaded")
