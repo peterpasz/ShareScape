@@ -44,7 +44,8 @@ function mapInit(x, y) {
 }
 
 //Uploads an image on imgur and pastes the link to into post_entry_imglink
-function imageUpload(file) {
+function imageUpload(file, mobile) {
+	console.log(file.name + " selected");
 	if (!file || !file.type.match(/image.*/)) return;
 	var link;
     var fd = new FormData();
@@ -58,10 +59,23 @@ function imageUpload(file) {
 		angular.element(document.querySelector("body")).scope().imglink = link;
 		document.getElementById("post_entry_imglink").value = link;
 		document.getElementById("post_entry_imglink").disabled = false;
+		//If mobile parameter set to true, preview image
+		if(mobile){
+			openPreview(link);
+		}
     }
-        
     xhr.setRequestHeader('Authorization', 'Client-ID 37aa31c2a25b049');
     xhr.send(fd);
+}
+
+function openPreview(link) {
+	openNav(link);
+	document.getElementById("post_entry").style.display = "inline";
+}
+
+function closePreview() {
+	closeNav();
+	document.getElementById("post_entry").style.display = "none";
 }
 
 //Opens the image view overlay
