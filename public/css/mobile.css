@@ -88,7 +88,7 @@ html, body {
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     top: 0;
     left: 0;
     background-color: rgb(0,0,0);
@@ -125,7 +125,7 @@ html, body {
 	max-height: 80%;
 	opacity: 0;
 	transition: 0.5s;
-	z-index: 1;
+	z-index: 2;
 }
 
 .helper {
@@ -147,7 +147,7 @@ html, body {
 	border-radius: 35px;
 	border: none;
 	position: absolute;
-	z-index: 10;
+	z-index: 1;
 	float: left;
 	margin: 30px;
 	box-shadow: 0px 0px 15px #888888;
@@ -174,4 +174,8 @@ html, body {
 
 #main {
 	height: 100%;
+}
+
+#post_entry {
+	display: none;
 }

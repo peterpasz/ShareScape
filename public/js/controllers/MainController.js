@@ -124,11 +124,12 @@ angular.module("myApp", [])
 			for(var i = 0; i < $scope.posts.length; i++){
 				$scope.makeMarker($scope.posts[i].pos.lat, $scope.posts[i].pos.lon, $scope.posts[i].title, i, $scope.posts[i].imglink)
 				console.log(
+
 					"Post marked: " +
 					$scope.posts[i].pos.lat.toFixed(7) + ", " + 
 					$scope.posts[i].pos.lon.toFixed(7) + ", " + 
 					$scope.posts[i].title
-				)
+				)*/
 			}
 		}
 
