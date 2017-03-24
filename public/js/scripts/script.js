@@ -1,6 +1,8 @@
 //Global variables
 var userPos;
 var map;
+var id;//if you want to turn off real time geolocation
+
 
 //On page load
 document.addEventListener("DOMContentLoaded", function() {
@@ -8,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	//Checks if geolocation is available for browser
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationFailure);
+		id = navigator.geolocation.watchPosition(geolocationSuccess, geolocationFailure);
 	} else {
 		console.log("This browser doesn't support geolocation.");
 	}
@@ -19,10 +22,12 @@ document.addEventListener("DOMContentLoaded", function() {
 //Geolocation success callback
 function geolocationSuccess(position) {
 	userPos = {lat: position.coords.latitude, lon: position.coords.longitude};
-	angular.element(document.querySelector("body")).scope().userPos = userPos;
 	
+	angular.element(document.querySelector("body")).scope().userPos = userPos;
 	mapInit(userPos.lat, userPos.lon);
 	angular.element(document.querySelector("body")).scope().makeMarkers();
+	
+	console.log("updated location");
 }
 
 //Geolocation failure callback

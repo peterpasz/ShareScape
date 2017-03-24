@@ -27,7 +27,7 @@ angular.module("myApp", [])
 		$http.get('/api/posts')
 			.success(function (posts) {
 				for(var i=0; i<posts.length; i++){
-					$scope.makeMarker(posts[i].pos.lat, posts[i].pos.lon)
+					$scope.makeMarker(posts[i].pos.lat, posts[i].pos.lon, posts[i].title, i,  posts[i].imglink)
 				}	
 				$scope.posts = posts
 			});
@@ -66,8 +66,12 @@ angular.module("myApp", [])
 			
 		}
 		
+		//hashmap to associate marker with img links
+		$scope.markerHashMap = new Map();
+		
+		
 		//Places a marker at the specified lat and lon
-		$scope.makeMarker = function(x, y, markerTitle, count) {
+		$scope.makeMarker = function(x, y, markerTitle, count, imglink) {
 			//console.log(x, y)
 			//console.log($scope.map)
 			//console.log($scope.posts)
@@ -78,12 +82,22 @@ angular.module("myApp", [])
 				position: {lat: x, lng: y},
 				map: $scope.map,
 				title: markerTitle,
+				//animation: google.maps.Animation.DROP,
 				icon: '../../images/ShareScapeMapIcon2.png'
-   			})
-			$scope.markers[count] = marker
+   			});
+			
+			$scope.markerHashMap.set(marker, imglink);
+			//console.log(imglink);
+			//console.log($scope.markerHashMap.size);
+			//console.log($scope.markerHashMap.get(marker));
+			
 			
 			marker.addListener('click', function() {
-   				infowindow.open(map, marker)
+   				infowindow.open(map, marker);
+				
+				link = $scope.markerHashMap.get(marker);
+				console.log(link);
+				$scope.openNav(link);
   			})
 		};
 
@@ -108,7 +122,7 @@ angular.module("myApp", [])
 		//Places markers for all posts in $scope.posts
 		$scope.makeMarkers = function() {
 			for(var i = 0; i < $scope.posts.length; i++){
-				$scope.makeMarker($scope.posts[i].pos.lat, $scope.posts[i].pos.lon, $scope.posts[i].title, i)
+				$scope.makeMarker($scope.posts[i].pos.lat, $scope.posts[i].pos.lon, $scope.posts[i].title, i, $scope.posts[i].imglink)
 				console.log(
 					"Post marked: " +
 					$scope.posts[i].pos.lat.toFixed(7) + ", " + 
