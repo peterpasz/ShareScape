@@ -129,7 +129,7 @@ angular.module("myApp", [])
 					$scope.posts[i].pos.lat.toFixed(7) + ", " + 
 					$scope.posts[i].pos.lon.toFixed(7) + ", " + 
 					$scope.posts[i].title
-				)*/
+				)
 			}
 		}
 
