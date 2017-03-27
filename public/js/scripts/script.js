@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	//Checks if geolocation is available for browser
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationFailure);
-		id = navigator.geolocation.watchPosition(geolocationSuccess, geolocationFailure);
+		id = navigator.geolocation.watchPosition(geolocationSuccess2, geolocationFailure);
 	} else {
 		console.log("This browser doesn't support geolocation.");
 	}
@@ -27,7 +27,19 @@ function geolocationSuccess(position) {
 	mapInit(userPos.lat, userPos.lon);
 	angular.element(document.querySelector("body")).scope().makeMarkers();
 	
-	console.log("updated location");
+	console.log("Intial Location found");
+}
+
+//Geolocation success callback
+function geolocationSuccess2(position) {
+	userPos = {lat: position.coords.latitude, lon: position.coords.longitude};
+	
+	angular.element(document.querySelector("body")).scope().userPos = userPos;
+	mapInit(userPos.lat, userPos.lon);
+	map.panTo(userPos);
+	angular.element(document.querySelector("body")).scope().makeMarkers();
+	
+	console.log("Intial Location found");
 }
 
 //Geolocation failure callback
