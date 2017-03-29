@@ -231,6 +231,12 @@ html, body {
 	#content {
 		width: 50%;
 		height: calc(100% - 100px);
-		overflow-y: hidden;
+	}
+	#divider{
+		margin-left: 49%;
+		width: 1%;
+		height: 100%;
+		background-color: black;
+		position: fixed;
 	}
 }

@@ -10,6 +10,7 @@
 	<script src="js/scripts/script.js"></script>
 	<!-- Angular JS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<!-- ngStorage -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
 	<!-- Google Maps -->
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHA5cxSt3ZGQpALXemSm48kTnYgclUQzA"></script>
@@ -25,6 +26,8 @@
 	<!-- Map -->
 	<div id="map"></div>
 	
+	<div id="divider"></div>
+
 	<!-- Post entry toggle button -->
 	<button id="post_entry_toggle" ng-click="toggle=!toggle" onclick=changeContentHeight()>
 		{{ toggle ? 'x' : '+' }}
@@ -85,6 +88,8 @@
 		
 	</div>
 	
+
+
 	<!-- Controllers -->
     <script src="js/controllers/MainController.js"></script>
 	
