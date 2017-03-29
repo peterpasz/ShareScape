@@ -7,15 +7,17 @@ var id;//if you want to turn off real time geolocation
 //On page load
 document.addEventListener("DOMContentLoaded", function() {
 
+	document.getElementById("post_image_select").addEventListener("click", imageUpload);
+	
 	//Checks if geolocation is available for browser
 	if (navigator.geolocation) {
+		//Uncomment this line, comment the next one, and uncomment geoLocation(). The page will refresh your location once every second, you have to let it every time though
+		//var myVar = setInterval(getGeolocation, 1000);
 		navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationFailure);
 		//id = navigator.geolocation.watchPosition(geolocationSuccess2, geolocationFailure);
 	} else {
 		console.log("This browser doesn't support geolocation.");
 	}
-	
-	document.getElementById("post_image_select").addEventListener("click", imageUpload);
 	
 });
 
@@ -24,11 +26,21 @@ function geolocationSuccess(position) {
 	userPos = {lat: position.coords.latitude, lon: position.coords.longitude};
 	
 	angular.element(document.querySelector("body")).scope().userPos = userPos;
-	mapInit(userPos.lat, userPos.lon);
-	angular.element(document.querySelector("body")).scope().makeMarkers();
-	
-	console.log("Intial Location found");
+	//Initialize map and place markers
+	if(!map) {
+		mapInit(userPos.lat, userPos.lon);
+		angular.element(document.querySelector("body")).scope().makeMarkers();
+		console.log("Intial Location found");
+	} else {
+		console.log(userPos);
+	}
 }
+
+/*
+function getGeolocation() {
+	navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationFailure);
+}
+*/
 
 //Geolocation success callback
 function geolocationSuccess2(position) {
