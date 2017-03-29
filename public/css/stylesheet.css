@@ -8,6 +8,7 @@ html, body {
 	padding: 0px;
 	margin: 0px;
 	font-family: Arial;
+	overflow-y: hidden;
 }
 
 #banner {
@@ -41,14 +42,14 @@ html, body {
 	line-height: 50px;
 	border-top: 1px solid black;
 	border-bottom: 0px solid black;
-	transition: 0.4s;
+	transition: border-width 0.4s;
 	font-size: 20px;
 }
 
 #post_entry {
 	height: 0px;
 	width: 100%;
-	transition: 0.5s;
+	transition: height 0.5s;
 	overflow-y: hidden;
 	border-bottom: 1px solid black;
 }
@@ -96,10 +97,11 @@ html, body {
 }
 
 #content {
-	height: calc(60% - 51px); 	/* 60% - #post-entry_toggle height */
+	/*height: calc(60% - 51px);*/ 	/* 60% - #post-entry_toggle height */
+	height: 60%; 	/* 60% - #post-entry_toggle height */
 	width: 100%;
 	overflow-y: auto;
-	transition: 0.5s;
+	/*transition: 0.5s;*/
 	background-color: lightgrey;
 }
 
@@ -204,4 +206,31 @@ html, body {
 	height: 100%;
 	width: 100%;
 	z-index: -1;
+}
+
+@media only screen and (min-width: 750px) {
+	#banner {
+		width: 50%;
+		float: left;
+	}
+	
+	#map {
+		height: 100%;
+		width: 50%;
+		float: right;
+	}
+	
+	#post_entry_toggle {
+		width: 50%;
+	}
+	
+	#post_entry {
+		width: 50%;
+	}
+	
+	#content {
+		width: 50%;
+		height: calc(100% - 100px);
+		overflow-y: hidden;
+	}
 }

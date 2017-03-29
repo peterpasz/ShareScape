@@ -69,6 +69,7 @@ function imageUpload(file, mobile) {
     fd.append("image", file);
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://api.imgur.com/3/image.json");
+	//Update image link field if not using mobile version
 	if(!mobile){
 		document.getElementById("post_entry_imglink").value = "Generating image link...";
 		document.getElementById("post_entry_imglink").disabled = true;
@@ -76,11 +77,12 @@ function imageUpload(file, mobile) {
     xhr.onload = function() {
 		link = JSON.parse(xhr.responseText).data.link;
 		angular.element(document.querySelector("body")).scope().imglink = link;
+		//Reset image link field if not using mobile version
 		if(!mobile){
 			document.getElementById("post_entry_imglink").value = link;
 			document.getElementById("post_entry_imglink").disabled = false;
 		}
-		//If mobile parameter set to true, preview image
+		//Preview image if using mobile version
 		if(mobile){
 			openPreview(link);
 		}
