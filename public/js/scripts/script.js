@@ -69,13 +69,17 @@ function imageUpload(file, mobile) {
     fd.append("image", file);
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://api.imgur.com/3/image.json");
-	document.getElementById("post_entry_imglink").value = "Generating image link...";
-	document.getElementById("post_entry_imglink").disabled = true;
+	if(!mobile){
+		document.getElementById("post_entry_imglink").value = "Generating image link...";
+		document.getElementById("post_entry_imglink").disabled = true;
+	}
     xhr.onload = function() {
 		link = JSON.parse(xhr.responseText).data.link;
 		angular.element(document.querySelector("body")).scope().imglink = link;
-		document.getElementById("post_entry_imglink").value = link;
-		document.getElementById("post_entry_imglink").disabled = false;
+		if(!mobile){
+			document.getElementById("post_entry_imglink").value = link;
+			document.getElementById("post_entry_imglink").disabled = false;
+		}
 		//If mobile parameter set to true, preview image
 		if(mobile){
 			openPreview(link);
@@ -85,31 +89,31 @@ function imageUpload(file, mobile) {
     xhr.send(fd);
 }
 
+//Opens the image preview overlay
 function openPreview(link) {
-	openNav(link);
+	openView(link);
 	document.getElementById("post_entry").style.display = "inline";
 }
 
-function closePreview() {
-	closeNav();
-	document.getElementById("post_entry").style.display = "none";
-}
-
 //Opens the image view overlay
-function openNav(link) {
+function openView(link) {
 	document.getElementById("bigImage").src = link;
    	document.getElementById("myNav").style.width = "100%";
 	document.getElementById("myNav").style.backgroundColor = "rgba(0, 0, 0, 0.9)";
 	document.getElementById("bigImage").style.opacity = "1";
 	document.getElementById("closebtn").style.opacity = "1";
+	//For testing only
+	//document.getElementById("post_entry").style.display = "inline";
 }
 
 //Closes the image view overlay
-function closeNav() {
+function closeView() {
     document.getElementById("myNav").style.width = "0%";
 	document.getElementById("myNav").style.backgroundColor = "rgba(0, 0, 0, 0.0)";
 	document.getElementById("bigImage").style.opacity = "0.0";
 	document.getElementById("closebtn").style.opacity = "0";
+	//Extra element opened by openPreview
+	document.getElementById("post_entry").style.display = "none";
 }
 
 //Handles key input
@@ -117,6 +121,6 @@ function inputKeyUp(e) {
     e.which = e.which || e.keyCode;
 	//Closes the image view overlay on ESC
     if(e.which == 27) {
-        closeNav();
+        closeView();
     }
 }

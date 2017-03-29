@@ -27,7 +27,7 @@
 	<!-- Hidden Image Enlargement Overlay -->
 	<div id="myNav" class="overlay">
 		<!-- Close button -->
-		<a href="javascript:void(0)" id="closebtn" class="closebtn" onclick="closeNav()">&times;</a>
+		<a href="javascript:void(0)" id="closebtn" class="closebtn" onclick="closeView()">&times;</a>
 		<!-- Helper container to center image -->
 		<span class="helper"></span>
 		<!-- Image -->
@@ -35,11 +35,9 @@
 		<!-- Post entry fields -->
 		<form id="post_entry" ng-submit="createPost()">
 			<!-- "Post" button -->
-			<input type="submit" id="post_entry_button" value="Post" onclick="closeNav()">
+			<input type="submit" id="post_entry_button" value="Post" onclick="closeView()">
 			<!-- Title field -->
 			<input type="text" id="post_entry_title" ng-model="title" placeholder="Title">
-			<!-- Image link field -->
-			<input type="text" id="post_entry_imglink" ng-model="imglink" placeholder="Image Link">
 		</form>
 	</div>
 

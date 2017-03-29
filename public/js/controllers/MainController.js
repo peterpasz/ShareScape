@@ -48,6 +48,12 @@ angular.module("myApp", [])
 				})
 				.success(function (post) {
 					$scope.posts.unshift(post)
+					$scope.makeMarker(
+						$scope.userPos.lat, 
+						$scope.userPos.lon, 
+						$scope.title, 
+						0, 
+						$scope.imglink);
 					$scope.title = null
 					//Clears title and imglink fields
 					$scope.title = "";
@@ -97,7 +103,7 @@ angular.module("myApp", [])
 				
 				link = $scope.markerHashMap.get(marker);
 				console.log(link);
-				$scope.openNav(link);
+				$scope.openView(link);
   			})
 		};
 
@@ -147,8 +153,8 @@ angular.module("myApp", [])
 		};
 
 		//Opens the image view overlay
-		$scope.openNav = function(link) {
-			openNav(link);
+		$scope.openView= function(link) {
+			openView(link);
 		}
 		
 		//Position of the user, set by "js/scripts/script.js" when the user shares position
