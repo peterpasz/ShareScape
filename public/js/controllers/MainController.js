@@ -6,7 +6,7 @@ myApp.run(['$localStorage', function($localStorage) {
         	
 		}
 		else{
-			localStorage.votedQuestions = [];
+			$localStorage.votedQuestions = [];
 		}
 		console.log($localStorage);
     }])
