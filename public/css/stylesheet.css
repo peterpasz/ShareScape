@@ -100,9 +100,13 @@ html, body {
 	/*height: calc(60% - 51px);*/ 	/* 60% - #post-entry_toggle height */
 	height: 60%; 	/* 60% - #post-entry_toggle height */
 	width: 100%;
-	overflow-y: auto;
-	/*transition: 0.5s;*/
 	background-color: lightgrey;
+}
+
+#posts {
+	transition: 0.5s;
+	overflow-y: auto;
+	height: calc(100% - 50px);
 }
 
 .post {
@@ -209,34 +213,15 @@ html, body {
 }
 
 @media only screen and (min-width: 750px) {
-	#banner {
-		width: 50%;
-		float: left;
-	}
-	
 	#map {
-		height: 100%;
-		width: 50%;
+		height: calc(100% - 50px);
+		width: 70%;
 		float: right;
-	}
-	
-	#post_entry_toggle {
-		width: 50%;
-	}
-	
-	#post_entry {
-		width: 50%;
+		border-left: 1px solid black;
 	}
 	
 	#content {
-		width: 50%;
-		height: calc(100% - 100px);
-	}
-	#divider{
-		margin-left: 49%;
-		width: 1%;
-		height: 100%;
-		background-color: black;
-		position: fixed;
+		width: 30%;
+		height: calc(100% - 50px);
 	}
 }

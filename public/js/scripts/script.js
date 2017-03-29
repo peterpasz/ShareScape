@@ -6,11 +6,11 @@ var id;//if you want to turn off real time geolocation
 
 //On page load
 document.addEventListener("DOMContentLoaded", function() {
-	
+
 	//Checks if geolocation is available for browser
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationFailure);
-		id = navigator.geolocation.watchPosition(geolocationSuccess2, geolocationFailure);
+		//id = navigator.geolocation.watchPosition(geolocationSuccess2, geolocationFailure);
 	} else {
 		console.log("This browser doesn't support geolocation.");
 	}
@@ -49,6 +49,7 @@ function geolocationFailure(error) {
 
 //Initializes without placing a marker
 function mapInit(x, y) {
+	console.log("Hello");
     var pos = {lat: x, lng: y};
 	console.log("Your postition: " + pos.lat + ", " + pos.lng);
     map = new google.maps.Map(document.getElementById('map'), {
