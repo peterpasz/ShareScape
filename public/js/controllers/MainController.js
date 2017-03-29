@@ -1,6 +1,17 @@
 //Angular JS
-angular.module("myApp", [])
-	.controller("MainController", ["$scope", "$http", function($scope, $http) {
+var myApp = angular.module('myApp', ['ngStorage']);
+
+myApp.run(['$localStorage', function($localStorage) {
+		if($localStorage != null){
+        	
+		}
+		else{
+			localStorage.votedQuestions = [];
+		}
+		console.log($localStorage);
+    }])
+
+myApp.controller("MainController", ["$scope", "$http", "$localStorage", function($scope, $http, $localStorage) {
 		$scope.message = "Hello World!";
 		
 		/*
@@ -62,14 +73,25 @@ angular.module("myApp", [])
 			}
 		};
 
-		$scope.updateRating = function(postid, postrating){
-			$http.put('/api/posts/' + postid, {
-				rating: postrating + 1
-			})
-			.success(function(post) {
-				console.log("upvote succeeded -- refresh")
-			})
-			
+		$scope.updateRating = function(postid, postrating, value){	
+			console.log(document.getElementsByClassName(postid));
+			document.getElementsByClassName(postid).disabled = true;
+			if ($localStorage.votedQuestions.indexOf(postid) === -1) {
+				var rating = parseInt(document.getElementById(postid).innerHTML);
+				document.getElementById(postid).innerHTML = rating + value;
+				document.getElementById(postid+"up").enabled = false;
+				console.log("Thanks for Voting");
+				$http.put('/api/posts/' + postid, {
+					rating: postrating + value
+				}
+				)
+				.success(function(post) {
+	
+				})
+			} 
+			else{
+       			console.log("You already voted to this question");
+    		}
 		}
 		
 		//hashmap to associate marker with img links
@@ -130,27 +152,13 @@ angular.module("myApp", [])
 			for(var i = 0; i < $scope.posts.length; i++){
 				$scope.makeMarker($scope.posts[i].pos.lat, $scope.posts[i].pos.lon, $scope.posts[i].title, i, $scope.posts[i].imglink);
 				console.log(
-
 					"Post marked: " +
 					$scope.posts[i].pos.lat.toFixed(7) + ", " + 
 					$scope.posts[i].pos.lon.toFixed(7) + ", " + 
 					$scope.posts[i].title
-				);
+				)
 			}
 		}
-
-		//Increments post rating (non-functional atm because of scope issues due to calling it from a directive)
-		$scope.upvote = function(index) {
-			console.log("u tryna upboat fam xDD");
-			$scope.posts[index].rating += 1;
-		};
-		
-		//Decrements post rating (non-functional atm because of scope issues due to calling it from a directive)
-		$scope.downvote = function(index) {
-			console.log("downboats lololo");
-			console.log($scope.posts[index]);
-			$scope.posts[index].rating -= 1;
-		};
 
 		//Opens the image view overlay
 		$scope.openView= function(link) {
