@@ -2,14 +2,14 @@
 var myApp = angular.module('myApp', ['ngStorage']);
 
 myApp.run(['$localStorage', function($localStorage) {
-		if($localStorage != null){
-        	
-		}
+		if($localStorage.votedQuestions != null){
+         	
+ 		}
 		else{
-			$localStorage.votedQuestions = [];
-		}
-		console.log($localStorage);
-    }])
+ 			$localStorage.votedQuestions = [];
+ 		}
+ 		console.log($localStorage);
+	}])
 
 myApp.controller("MainController", ["$scope", "$http", "$localStorage", function($scope, $http, $localStorage) {
 		$scope.message = "Hello World!";
@@ -74,19 +74,26 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 		};
 
 		$scope.updateRating = function(postid, postrating, value){	
+			/*
 			console.log(document.getElementsByClassName(postid));
 			document.getElementsByClassName(postid).disabled = true;
+			*/
+			console.log($localStorage.votedQuestions.indexOf(postid));
 			if ($localStorage.votedQuestions.indexOf(postid) === -1) {
+				$localStorage.votedQuestions.push(postid);
+				/*
 				var rating = parseInt(document.getElementById(postid).innerHTML);
 				document.getElementById(postid).innerHTML = rating + value;
 				document.getElementById(postid+"up").enabled = false;
+				*/
 				console.log("Thanks for Voting");
 				$http.put('/api/posts/' + postid, {
 					rating: postrating + value
 				}
 				)
 				.success(function(post) {
-	
+					console.log($localStorage);
+					console.log($localStorage.votedQuestions.indexOf(postid));
 				})
 			} 
 			else{
