@@ -178,4 +178,9 @@ html, body {
 
 #post_entry {
 	display: none;
+	position: absolute;
+	bottom: 10%;
+	left: 10%;
+	width: 80%;
+	text-align: middle;
 }
