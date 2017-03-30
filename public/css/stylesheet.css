@@ -125,23 +125,6 @@ html, body {
 	float: left;
 }
 
-<<<<<<< HEAD
-.rating {
-	font-weight: bold;
-	font-size: 20px;
-}
-
-.upvote, .downvote {
-	height: 30px;
-	width: 30px;
-	background-color: white;
-	color: grey;
-	border: 1px solid lightgrey;
-	font-weight: bold;
-	font-size: 20px;
-	cursor: pointer;
-}
-
 .upvote:disabled {
 	color: lightgrey;
 	cursor: auto;
@@ -152,9 +135,7 @@ html, body {
 	cursor: auto;
 }
 
-=======
 /* Right side of the post */
->>>>>>> 6a1286a71d7a9c450ff8e047580c295f91b0c4ba
 .right {
 	height: 100%;
 	/* 100% - .left width */
