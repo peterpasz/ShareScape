@@ -7,8 +7,10 @@ myApp.run(['$localStorage', function($localStorage) {
  		}
 		else{
  			$localStorage.votedQuestions = [];
+			 /*
 			$localStorage.downvotes = [];
 			$localStorage.upvotes = [];
+			*/
  		}
 		 console.log($localStorage)
 	}])
@@ -38,7 +40,7 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 				for(var i=0; i<posts.length; i++){
 					
 					$scope.makeMarker(posts[i].pos.lat, posts[i].pos.lon, posts[i].title, i,  posts[i].imglink)
-					
+					/*
 					if ($localStorage.upvotes.indexOf(posts[i]._id) === -1) {
 						
 						$scope.posts[i].upvote = true;
@@ -47,6 +49,7 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 						
 						$scope.posts[i].downvote = true;
 					}
+					*/
 				}	
 				
 			});
