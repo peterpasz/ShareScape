@@ -17,6 +17,13 @@ app.get('/api/posts', function (req, res, next) {
   })
 })
 
+app.get('/api/posts/:post_id', function (req, res, next) {
+  Post.findById(req.params.post_id, function(err, post) {
+    if (err) { return next(err) }
+    res.json(post)
+  })
+})
+
 app.post('/api/posts', function (req, res, next) {
   var post = new Post({
     title: req.body.title,

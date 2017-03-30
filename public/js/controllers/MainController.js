@@ -7,8 +7,12 @@ myApp.run(['$localStorage', function($localStorage) {
  		}
 		else{
  			$localStorage.votedQuestions = [];
+			 /*
+			$localStorage.downvotes = [];
+			$localStorage.upvotes = [];
+			*/
  		}
- 		console.log($localStorage);
+		 console.log($localStorage)
 	}])
 
 myApp.controller("MainController", ["$scope", "$http", "$localStorage", function($scope, $http, $localStorage) {
@@ -21,11 +25,6 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 		'https://sharescape.herokuapp.com/api/posts'
 		*/
 		
-		$http.get('http://localhost:3000/api/posts')
-			.success(function (posts) {
-				$scope.posts = posts
-			});
-		
 		/*//Old version, tries to place map markers before map is loaded (sometimes?)
 		$http.get('http://localhost:3000/api/posts')
 			.success(function (posts) {
@@ -37,10 +36,22 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 		/*/
 		$http.get('/api/posts')
 			.success(function (posts) {
-				for(var i=0; i<posts.length; i++){
-					$scope.makeMarker(posts[i].pos.lat, posts[i].pos.lon, posts[i].title, i,  posts[i].imglink)
-				}	
 				$scope.posts = posts
+				for(var i=0; i<posts.length; i++){
+					
+					$scope.makeMarker(posts[i].pos.lat, posts[i].pos.lon, posts[i].title, i,  posts[i].imglink)
+					/*
+					if ($localStorage.upvotes.indexOf(posts[i]._id) === -1) {
+						
+						$scope.posts[i].upvote = true;
+					}
+					else if ($localStorage.downvotes.indexOf(posts[i]._id) === -1) {
+						
+						$scope.posts[i].downvote = true;
+					}
+					*/
+				}	
+				
 			});
 		
 
@@ -78,23 +89,36 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 			console.log(document.getElementsByClassName(postid));
 			document.getElementsByClassName(postid).disabled = true;
 			*/
-			console.log($localStorage.votedQuestions.indexOf(postid));
+			console.log($localStorage.votedQuestions.indexOf(postid))
+			//console.log($localStorage.votedQuestions[0].postid[0].vote)
 			if ($localStorage.votedQuestions.indexOf(postid) === -1) {
-				$localStorage.votedQuestions.push(postid);
+				$localStorage.votedQuestions.push(postid)
 				/*
 				var rating = parseInt(document.getElementById(postid).innerHTML);
 				document.getElementById(postid).innerHTML = rating + value;
 				document.getElementById(postid+"up").enabled = false;
 				*/
+				if(value == 1){
+					$scope.upvote = true;
+					$localStorage.upvotes.push(postid)
+				}
+				else if(value == -1){
+					$scope.downvote = true;
+					$localStorage.downvotes.push(postid)
+				}
+				document.getElementById(postid).innerHTML = postrating + value;
 				console.log("Thanks for Voting");
+
 				$http.put('/api/posts/' + postid, {
 					rating: postrating + value
-				}
-				)
-				.success(function(post) {
-					console.log($localStorage);
-					console.log($localStorage.votedQuestions.indexOf(postid));
 				})
+				.success(function(post) {
+
+				})
+				$http.get('/api/posts')
+					.success(function (posts) {
+						$scope.posts = posts
+					})
 			} 
 			else{
        			console.log("You already voted to this question");
