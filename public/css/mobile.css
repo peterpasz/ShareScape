@@ -46,6 +46,12 @@ html, body {
 	box-shadow: 0px 0px 5px #888888;
 }
 
+#image {
+	min-width: 100%;
+	max-width: 100%;
+	background-color: white;
+}
+
 .left {
 	width: 60px;
 	text-align:center;
@@ -141,7 +147,7 @@ html, body {
 	z-index: -1;
 }
 
-#show_user_location, #post_button {
+#show_user_location, #post_image_select {
 	width: 70px;
 	height: 70px;
 	border-radius: 35px;
@@ -159,17 +165,14 @@ html, body {
     right: 0;
 }
 
-#post_button {
+#post_image_select {
 	background-color: red;
 	bottom: 0;
     right: 0;
 }
 
 #post_image_upload {
-	position: absolute;
-	visibility: hidden; 
-	width: 0px; 
-	height: 0px;
+	display: none;
 }
 
 #main {

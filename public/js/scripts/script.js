@@ -6,16 +6,20 @@ var id;//if you want to turn off real time geolocation
 
 //On page load
 document.addEventListener("DOMContentLoaded", function() {
+
+	//document.getElementById("post_image_select").addEventListener("click", imageUpload);
 	
 	//Checks if geolocation is available for browser
 	if (navigator.geolocation) {
+		//Alex's jank location update, follow the 3 numbered steps
+		//1 - Uncomment this line
+		//var myVar = setInterval(getGeolocation, 1000);
+		//2 - Comment out this line
 		navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationFailure);
-		id = navigator.geolocation.watchPosition(geolocationSuccess2, geolocationFailure);
+		//id = navigator.geolocation.watchPosition(geolocationSuccess2, geolocationFailure);
 	} else {
 		console.log("This browser doesn't support geolocation.");
 	}
-	
-	document.getElementById("post_image_select").addEventListener("click", imageUpload);
 	
 });
 
@@ -24,13 +28,24 @@ function geolocationSuccess(position) {
 	userPos = {lat: position.coords.latitude, lon: position.coords.longitude};
 	
 	angular.element(document.querySelector("body")).scope().userPos = userPos;
-	mapInit(userPos.lat, userPos.lon);
-	angular.element(document.querySelector("body")).scope().makeMarkers();
-	
-	console.log("Intial Location found");
+	//Initialize map and place markers
+	if(!map) {
+		mapInit(userPos.lat, userPos.lon);
+		angular.element(document.querySelector("body")).scope().makeMarkers();
+		console.log("Intial Location found");
+	} else {
+		console.log(userPos);
+	}
 }
 
-//Geolocation success callback
+//3 - Uncomment this
+/*
+function getGeolocation() {
+	navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationFailure);
+}
+*/
+
+//Romy's geolocation success callback
 function geolocationSuccess2(position) {
 	userPos = {lat: position.coords.latitude, lon: position.coords.longitude};
 	
@@ -49,6 +64,7 @@ function geolocationFailure(error) {
 
 //Initializes without placing a marker
 function mapInit(x, y) {
+	console.log("Hello");
     var pos = {lat: x, lng: y};
 	console.log("Your postition: " + pos.lat + ", " + pos.lng);
     map = new google.maps.Map(document.getElementById('map'), {
@@ -91,10 +107,18 @@ function imageUpload(file, mobile) {
     xhr.send(fd);
 }
 
-//Opens the image preview overlay
+//Opens the image preview overlay (mobile only)
 function openPreview(link) {
 	openView(link);
 	document.getElementById("post_entry").style.display = "inline";
+	document.getElementById("closebtn").onclick = closePreview;
+}
+
+//Closes the image preview overlay (mobile only)
+function closePreview() {
+	document.getElementById("closebtn").onclick = closeView;
+	document.getElementById("post_entry").style.display = "none";
+	closeView();
 }
 
 //Opens the image view overlay
@@ -104,8 +128,6 @@ function openView(link) {
 	document.getElementById("myNav").style.backgroundColor = "rgba(0, 0, 0, 0.9)";
 	document.getElementById("bigImage").style.opacity = "1";
 	document.getElementById("closebtn").style.opacity = "1";
-	//For testing only
-	//document.getElementById("post_entry").style.display = "inline";
 }
 
 //Closes the image view overlay
@@ -114,8 +136,6 @@ function closeView() {
 	document.getElementById("myNav").style.backgroundColor = "rgba(0, 0, 0, 0.0)";
 	document.getElementById("bigImage").style.opacity = "0.0";
 	document.getElementById("closebtn").style.opacity = "0";
-	//Extra element opened by openPreview
-	document.getElementById("post_entry").style.display = "none";
 }
 
 //Handles key input
