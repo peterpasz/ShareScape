@@ -37,7 +37,7 @@
 		<!-- Post entry fields -->
 		<form id="post_entry" ng-submit="createPost()">
 			<!-- "Post" button -->
-			<input type="submit" id="post_entry_button" value="Post" onclick="closeView()">
+			<input type="submit" id="post_entry_button" value="Post" onclick="closePreview()">
 			<!-- Title field -->
 			<input type="text" id="post_entry_title" ng-model="title" placeholder="Title">
 		</form>
@@ -56,9 +56,10 @@
 	<!-- Show user location button -->
 	<input type="button" id="show_user_location" ng-click="centerOnUser()">
 	<!-- Post button -->
-	<input type="button" id="post_button" onclick="document.getElementById('post_image_upload').click()">
+	<!-- Triggers click on invisible "Browse..." button -->
+	<input type="button" id="post_image_select"  onclick="document.getElementById('post_image_upload').click()">
 	<!-- Folder browser -->
-	<input type="file" id="post_image_upload" onchange="imageUpload(this.files[0], true)">
+	<input type="file" 	 id="post_image_upload"  onchange="imageUpload(this.files[0], true)">
 	
 	<!-- Controllers -->
     <script src="js/controllers/MainController.js"></script>

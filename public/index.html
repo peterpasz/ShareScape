@@ -55,9 +55,10 @@
 			<!-- Image link field -->
 			<input type="text"   id="post_entry_imglink" ng-model="imglink" placeholder="Image Link">
 			<!-- Image select button -->
-			<input type="button" id="post_image_select"  value="Image" onclick="document.getElementById('post_image_upload').click()">
+			<!-- Triggers click on invisible "Browse..." button -->
+			<input type="button" id="post_image_select"  value="Image" 		onclick="document.getElementById('post_image_upload').click()">
 			<!-- Folder browser -->
-			<input type="file" 	 id="post_image_upload" style="visibility: collapse; width: 0px;" onchange="imageUpload(this.files[0], false)">
+			<input type="file" 	 id="post_image_upload"  onchange="imageUpload(this.files[0], false)">
 		</form>
 
 		<!-- Posts -->
