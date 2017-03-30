@@ -92,6 +92,8 @@ function imageUpload(file, mobile) {
 	}
     xhr.onload = function() {
 		link = JSON.parse(xhr.responseText).data.link;
+		//Adds huge thumbnail suffix to image link
+		link = link.replace(/\.([^\.]*)$/,"h."+'$1');
 		angular.element(document.querySelector("body")).scope().imglink = link;
 		//Reset image link field if not using mobile version
 		if(!mobile){

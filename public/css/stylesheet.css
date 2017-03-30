@@ -94,15 +94,6 @@ html, body {
 	z-index: 2;
 }
 
-/* Post entry form */
-/* #post_entry {
-	height: 0px;
-	width: 100%;
-	transition: height 0.5s;
-	overflow-y: hidden;
-	border-bottom: 1px solid black;
-}*/
-
 /* File selector */
 #post_image_upload {
 	display: none;
