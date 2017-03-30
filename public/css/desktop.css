@@ -1,0 +1,107 @@
+/* Map */
+#map {
+	/* 40% - #banner height */
+	height: calc(40% - 50px);
+	width: 100%;
+}
+
+/* Contents of the page besides banner and map */
+#content {
+	/* 60% - #post-entry_toggle height */
+	height: 60%;
+	width: 100%;
+	background-color: lightgrey;
+}
+
+/* Button that toggles post entry fields */
+#post_entry_toggle {
+	height: 49px;
+	width: 100%;
+	background-color: white;
+	color: black;
+	border: none;
+	cursor: pointer;
+	font-weight: bold;
+	line-height: 50px;
+	border-top: 1px solid black;
+	border-bottom: 0px solid black;
+	transition: border-width 0.4s;
+	font-size: 20px;
+}
+
+/* Post entry form */
+#post_entry {
+	height: 0px;
+	width: 100%;
+	transition: height 0.5s;
+	overflow-y: hidden;
+	border-bottom: 1px solid black;
+}
+
+/* All post entry inputs */
+#post_entry input {
+	float: left;
+	padding-left: 10px;
+}
+
+/* "Post" button */
+#post_entry_button {
+	height: 50px;
+	width: 72px;
+	background-color: white;
+	border: none;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+/* Title field */
+#post_entry_title {
+	height: 50px;
+	/* 100% - post_entry_button width / 2 */
+	width: calc((100% - 144px) / 2);
+	border: none;
+	border-left: 1px solid black;	
+	border-right: 1px solid black;
+}
+
+/* Image link field */
+#post_entry_imglink {
+	height: 50px;
+	/* 100% - post_entry_button width / 2 */
+	width: calc((100% - 144px) / 2);
+	border: none;	
+	border-right: 1px solid black;
+}
+
+/* "Image" button */
+#post_image_select {
+	height: 50px;
+	width: 72px;
+	background-color: white;
+	border: none;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+/* 750px and up */
+@media only screen and (min-width: 750px) {
+	/* Map */
+	#map {
+		height: calc(100% - 50px);
+		width: 70%;
+		float: right;
+		border-left: 1px solid black;
+	}
+	
+	/* Content */
+	#content {
+		width: 30%;
+		/* 100% - banner height */
+		height: calc(100% - 50px);
+	}
+	
+	/* Button that toggles post entry fields */
+	#post_entry_toggle {
+		border-top: none;
+	}
+}

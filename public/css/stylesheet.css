@@ -1,118 +1,121 @@
+/* All elements */
 * {
+	/* Includes padding an border in element dimensions */
     box-sizing: border-box;
 }
 
+/* Body */
 html, body {
 	height: 100%;
-	background-color: white;
 	padding: 0px;
 	margin: 0px;
 	font-family: Arial;
-	overflow-y: hidden;
 }
 
+/* Banner */
 #banner {
 	height: 50px;
 	width: 100%;
 	background-color: black;
 	color: white;
 	text-align: center;
-	font-size: 35px;
-	line-height: 50px;
 	padding: 2px;
 }
 
+/* Image in banner */
 #banner img {
 	height: 100%;
 }
 
+/* Map */
 #map {
-	height: calc(40% - 50px);	/* 40% - #banner height */
+	/* 40% - #banner height */
+	height: calc(40% - 50px);
 	width: 100%;
 }
 
-#post_entry_toggle {
-	height: 50px;
-	width: 100%;
-	background-color: white;
-	color: black;
-	border: none;
-	cursor: pointer;
-	font-weight: bold;
-	line-height: 50px;
-	border-top: 1px solid black;
-	border-bottom: 0px solid black;
-	transition: border-width 0.4s;
-	font-size: 20px;
+/* Image viewing overlay */
+.overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+	/* For browsers that don't support RGBA */
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0 ,0, 0.0);
+    transition: background-color 0.5s;
+	text-align: center;
 }
 
-#post_entry {
+/* Area around image in viewing mode, used to close viewing mode */
+#closeArea {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	z-index: -1;
+}
+
+/* Close image viewing mode button */
+.closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+	opacity: 0;
+	padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block;
+    transition: 0.5s;
+}
+
+/* Close image viewing mode button */
+.closebtn:hover, .closebtn:focus {
+	color: #f1f1f1;
+}
+
+/* Helper element to center image on the screen */
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+/* Image viewing mode image */
+.bigImage{
+	vertical-align: middle;
+	max-width: 80%;
+	max-height: 80%;
+	opacity: 0;
+	transition: 0.5s;
+	z-index: 2;
+}
+
+/* Post entry form */
+/* #post_entry {
 	height: 0px;
 	width: 100%;
 	transition: height 0.5s;
 	overflow-y: hidden;
 	border-bottom: 1px solid black;
-}
+}*/
 
-#post_entry input {
-	float: left;
-	padding-left: 10px;
-}
-
-/* "Post" button */
-#post_entry_button {
-	height: 50px;
-	width: 72px;
-	background-color: white;
-	border: none;
-	font-weight: bold;
-	cursor: pointer;
-}
-
-/* Title field */
-#post_entry_title {
-	height: 50px;
-	width: calc((100% - 144px) / 2);	/* 100% - post_entry_button width / 2 */
-	border: none;
-	border-left: 1px solid black;	
-	border-right: 1px solid black;
-}
-
-/* Image link field */
-#post_entry_imglink {
-	height: 50px;
-	width: calc((100% - 144px) / 2);	/* 100% - post_entry_button width / 2 */
-	border: none;	
-	border-right: 1px solid black;
-}
-
-/* "Image" button */
-#post_image_select {
-	height: 50px;
-	width: 72px;
-	background-color: white;
-	border: none;
-	font-weight: bold;
-	cursor: pointer;
-}
-
+/* File selector */
 #post_image_upload {
 	display: none;
 }
 
-#content {
-	/*height: calc(60% - 51px);*/ 	/* 60% - #post-entry_toggle height */
-	height: 60%; 	/* 60% - #post-entry_toggle height */
-	width: 100%;
-	background-color: lightgrey;
-}
-
+/* Container of all posts */
 #posts {
 	transition: 0.5s;
 	overflow-y: auto;
 	height: calc(100% - 50px);
 }
 
+/* Individual post */
 .post {
 	background-color: white;
 	border: 1px solid black;
@@ -121,12 +124,7 @@ html, body {
 	box-shadow: 0px 0px 5px #888888;
 }
 
-#image {
-	min-width: 100%;
-	max-width: 100%;
-	background-color: white;
-}
-
+/* Left side of the post */
 .left {
 	width: 60px;
 	text-align:center;
@@ -136,6 +134,7 @@ html, body {
 	float: left;
 }
 
+<<<<<<< HEAD
 .rating {
 	font-weight: bold;
 	font-size: 20px;
@@ -162,90 +161,57 @@ html, body {
 	cursor: auto;
 }
 
+=======
+/* Right side of the post */
+>>>>>>> 6a1286a71d7a9c450ff8e047580c295f91b0c4ba
 .right {
 	height: 100%;
-	width: calc(100% - 60px);	/* 100% - .left width */
+	/* 100% - .left width */
+	width: calc(100% - 60px);
 	background-color: lightgrey;
 	display: table-cell;
 	padding: 10px;
 	float: right;
 }
 
+/* Post title */
 .title {
 	font-weight: bold;
 }
 
-.overlay {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0, 0 ,0, 0.0);
-    overflow-x: hidden;
-    transition: background-color 0.5s;
-	text-align: center;
+/* Post image */
+#image {
+	min-width: 100%;
+	max-width: 100%;
+	background-color: white;
 }
 
-.overlay a {
-    padding: 8px;
-    text-decoration: none;
-    font-size: 36px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
+/* Post rating */
+.rating {
+	font-weight: bold;
+	font-size: 20px;
 }
 
-.overlay a:hover, .overlay a:focus {
-    color: #f1f1f1;
+/* Post up and down vote buttons */
+.upvote, .downvote {
+	height: 30px;
+	width: 30px;
+	background-color: white;
+	color: grey;
+	border: 1px solid lightgrey;
+	font-weight: bold;
+	font-size: 20px;
+	cursor: pointer;
 }
 
-.overlay .closebtn {
-    position: absolute;
-    top: 20px;
-    right: 45px;
-    font-size: 60px;
-	opacity: 0;
-}
-
-.bigImage{
-	vertical-align: middle;
-	max-width: 80%;
-	max-height: 80%;
-	opacity: 0;
-	transition: 0.5s;
-	z-index: 1;
-}
-
-.helper {
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-}
-
-#closeArea {
-	position: absolute;
-	height: 100%;
-	width: 100%;
-	z-index: -1;
-}
-
-@media only screen and (min-width: 750px) {
-	#map {
-		height: calc(100% - 50px);
-		width: 70%;
-		float: right;
-		border-left: 1px solid black;
-	}
-	
-	#content {
-		width: 30%;
-		height: calc(100% - 50px);
-	}
-	
-	#post_entry_toggle {
-		border-top: none;
-	}
+/* When mouse is held down, buttons change appearance */
+.upvote:active, .downvote:active {
+	height: 30px;
+	width: 30px;
+	background-color: black;
+	color: grey;
+	border: 1px solid lightgrey;
+	font-weight: bold;
+	font-size: 20px;
+	cursor: pointer;
 }
