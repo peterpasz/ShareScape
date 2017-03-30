@@ -1,152 +1,40 @@
-* {
-    box-sizing: border-box;
-}
-
-html, body {
-	height: 100%;
-	background-color: white;
-	padding: 0px;
-	margin: 0px;
-	font-family: Arial;
-}
-
-#banner {
-	height: 50px;
-	width: 100%;
-	background-color: black;
-	color: white;
-	text-align: center;
-	font-size: 35px;
-	line-height: 50px;
-	padding: 2px;
-}
-
-#banner img {
-	height: 100%;
-}
-
+/* Map */
 #map {
 	height: 40%;
 	width: 100%;
 }
 
+/* Post entry form */
+#post_entry {
+	display: none;
+	position: absolute;
+	bottom: 10%;
+	left: 10%;
+	width: 80%;
+	text-align: middle;
+}
+
+/* "Post" button */
+#post_entry_button {
+	/* Add code here */
+}
+
+/* Title field */
+#post_entry_title {
+	/* Add code here */
+}
+
+/* Content */
 #content {
-	height: calc(60% - 50px); 	/* 60% - #banner height */
+	/* 60% - #banner height */
+	height: calc(60% - 50px);
 	width: 100%;
 	overflow-y: auto;
 	transition: 0.5s;
 	background-color: lightgrey;
 }
 
-.post {
-	background-color: white;
-	border: 1px solid black;
-	margin: 10px;
-	overflow: hidden;
-	box-shadow: 0px 0px 5px #888888;
-}
-
-#image {
-	min-width: 100%;
-	max-width: 100%;
-	background-color: white;
-}
-
-.left {
-	width: 60px;
-	text-align:center;
-	line-height: 30px;
-	display: table-cell;
-	padding: 10px;
-	float: left;
-}
-
-.rating {
-	font-weight: bold;
-	font-size: 20px;
-}
-
-.upvote, .downvote {
-	height: 30px;
-	width: 30px;
-	background-color: white;
-	color: grey;
-	border: 1px solid lightgrey;
-	font-weight: bold;
-	font-size: 20px;
-	cursor: pointer;
-}
-
-.right {
-	height: 100%;
-	width: calc(100% - 60px);	/* 100% - .left width */
-	background-color: lightgrey;
-	display: table-cell;
-	padding: 10px;
-	float: right;
-}
-
-.title {
-	font-weight: bold;
-}
-
-.overlay {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 2;
-    top: 0;
-    left: 0;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0, 0 ,0, 0.0);
-    overflow-x: hidden;
-    transition: background-color 0.5s;
-	text-align: center;
-}
-
-.overlay a {
-    padding: 8px;
-    text-decoration: none;
-    font-size: 36px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-}
-
-.overlay a:hover, .overlay a:focus {
-    color: #f1f1f1;
-}
-
-.overlay .closebtn {
-    position: absolute;
-    top: 20px;
-    right: 45px;
-    font-size: 60px;
-	opacity: 0;
-}
-
-.bigImage{
-	vertical-align: middle;
-	max-width: 80%;
-	max-height: 80%;
-	opacity: 0;
-	transition: 0.5s;
-	z-index: 2;
-}
-
-.helper {
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-}
-
-#closeArea {
-	position: absolute;
-	height: 100%;
-	width: 100%;
-	z-index: -1;
-}
-
+/* Mobile style buttons */
 #show_user_location, #post_image_select {
 	width: 70px;
 	height: 70px;
@@ -159,31 +47,16 @@ html, body {
 	box-shadow: 0px 0px 15px #888888;
 }
 
+/* Show user location */
 #show_user_location {
 	background-color: blue;
 	bottom: 100px;
     right: 0;
 }
 
+/* Make a new post button */
 #post_image_select {
 	background-color: red;
 	bottom: 0;
     right: 0;
-}
-
-#post_image_upload {
-	display: none;
-}
-
-#main {
-	height: 100%;
-}
-
-#post_entry {
-	display: none;
-	position: absolute;
-	bottom: 10%;
-	left: 10%;
-	width: 80%;
-	text-align: middle;
 }
