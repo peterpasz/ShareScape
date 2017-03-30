@@ -86,15 +86,26 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 				document.getElementById(postid).innerHTML = rating + value;
 				document.getElementById(postid+"up").enabled = false;
 				*/
+				if(value == 1){
+					$scope.upvote = true;
+				}
+				else if(value == -1){
+					$scope.downvote = true;
+				}
+				document.getElementById(postid).innerHTML = postrating + value;
 				console.log("Thanks for Voting");
+
 				$http.put('/api/posts/' + postid, {
 					rating: postrating + value
-				}
-				)
-				.success(function(post) {
-					console.log($localStorage);
-					console.log($localStorage.votedQuestions.indexOf(postid));
 				})
+				.success(function(post) {
+
+				})
+				$http.get('/api/posts')
+					.success(function (posts) {
+						$scope.posts = posts
+						console.log("yum")
+					})
 			} 
 			else{
        			console.log("You already voted to this question");

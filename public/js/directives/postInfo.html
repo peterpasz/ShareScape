@@ -9,11 +9,11 @@
 	<!-- Left portion of post -->
 	<div class="left">
 		<!-- Upvote button -->
-		<button class="upvote {{this.info._id}}" ng-click="updateRating(this.info._id, this.info.rating, 1)">+</button>
+		<button ng-disabled="upvote" class="upvote {{this.info._id}}" ng-click="updateRating(this.info._id, this.info.rating, 1)">+</button>
 		<!-- Post rating -->
-		<div id={{this.info._id}} ng-model="rating" class="rating">{{ info.rating }}</div>
+		<div id={{this.info._id}} ng-model="ratingModel" class="rating">{{ info.rating }}</div>
 		<!-- Downvote button -->
-		<button class="downvote {{this.info._id}}" id={{this.info._id}} ng-click="updateRating(this.info._id, this.info.rating, -1)">‒</button>
+		<button ng-disabled="downvote" class="downvote {{this.info._id}}" ng-click="updateRating(this.info._id, this.info.rating, -1)">‒</button>
 	</div>
 	
 	<style="clear:both;"/>

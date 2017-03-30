@@ -138,6 +138,16 @@ html, body {
 	cursor: pointer;
 }
 
+.upvote:disabled {
+	color: lightgrey;
+	cursor: auto;
+}
+
+.downvote:disabled {
+	color: lightgrey;
+	cursor: auto;
+}
+
 .right {
 	height: 100%;
 	width: calc(100% - 60px);	/* 100% - .left width */
