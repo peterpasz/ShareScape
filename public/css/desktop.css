@@ -44,6 +44,35 @@
 	padding-left: 10px;
 }
 
+/* "Post" button */
+#post_entry_button {
+	height: 50px;
+	width: 72px;
+	background-color: white;
+	border: none;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+/* Title field */
+#post_entry_title {
+	height: 50px;
+	/* 100% - post_entry_button width / 2 */
+	width: calc((100% - 144px) / 2);
+	border: none;
+	border-left: 1px solid black;	
+	border-right: 1px solid black;
+}
+
+/* Image link field */
+#post_entry_imglink {
+	height: 50px;
+	/* 100% - post_entry_button width / 2 */
+	width: calc((100% - 144px) / 2);
+	border: none;	
+	border-right: 1px solid black;
+}
+
 /* "Image" button */
 #post_image_select {
 	height: 50px;

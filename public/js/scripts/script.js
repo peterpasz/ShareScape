@@ -116,8 +116,8 @@ function openPreview(link) {
 
 //Closes the image preview overlay (mobile only)
 function closePreview() {
-	document.getElementById("closebtn").onclick = closeView;
 	document.getElementById("post_entry").style.display = "none";
+	document.getElementById("closebtn").onclick = closeView;
 	closeView();
 }
 
