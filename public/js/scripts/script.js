@@ -80,7 +80,7 @@ function mapInit(x, y) {
 function imageUpload(file, mobile) {
 	console.log(file.name + " selected");
 	if (!file || !file.type.match(/image.*/)) return;
-	var link;
+	var link = "";
     var fd = new FormData();
     fd.append("image", file);
     var xhr = new XMLHttpRequest();
@@ -92,8 +92,9 @@ function imageUpload(file, mobile) {
 	}
     xhr.onload = function() {
 		link = JSON.parse(xhr.responseText).data.link;
-		//Adds huge thumbnail suffix to image link
-		link = link.replace(/\.([^\.]*)$/,"h."+'$1');
+		//Adds huge-thumbnail suffix to image link
+		//link = link.replace(/\.([^\.]*)$/,"h."+'$1');
+		console.log(link)
 		angular.element(document.querySelector("body")).scope().imglink = link;
 		//Reset image link field if not using mobile version
 		if(!mobile){

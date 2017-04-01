@@ -10,14 +10,14 @@
 	/* 60% - #post-entry_toggle height */
 	height: 60%;
 	width: 100%;
-	background-color: lightgrey;
+	background-color: white;
 }
 
 /* Button that toggles post entry fields */
 #post_entry_toggle {
 	height: 49px;
 	width: 100%;
-	background-color: white;
+	background-color: #F3F3F3;
 	color: black;
 	border: none;
 	cursor: pointer;
@@ -88,14 +88,14 @@
 	/* Map */
 	#map {
 		height: calc(100% - 50px);
-		width: 70%;
+		width: 80%;
 		float: right;
 		border-left: 1px solid black;
 	}
 	
 	/* Content */
 	#content {
-		width: 30%;
+		width: 20%;
 		/* 100% - banner height */
 		height: calc(100% - 50px);
 	}

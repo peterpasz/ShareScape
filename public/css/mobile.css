@@ -31,7 +31,13 @@
 	width: 100%;
 	overflow-y: auto;
 	transition: 0.5s;
-	background-color: lightgrey;
+	background-color: white;
+}
+
+/* Individual post */
+.post {
+	margin-left: 50px;
+	margin-right: 50px;
 }
 
 /* Mobile style buttons */
@@ -42,21 +48,19 @@
 	border: none;
 	position: absolute;
 	z-index: 1;
-	float: left;
-	margin: 30px;
-	box-shadow: 0px 0px 15px #888888;
+	box-shadow: 0px 0px 15px #000000;
 }
 
 /* Show user location */
 #show_user_location {
-	background-color: blue;
-	bottom: 100px;
-    right: 0;
+	background-color: #E17C36;
+	bottom: 140px;
+    right: 45px;
 }
 
 /* Make a new post button */
 #post_image_select {
-	background-color: red;
-	bottom: 0;
-    right: 0;
+	background-color: #93278F;
+	bottom: 35px;
+    right: 45px;
 }

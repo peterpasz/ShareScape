@@ -1,6 +1,6 @@
 /* All elements */
 * {
-	/* Includes padding an border in element dimensions */
+	/* Includes padding and border in element dimensions */
     box-sizing: border-box;
 }
 
@@ -9,7 +9,7 @@ html, body {
 	height: 100%;
 	padding: 0px;
 	margin: 0px;
-	font-family: Arial;
+	font-family: Roboto, Helvetica, Arial, sans-serif;
 }
 
 /* Banner */
@@ -101,6 +101,7 @@ html, body {
 
 /* Container of all posts */
 #posts {
+	background-color: white;
 	transition: 0.5s;
 	overflow-y: auto;
 	height: calc(100% - 50px);
@@ -108,11 +109,14 @@ html, body {
 
 /* Individual post */
 .post {
-	background-color: white;
+	background-color: #F3F3F3;
 	border: 1px solid black;
-	margin: 10px;
+	margin: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
 	overflow: hidden;
 	box-shadow: 0px 0px 5px #888888;
+	border-radius: 3px;
 }
 
 /* Left side of the post */
@@ -138,21 +142,19 @@ html, body {
 /* Right side of the post */
 .right {
 	height: 100%;
-	/* 100% - .left width */
-	width: calc(100% - 60px);
-	background-color: lightgrey;
-	display: table-cell;
-	padding: 10px;
-	float: right;
+	width: 100%;
 }
 
 /* Post title */
 .title {
-	font-weight: bold;
+	float: left;
+	font-size: 20px;
 }
 
 /* Post image */
 #image {
+	position: relative;
+	display: block;
 	min-width: 100%;
 	max-width: 100%;
 	background-color: white;
@@ -160,8 +162,11 @@ html, body {
 
 /* Post rating */
 .rating {
+	float: left;
 	font-weight: bold;
 	font-size: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 /* Post up and down vote buttons */

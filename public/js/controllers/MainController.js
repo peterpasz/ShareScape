@@ -135,14 +135,14 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 			//console.log($scope.map)
 			//console.log($scope.posts)
 			var infowindow = new google.maps.InfoWindow({
-    			content: "\"" + markerTitle + "\""
+    			content: markerTitle
   			})
 			var marker = new google.maps.Marker({
 				position: {lat: x, lng: y},
 				map: $scope.map,
 				title: markerTitle,
 				//animation: google.maps.Animation.DROP,
-				icon: '../../images/ShareScapeMapIcon2.png'
+				icon: '../../images/ShareScapeMapIcon3.png'
    			});
 			
 			$scope.markerHashMap.set(marker, imglink);
@@ -167,14 +167,16 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 				position: {lat:x, lng:y},
 				pixelOffset: new google.maps.Size(0, -35)
 			})
-   			infowindow.open(map)
-			map.setCenter({lat:x, lng:y})
+   			infowindow.open(map);
+			//console.log(google.maps.InfoWindow);
+			map.panTo({lat:x, lng:y});
 		}
 
 		//Centers map on user location
 		$scope.centerOnUser = function() {
 			if($scope.userPos) {
-				map.setCenter({lat: $scope.userPos.lat, lng: $scope.userPos.lon});
+				map.panTo({lat: $scope.userPos.lat, lng: $scope.userPos.lon});
+				//map.setCenter({lat: $scope.userPos.lat, lng: $scope.userPos.lon});
 			}
 		}
 		
