@@ -139,9 +139,11 @@ function closeView() {
 	document.getElementById("closebtn").style.opacity = "0";
 }
 
+//Redirects user to mobile site
 function redirect() {
-	console.log("hello");
-	if(screen.width > screen.height) {
+	console.log("screen.width: " + screen.width + ", screen.height: " + screen.height);
+	if(screen.width < screen.height) {
+		console.log("Redirecting to mobile version")
 		window.location = "mobile.html";
 	}
 }
