@@ -29,6 +29,11 @@
 	font-size: 20px;
 }
 
+#post_entry_toggle:focus {
+	/* Gets rid of the blue outline */
+	outline: none;
+}
+
 /* Post entry form */
 #post_entry {
 	height: 0px;
@@ -40,47 +45,54 @@
 
 /* All post entry inputs */
 #post_entry input {
-	float: left;
-	padding-left: 10px;
+	font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+
+#post_entry input:focus {
+	/* Gets rid of the blue outline */
+	outline: none;
 }
 
 /* "Post" button */
 #post_entry_button {
+	float: right;
 	height: 50px;
-	width: 72px;
-	background-color: white;
-	border: none;
-	font-weight: bold;
+	width: 50px;
+	background-color: black;
+	color: white;
+	text-align: center;
 	cursor: pointer;
+	border: none;
 }
 
 /* Title field */
 #post_entry_title {
-	height: 50px;
-	/* 100% - post_entry_button width / 2 */
-	width: calc((100% - 144px) / 2);
+	height: 25px;
+	width: calc(100% - 50px);
 	border: none;
-	border-left: 1px solid black;	
-	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+	padding-left: 10px;
 }
 
 /* Image link field */
 #post_entry_imglink {
-	height: 50px;
-	/* 100% - post_entry_button width / 2 */
-	width: calc((100% - 144px) / 2);
-	border: none;	
-	border-right: 1px solid black;
+	float: left;
+	height: 25px;
+	width: calc(100% - 75px);
+	border: none;
+	border-bottom: 1px solid black;
+	padding-left: 10px;
 }
 
 /* "Image" button */
 #post_image_select {
-	height: 50px;
-	width: 72px;
+	height: 25px;
+	width: 25px;
 	background-color: white;
-	border: none;
-	font-weight: bold;
 	cursor: pointer;
+	border: none;
+	border-bottom: 1px solid black;
+	padding: 2px;
 }
 
 /* 750px and up */

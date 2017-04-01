@@ -21,8 +21,8 @@
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHA5cxSt3ZGQpALXemSm48kTnYgclUQzA"></script>
 </head>
 
-<body ng-app="myApp" ng-controller="MainController" onkeyup="inputKeyUp(event)">
-	
+<body onload="redirect()" ng-app="myApp" ng-controller="MainController" onkeyup="inputKeyUp(event)">
+
 	<!-- Banner -->
 	<div id="banner">
 		<img src="images/WordmarkWhite.png" ng-click="centerOnUser()">
@@ -55,13 +55,15 @@
 		<form id="post_entry" ng-submit="createPost()">
 			<!-- "Post" button -->
 			<input type="submit" id="post_entry_button"  value="Post">
-			<!-- Title field -->
-			<input type="text" 	 id="post_entry_title" 	 ng-model="title"   placeholder="Title">
-			<!-- Image link field -->
-			<input type="text"   id="post_entry_imglink" ng-model="imglink" placeholder="Image Link">
-			<!-- Image select button -->
-			<!-- Triggers click on invisible "Browse..." button -->
-			<input type="button" id="post_image_select"  value="Image" 		onclick="document.getElementById('post_image_upload').click()">
+			<!-- Left side -->
+			<div>
+				<!-- Title field -->
+				<input type="text" 	 id="post_entry_title" 	 ng-model="title"   placeholder="Title">
+				<!-- Image link field -->
+				<input type="text"   id="post_entry_imglink" ng-model="imglink" placeholder="Link">
+				<!-- Image select button. Triggers click on invisible "Browse..." button -->
+				<input type="image"  id="post_image_select"  src="images/camera.png" onclick="document.getElementById('post_image_upload').click()">
+			</div>
 			<!-- Folder browser -->
 			<input type="file" 	 id="post_image_upload"  onchange="imageUpload(this.files[0], false)">
 		</form>

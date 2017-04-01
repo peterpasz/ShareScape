@@ -3,7 +3,6 @@ var userPos;
 var map;
 var id;//if you want to turn off real time geolocation
 
-
 //On page load
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -64,8 +63,7 @@ function geolocationFailure(error) {
 
 //Initializes without placing a marker
 function mapInit(x, y) {
-	console.log("Hello");
-    var pos = {lat: x, lng: y};
+	var pos = {lat: x, lng: y};
 	console.log("Your postition: " + pos.lat + ", " + pos.lng);
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 15,
@@ -139,6 +137,13 @@ function closeView() {
 	document.getElementById("myNav").style.backgroundColor = "rgba(0, 0, 0, 0.0)";
 	document.getElementById("bigImage").style.opacity = "0.0";
 	document.getElementById("closebtn").style.opacity = "0";
+}
+
+function redirect() {
+	console.log("hello");
+	if(screen.width > screen.height) {
+		window.location = "mobile.html";
+	}
 }
 
 //Handles key input
