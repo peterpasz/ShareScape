@@ -219,3 +219,8 @@ html, body {
 	text-align: center;
 	width: 100%;
 }
+
+.mapWarning{
+	color: red;
+	text-align: center;
+}
