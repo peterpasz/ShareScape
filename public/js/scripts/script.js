@@ -16,7 +16,8 @@ document.addEventListener("DOMContentLoaded", function() {
 		//var myVar = setInterval(getGeolocation, 1000);
 		//2 - Comment out this line
 		navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationFailure);
-		id = navigator.geolocation.watchPosition(trackUser, geolocationFailure);
+		if(map && currentMarker)
+			id = navigator.geolocation.watchPosition(trackUser, geolocationFailure);
 	} else {
 		console.log("This browser doesn't support geolocation.");
 	}
@@ -25,16 +26,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //Geolocation success callback
 function geolocationSuccess(position) {
-	userPos = {lat: position.coords.latitude, lon: position.coords.longitude};
 	
+	userPos = {lat: position.coords.latitude, lon: position.coords.longitude};
+	console.log("Intial user location: " + userPos.lat + ", " + userPos.lon);
 	angular.element(document.querySelector("body")).scope().userPos = userPos;
+	
 	//Initialize map and place markers
 	if(!map) {
 		mapInit(userPos.lat, userPos.lon);
 		angular.element(document.querySelector("body")).scope().makeMarkers();
-		console.log("Intial Location found");
-	} else {
-		console.log(userPos);
 	}
 }
 
@@ -71,8 +71,7 @@ function geolocationFailure(error) {
 //Initializes without placing a marker
 function mapInit(x, y) {
 	var pos = {lat: x, lng: y};
-	console.log("Your postition: " + pos.lat + ", " + pos.lng);
-    map = new google.maps.Map(document.getElementById('map'), {
+	map = new google.maps.Map(document.getElementById('map'), {
         zoom: 15,
         center: pos,
 		streetViewControl: false
@@ -91,8 +90,8 @@ function mapInit(x, y) {
 function imageUpload(file, mobile) {
 	console.log(file.name + " selected");
 	if (!file || !file.type.match(/image.*/)) return;
-	var link = "";
-    var fd = new FormData();
+	var imageData, link;
+	var fd = new FormData();
     fd.append("image", file);
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://api.imgur.com/3/image.json");
@@ -100,17 +99,21 @@ function imageUpload(file, mobile) {
 	if(!mobile){
 		document.getElementById("post_entry_imglink").value = "Generating image link...";
 		document.getElementById("post_entry_imglink").disabled = true;
+		document.getElementById("post_image_select").disabled = true;
 	}
     xhr.onload = function() {
-		link = JSON.parse(xhr.responseText).data.link;
+		imageData = JSON.parse(xhr.responseText).data;
+		link = imageData.link;
 		//Adds huge-thumbnail suffix to image link
-		//link = link.replace(/\.([^\.]*)$/,"h."+'$1');
-		console.log(link)
+		if(imageData.height > 1024 || imageData.width > 1024)
+			link = link.replace(/\.([^\.]*)$/,"h."+'$1');
+		console.log(link + " returned");
 		angular.element(document.querySelector("body")).scope().imglink = link;
 		//Reset image link field if not using mobile version
 		if(!mobile){
 			document.getElementById("post_entry_imglink").value = link;
 			document.getElementById("post_entry_imglink").disabled = false;
+			document.getElementById("post_image_select").disabled = false;
 		}
 		//Preview image if using mobile version
 		if(mobile){
@@ -159,9 +162,8 @@ function dismissPrompt(postid) {
 
 //Redirects user to mobile site
 function redirect() {
-	console.log("screen.width: " + screen.width + ", screen.height: " + screen.height);
+	console.log("Screen resolution: " + screen.width + "x" + screen.height);
 	if(screen.width < screen.height) {
-		console.log("Redirecting to mobile version")
 		window.location = "mobile.html";
 	}
 }

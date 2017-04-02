@@ -1,4 +1,3 @@
-//Angular JS
 var myApp = angular.module('myApp', ['ngStorage']);
 
 myApp.run(['$localStorage', function($localStorage) {
@@ -57,7 +56,7 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 
 		//Creates a post
 		$scope.createPost = function() {
-			console.log(userPos);
+			//console.log(userPos);
 			if ($scope.title && $scope.linkIsImage($scope.imglink)) {
 				$http.post('/api/posts', {
 					title: $scope.title,
@@ -164,7 +163,21 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 				console.log(link);
 				$scope.openView(link);
   			})
-		};
+		}
+		
+		//Places markers for all posts in $scope.posts
+		$scope.makeMarkers = function() {
+			for(var i = 0; i < $scope.posts.length; i++){
+				$scope.makeMarker($scope.posts[i].pos.lat, $scope.posts[i].pos.lon, $scope.posts[i].title, i, $scope.posts[i].imglink);
+				/*console.log(
+					"Post marked: " +
+					$scope.posts[i].pos.lat.toFixed(7) + ", " + 
+					$scope.posts[i].pos.lon.toFixed(7) + ", " + 
+					$scope.posts[i].title
+				)*/
+			}
+			console.log("Markers loaded");
+		}
 
 		//Creates info window and centers map on clicked post
 		$scope.openInfo = function(x, y, title) {
@@ -183,19 +196,6 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 			if($scope.userPos) {
 				map.panTo({lat: $scope.userPos.lat, lng: $scope.userPos.lon});
 				//map.setCenter({lat: $scope.userPos.lat, lng: $scope.userPos.lon});
-			}
-		}
-		
-		//Places markers for all posts in $scope.posts
-		$scope.makeMarkers = function() {
-			for(var i = 0; i < $scope.posts.length; i++){
-				$scope.makeMarker($scope.posts[i].pos.lat, $scope.posts[i].pos.lon, $scope.posts[i].title, i, $scope.posts[i].imglink);
-				console.log(
-					"Post marked: " +
-					$scope.posts[i].pos.lat.toFixed(7) + ", " + 
-					$scope.posts[i].pos.lon.toFixed(7) + ", " + 
-					$scope.posts[i].title
-				)
 			}
 		}
 
