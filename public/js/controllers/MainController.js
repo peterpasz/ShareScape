@@ -36,6 +36,7 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 			.success(function (posts) {
 				for(var i=0; i<posts.length; i++){
 					if($scope.haversine(posts[i].pos.lat, posts[i].pos.lon)) {
+						console.log($scope.haversineDistance(posts[i].pos.lat, posts[i].pos.lon, parseInt(userLat), parseInt(userLon)));
 						$scope.posts.unshift(posts[i]);
 						$scope.makeMarker(posts[i].pos.lat, posts[i].pos.lon, posts[i].title, i, posts[i].imglink);
 					}
@@ -207,9 +208,39 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 		$scope.haversine = function(lat, lon) {
 			return true;
 		}
+
+		$scope.haversineDistance = function(lat1, lng1, lat2, lng2) {
+			Number.prototype.toRad = function() {
+				return this * Math.PI / 180;
+			}
+			
+			var R = 6371e3; // metres
+			//console.log("R: " + R);
+			var φ1 = lat1.toRad();
+			//console.log("φ1: " + φ1);
+			var φ2 = lat2.toRad();
+			//console.log("φ2: " + φ2);
+			var Δφ = (lat2-lat1).toRad();
+			//console.log("Δφ: " + Δφ);
+			var Δλ = (lng2-lng1).toRad();
+			
+			var a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+					Math.cos(φ1) * Math.cos(φ2) *
+					Math.sin(Δλ/2) * Math.sin(Δλ/2);
+			//console.log("a: " + a);
+			var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+			//console.log("c: " + c);
+			
+			var d = R * c;
+			d = (d/1000).toFixed(2) + "km";
+			//console.log("d: " + d);
+			return d;
+		}
 		
 		//Position of the user, set by "js/scripts/script.js" when the user shares position
 		$scope.userPos;
+		$scope.userLat;
+		$scope.userLon;
 		
 		//Map, set by "js/scripts/script.js" when the user shares position
 		$scope.map;
