@@ -166,6 +166,20 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
   			})
 		};
 
+		//Places a marker at the specified lat and lon
+		$scope.currentLocation = function(x, y) {
+			//console.log(x, y)
+			//console.log($scope.map)
+			//console.log($scope.posts)
+			var marker = new google.maps.Marker({
+				position: {lat: x, lng: y},
+				map: $scope.map
+				//animation: google.maps.Animation.DROP,
+				//icon: '../../images/ShareScapeMapIcon3.png'
+   			});
+			$scope.markerHashMap.set(marker, "current");
+		};
+
 		//Creates info window and centers map on clicked post
 		$scope.openInfo = function(x, y, title) {
 			infowindow = new google.maps.InfoWindow({
