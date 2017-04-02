@@ -200,7 +200,7 @@ html, body {
 .voteprompt{
 	visibility: hidden;
 	position: relative;
-    top: -100px;
+    bottom: 100px;
 	color: white;
 	background-color: #93278F;
 	width: 80%;
