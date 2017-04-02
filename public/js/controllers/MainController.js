@@ -1,18 +1,16 @@
-//Angular JS
 var myApp = angular.module('myApp', ['ngStorage']);
 
 myApp.run(['$localStorage', function($localStorage) {
 		if($localStorage.votedQuestions != null){
          	
- 		}
-		else{
+ 		}else{
  			$localStorage.votedQuestions = [];
 			 /*
 			$localStorage.downvotes = [];
 			$localStorage.upvotes = [];
 			*/
  		}
-		 console.log($localStorage)
+		console.log($localStorage);
 	}])
 
 myApp.controller("MainController", ["$scope", "$http", "$localStorage", function($scope, $http, $localStorage) {
@@ -36,28 +34,17 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 		/*/
 		$http.get('/api/posts')
 			.success(function (posts) {
-				$scope.posts = posts
 				for(var i=0; i<posts.length; i++){
-					
-					$scope.makeMarker(posts[i].pos.lat, posts[i].pos.lon, posts[i].title, i,  posts[i].imglink)
-					/*
-					if ($localStorage.upvotes.indexOf(posts[i]._id) === -1) {
-						
-						$scope.posts[i].upvote = true;
+					if($scope.haversine(posts[i].pos.lat, posts[i].pos.lon)) {
+						$scope.posts.unshift(posts[i]);
+						$scope.makeMarker(posts[i].pos.lat, posts[i].pos.lon, posts[i].title, i, posts[i].imglink);
 					}
-					else if ($localStorage.downvotes.indexOf(posts[i]._id) === -1) {
-						
-						$scope.posts[i].downvote = true;
-					}
-					*/
-				}	
-				
+				}
 			});
-		
 
 		//Creates a post
 		$scope.createPost = function() {
-			console.log(userPos);
+			//console.log(userPos);
 			if ($scope.title && $scope.linkIsImage($scope.imglink)) {
 				$http.post('/api/posts', {
 					title: $scope.title,
@@ -164,7 +151,21 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 				console.log(link);
 				$scope.openView(link);
   			})
-		};
+		}
+		
+		//Places markers for all posts in $scope.posts
+		$scope.makeMarkers = function() {
+			for(var i = 0; i < $scope.posts.length; i++){
+				$scope.makeMarker($scope.posts[i].pos.lat, $scope.posts[i].pos.lon, $scope.posts[i].title, i, $scope.posts[i].imglink);
+				/*console.log(
+					"Post marked: " +
+					$scope.posts[i].pos.lat.toFixed(7) + ", " + 
+					$scope.posts[i].pos.lon.toFixed(7) + ", " + 
+					$scope.posts[i].title
+				)*/
+			}
+			console.log("Markers loaded");
+		}
 
 		//Creates info window and centers map on clicked post
 		$scope.openInfo = function(x, y, title) {
@@ -185,19 +186,6 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 				//map.setCenter({lat: $scope.userPos.lat, lng: $scope.userPos.lon});
 			}
 		}
-		
-		//Places markers for all posts in $scope.posts
-		$scope.makeMarkers = function() {
-			for(var i = 0; i < $scope.posts.length; i++){
-				$scope.makeMarker($scope.posts[i].pos.lat, $scope.posts[i].pos.lon, $scope.posts[i].title, i, $scope.posts[i].imglink);
-				console.log(
-					"Post marked: " +
-					$scope.posts[i].pos.lat.toFixed(7) + ", " + 
-					$scope.posts[i].pos.lon.toFixed(7) + ", " + 
-					$scope.posts[i].title
-				)
-			}
-		}
 
 		//Opens the image view overlay
 		$scope.openView = function(link) {
@@ -215,6 +203,11 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 			return false;
 		}
 		
+		//Verifies if a post is close enough to the user to display
+		$scope.haversine = function(lat, lon) {
+			return true;
+		}
+		
 		//Position of the user, set by "js/scripts/script.js" when the user shares position
 		$scope.userPos;
 		
@@ -222,6 +215,8 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 		$scope.map;
 
 		$scope.markers = [];
+		
+		$scope.posts = [];
 	}])
 	
 	//Post template
