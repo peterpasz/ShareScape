@@ -2,6 +2,7 @@
 var userPos;
 var map;
 var id;//if you want to turn off real time geolocation
+var currentMarker;
 
 //On page load
 document.addEventListener("DOMContentLoaded", function() {
@@ -56,8 +57,10 @@ function geolocationSuccess2(position) {
 	console.log("Intial Location found");
 }
 
-function trackUser(){
+function trackUser(position){
+	userPos = {lat: position.coords.latitude, lng: position.coords.longitude};
 	angular.element(document.querySelector("body")).scope().centerOnUser();
+	currentMarker.setPosition({lat: position.coords.latitude, lng: position.coords.longitude});
 }
 
 //Geolocation failure callback
@@ -74,6 +77,11 @@ function mapInit(x, y) {
         center: pos,
 		streetViewControl: false
     });
+	currentMarker = new google.maps.Marker({
+		position: {lat: x, lng: y},
+		map: map,
+
+   	});
 	angular.element(document.querySelector("body")).scope().map = map;
 	console.log("Map loaded")
 }
