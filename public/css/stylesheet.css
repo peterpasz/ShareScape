@@ -197,18 +197,25 @@ html, body {
 	cursor: pointer;
 }
 
-.vote-prompt{
+.voteprompt{
 	visibility: hidden;
 	position: relative;
-    top: 100px;
-	background-color: white;
+    top: -100px;
+	color: white;
+	background-color: #93278F;
 	width: 80%;
 	margin: 0 auto;
 	z-index: 5;
-	text-align: center;
+	border: 1px solid black;
 }
 
-.vote-prompt-button{
-	display: block;
+.votepromptbutton{
+	color: white;
+	background-color: #E17C36;
+	border: 1px solid black;
+	overflow: hidden;
+	box-shadow: 0px 0px 5px #888888;
+	border-radius: 3px;
 	text-align: center;
+	width: 100%;
 }

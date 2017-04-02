@@ -18,12 +18,12 @@
 		<div id={{this.info._id}} ng-model="ratingModel" class="rating">{{ info.rating }}</div>
 		<!-- Post title -->
 		<div class="title">{{ info.title }}</div>
-		<!-- Vote Prompt -->
-		<div id={{this.info._id}}vote class="vote-prompt">
-			You've already shared your vote!
-			<button ng-click="dismissPrompt(this.info._id)" class="vote-prompt-button">Dismiss</button>
-		</div>
 		<!-- Post image -->
 		<img id="image" style="cursor:pointer" ng-click="openView(this.info.imglink)" ng-src="{{ info.imglink }}"/>
+		<!-- Vote Prompt -->
+		<div id={{this.info._id}}vote class="voteprompt">
+			<div class="voteprompttext">You've already shared your vote!</div>
+			<button ng-click="dismissPrompt(this.info._id)" class="votepromptbutton">Dismiss</button>
+		</div>
 	</div>
 </div>
