@@ -105,7 +105,7 @@ function imageUpload(file, mobile) {
 		imageData = JSON.parse(xhr.responseText).data;
 		link = imageData.link;
 		//Adds huge-thumbnail suffix to image link
-		if(imageData.height > 1024 || imageData.width > 1024)
+		if((imageData.height > 1024 || imageData.width > 1024) && !imageData.animated)
 			link = link.replace(/\.([^\.]*)$/,"h."+'$1');
 		console.log(link + " returned");
 		angular.element(document.querySelector("body")).scope().imglink = link;
