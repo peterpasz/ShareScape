@@ -60,7 +60,7 @@ function geolocationSuccess2(position) {
 function trackUser(position){
 	userPos = {lat: position.coords.latitude, lng: position.coords.longitude};
 	angular.element(document.querySelector("body")).scope().centerOnUser();
-	currentMarker.setPosition({lat: position.coords.latitude, lng: position.coords.longitude});
+	currentMarker.setPosition({lat: (position.coords.latitude-0.0002), lng: position.coords.longitude});
 }
 
 //Geolocation failure callback
@@ -80,7 +80,8 @@ function mapInit(x, y) {
 	currentMarker = new google.maps.Marker({
 		position: {lat: x, lng: y},
 		map: map,
-
+		icon: '../../images/purplecrosshair.png',
+		zIndex: -1
    	});
 	angular.element(document.querySelector("body")).scope().map = map;
 	console.log("Map loaded")

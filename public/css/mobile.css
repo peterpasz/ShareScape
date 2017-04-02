@@ -56,6 +56,9 @@
 	background-color: #E17C36;
 	bottom: 140px;
     right: 45px;
+	background-image: url("../images/mapcentericon2.png");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
 }
 
 /* Make a new post button */
@@ -63,4 +66,8 @@
 	background-color: #93278F;
 	bottom: 35px;
     right: 45px;
+	margin: 0 auto;
+	background-image: url("../images/mobilecamera.png");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
 }
