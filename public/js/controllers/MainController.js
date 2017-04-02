@@ -97,15 +97,16 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 				var rating = parseInt(document.getElementById(postid).innerHTML);
 				document.getElementById(postid).innerHTML = rating + value;
 				document.getElementById(postid+"up").enabled = false;
-				*/
+				
 				if(value == 1){
 					$scope.upvote = true;
-					$localStorage.upvotes.push(postid)
+					
 				}
 				else if(value == -1){
 					$scope.downvote = true;
-					$localStorage.downvotes.push(postid)
+					
 				}
+				*/
 				document.getElementById(postid).innerHTML = postrating + value;
 				console.log("Thanks for Voting");
 
@@ -122,9 +123,14 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 			} 
 			else{
        			console.log("You already voted to this question");
+				document.getElementById(postid+"vote").style.visibility = "visible"
     		}
 		}
 		
+		$scope.dismissPrompt = function (postid) {
+			dismissPrompt(postid)
+		}
+
 		//hashmap to associate marker with img links
 		$scope.markerHashMap = new Map();
 		

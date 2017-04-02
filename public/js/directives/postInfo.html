@@ -9,7 +9,8 @@
 	<!-- Right portion of post -->
 	<div class="right" ng-click="openInfo(this.info.pos.lat, this.info.pos.lon, this.info.title)">
 		<!-- Upvote button -->
-		<!-- <button ng-disabled="upvote" class="upvote {{this.info._id}}" ng-click="updateRating(this.info._id, this.info.rating, 1)">+</button> -->
+		<button ng-disabled="upvote" class="upvote {{this.info._id}}" ng-click="updateRating(this.info._id, this.info.rating, 1)"></button> 
+
 		<!-- Downvote button -->
 		<!-- <button ng-disabled="downvote" class="downvote {{this.info._id}}" ng-click="updateRating(this.info._id, this.info.rating, -1)">‒</button> -->
 		
@@ -17,6 +18,11 @@
 		<div id={{this.info._id}} ng-model="ratingModel" class="rating">{{ info.rating }}</div>
 		<!-- Post title -->
 		<div class="title">{{ info.title }}</div>
+		<!-- Vote Prompt -->
+		<div id={{this.info._id}}vote class="vote-prompt">
+			You've already shared your vote!
+			<button ng-click="dismissPrompt(this.info._id)" class="vote-prompt-button">Dismiss</button>
+		</div>
 		<!-- Post image -->
 		<img id="image" style="cursor:pointer" ng-click="openView(this.info.imglink)" ng-src="{{ info.imglink }}"/>
 	</div>

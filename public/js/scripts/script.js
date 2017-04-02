@@ -139,6 +139,11 @@ function closeView() {
 	document.getElementById("closebtn").style.opacity = "0";
 }
 
+//Close voting prompt
+function dismissPrompt(postid) {
+	document.getElementById(postid+"vote").style.visibility = "hidden";
+}
+
 //Redirects user to mobile site
 function redirect() {
 	console.log("screen.width: " + screen.width + ", screen.height: " + screen.height);

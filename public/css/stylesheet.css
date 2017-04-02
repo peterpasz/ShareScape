@@ -174,11 +174,15 @@ html, body {
 	height: 30px;
 	width: 30px;
 	background-color: white;
+	background-image: url("../images/thumbsup.png");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
 	color: grey;
 	border: 1px solid lightgrey;
 	font-weight: bold;
 	font-size: 20px;
 	cursor: pointer;
+	float: right;
 }
 
 /* When mouse is held down, buttons change appearance */
@@ -191,4 +195,20 @@ html, body {
 	font-weight: bold;
 	font-size: 20px;
 	cursor: pointer;
+}
+
+.vote-prompt{
+	visibility: hidden;
+	position: relative;
+    top: 100px;
+	background-color: white;
+	width: 80%;
+	margin: 0 auto;
+	z-index: 5;
+	text-align: center;
+}
+
+.vote-prompt-button{
+	display: block;
+	text-align: center;
 }
