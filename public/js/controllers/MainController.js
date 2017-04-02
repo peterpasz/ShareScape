@@ -58,7 +58,7 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 		//Creates a post
 		$scope.createPost = function() {
 			console.log(userPos);
-			if ($scope.title) {
+			if ($scope.title && $scope.linkIsImage($scope.imglink)) {
 				$http.post('/api/posts', {
 					title: $scope.title,
 					pos: {
@@ -200,8 +200,19 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 		}
 
 		//Opens the image view overlay
-		$scope.openView= function(link) {
+		$scope.openView = function(link) {
 			openView(link);
+		}
+
+		//Checks if link ends with an image file extension
+		$scope.linkIsImage = function(link) {
+			var str = link.substring(link.length - 4);
+			if(str == ".jpg" || str == ".png" || str == ".gif")
+				return true;
+			console.log("Invalid file type");
+			//document.getElementById("post_entry_imglink").style.backgroundColor = "#FFADAD";
+			//document.getElementById("post_image_select").style.backgroundColor = "#FFADAD";
+			return false;
 		}
 		
 		//Position of the user, set by "js/scripts/script.js" when the user shares position
