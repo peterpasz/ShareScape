@@ -36,15 +36,15 @@
 
 /* Individual post */
 .post {
-	margin-left: 50px;
-	margin-right: 50px;
+	margin-left: 20px;
+	margin-right: 20px;
 }
 
 /* Mobile style buttons */
 #show_user_location, #post_image_select {
-	width: 70px;
-	height: 70px;
-	border-radius: 35px;
+	width: 50px;
+	height: 50px;
+	border-radius: 25px;
 	border: none;
 	position: absolute;
 	z-index: 1;
@@ -54,8 +54,8 @@
 /* Show user location */
 #show_user_location {
 	background-color: #E17C36;
-	bottom: 140px;
-    right: 45px;
+	bottom: 80px;
+    right: 15px;
 	background-image: url("../images/mapcentericon2.png");
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
@@ -64,8 +64,8 @@
 /* Make a new post button */
 #post_image_select {
 	background-color: #93278F;
-	bottom: 35px;
-    right: 45px;
+	bottom: 15px;
+    right: 15px;
 	margin: 0 auto;
 	background-image: url("../images/mobilecamera.png");
 	background-size: 100% 100%;
