@@ -72,7 +72,7 @@
 		
 		<!-- Image preview -->
 		<div id="preview">
-			<img ng-src="{{ imglink }}">
+			<img id="previewimg" ng-src="{{ imglink }}">
 		</div>
 
 		<!-- Posts -->
@@ -95,11 +95,13 @@
 				document.getElementById('posts').style.height = "calc(100% - 50px)";
 				document.getElementById('post_entry').style.height = "0px";
 				document.getElementById('post_entry_toggle').style.borderWidth = "1px 0px 0px 0px";
+				document.getElementById('preview').style.height = "0px";
 				postMode = false;
 			} else {
 				document.getElementById('posts').style.height = "calc(100% - 100px)";
 				document.getElementById('post_entry').style.height = "50px";
 				document.getElementById('post_entry_toggle').style.borderWidth = "1px 0px 1px 0px";
+				
 				postMode = true;
 			}
 		}
