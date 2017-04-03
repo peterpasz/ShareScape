@@ -8,7 +8,7 @@ var id;//if you want to turn off real time geolocation
 document.addEventListener("DOMContentLoaded", function() {
 
 	//document.getElementById("post_image_select").addEventListener("click", imageUpload);
-	
+
 	//Checks if geolocation is available for browser
 	if (navigator.geolocation) {
 		//Alex's jank location update, follow the 3 numbered steps
@@ -20,13 +20,13 @@ document.addEventListener("DOMContentLoaded", function() {
 	} else {
 		console.log("This browser doesn't support geolocation.");
 	}
-	
+
 });
 
 //Geolocation success callback
 function geolocationSuccess(position) {
 	userPos = {lat: position.coords.latitude, lon: position.coords.longitude};
-	
+
 	angular.element(document.querySelector("body")).scope().userPos = userPos;
 	//Initialize map and place markers
 	if(!map) {
@@ -48,18 +48,18 @@ function getGeolocation() {
 //Romy's geolocation success callback
 function geolocationSuccess2(position) {
 	userPos = {lat: position.coords.latitude, lon: position.coords.longitude};
-	
+
 	angular.element(document.querySelector("body")).scope().userPos = userPos;
 	mapInit(userPos.lat, userPos.lon);
 	map.panTo(userPos);
 	angular.element(document.querySelector("body")).scope().makeMarkers();
-	
+
 	console.log("Intial Location found");
 }
 
 //Geolocation failure callback
 function geolocationFailure(error) {
-	console.log ("Geolocation failed: " + error.message); 
+	console.log ("Geolocation failed: " + error.message);
 }
 
 //Initializes without placing a marker
@@ -126,7 +126,7 @@ function closePreview() {
 //Opens the image view overlay
 function openView(link) {
 	document.getElementById("bigImage").src = link;
-   	document.getElementById("myNav").style.width = "100%";
+  document.getElementById("myNav").style.width = "100%";
 	document.getElementById("myNav").style.backgroundColor = "rgba(0, 0, 0, 0.9)";
 	document.getElementById("bigImage").style.opacity = "1";
 	document.getElementById("closebtn").style.opacity = "1";
@@ -134,10 +134,29 @@ function openView(link) {
 
 //Closes the image view overlay
 function closeView() {
-    document.getElementById("myNav").style.width = "0%";
+  document.getElementById("myNav").style.width = "0%";
 	document.getElementById("myNav").style.backgroundColor = "rgba(0, 0, 0, 0.0)";
 	document.getElementById("bigImage").style.opacity = "0.0";
 	document.getElementById("closebtn").style.opacity = "0";
+}
+
+
+//Opens the image view overlay for canvas
+function openCanvas() {
+  document.getElementById("myCanvas").style.width = "100%";
+	document.getElementById("myCanvas").style.backgroundColor = "rgba(0, 0, 0, 0.9)";
+	document.getElementById("canvasImage").style.opacity = "1";
+	document.getElementById("canvasImage").style.backgroundColor = "white";
+	document.getElementById("canvasImage").style.border = "10px solid #A9A9A9";
+	document.getElementById("closeCanvasBtn").style.opacity = "1";
+}
+
+//Closes the image view overlay
+function closeCanvas() {
+  document.getElementById("myCanvas").style.width = "0%";
+	document.getElementById("myCanvas").style.backgroundColor = "rgba(0, 0, 0, 0.0)";
+	document.getElementById("canvasImage").style.opacity = "0.0";
+	document.getElementById("closeCanvasBtn").style.opacity = "0";
 }
 
 //Handles key input

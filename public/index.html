@@ -19,15 +19,15 @@
 </head>
 
 <body ng-app="myApp" ng-controller="MainController" onkeyup="inputKeyUp(event)">
-	
+
 	<!-- Banner -->
 	<div id="banner">
 		<img src="images/WordmarkWhite.png" ng-click="centerOnUser()">
 	</div>
-	
+
 	<!-- Map -->
 	<div id="map"></div>
-	
+
 	<!-- Hidden Image Enlargement Overlay -->
 	<div id="myNav" class="overlay">
 		<!-- Area outside of the image clicking on which closes the viewer -->
@@ -40,14 +40,26 @@
 		<img src="" id="bigImage" class="bigImage"></img>
 	</div>
 
+	<!-- Hidden Image Enlargement Overlay -->
+	<div id="myCanvas" class="overlay">
+		<!-- Area outside of the image clicking on which closes the viewer -->
+		<div id="closeArea" onclick="closeCanvas()"></div>
+		<!-- Close button -->
+			<a href="javascript:void(0)" id="closeCanvasBtn" class="closeCanvasBtn" onclick="closeCanvas()">&times;</a>
+		<!-- Helper container to center image -->
+		<span class="helper"></span>
+		<!-- Image -->
+		<canvas id="canvasImage" class="canvasImage"></canvas>
+	</div>
+
 	<!-- Main page content -->
 	<div id="content">
-	
+
 		<!-- Post entry toggle button -->
 		<button id="post_entry_toggle" ng-click="toggle=!toggle" onclick=changeContentHeight()>
 			{{ toggle ? 'x' : '+' }}
 		</button>
-		
+
 		<!-- Post entry fields -->
 		<form id="post_entry" ng-submit="createPost()">
 			<!-- "Post" button -->
@@ -56,9 +68,11 @@
 			<input type="text" 	 id="post_entry_title" 	 ng-model="title"   placeholder="Title">
 			<!-- Image link field -->
 			<input type="text"   id="post_entry_imglink" ng-model="imglink" placeholder="Image Link">
+			<!-- Canvas Open -->
+			<input type="button" id="post_canvas_open" value="Draw Picture" onclick="openCanvas()">
 			<!-- Image select button -->
 			<!-- Triggers click on invisible "Browse..." button -->
-			<input type="button" id="post_image_select"  value="Image" 		onclick="document.getElementById('post_image_upload').click()">
+			<input type="button" id="post_image_select"  value="Image" onclick="document.getElementById('post_image_upload').click()">
 			<!-- Folder browser -->
 			<input type="file" 	 id="post_image_upload"  onchange="imageUpload(this.files[0], false)">
 		</form>
@@ -69,12 +83,12 @@
 				<post-info info="post"></post-info>
 			</div>
 		</div>
-		
+
 	</div>
-	
+
 	<!-- Controllers -->
     <script src="js/controllers/MainController.js"></script>
-	
+
 	<!-- Toggles the height of the "content" element -->
 	<script>
 		var postMode = false;
@@ -91,6 +105,27 @@
 				postMode = true;
 			}
 		}
+		var el = document.getElementById('canvasImage');
+		var ctx = el.getContext('2d');
+		var isDrawing;
+
+		el.onmousedown = function(e) {
+		  isDrawing = true;
+		  ctx.lineWidth = 5;
+		  ctx.lineJoin = ctx.lineCap = 'round';
+		  ctx.shadowBlur = 10;
+		  ctx.shadowColor = 'rgb(0, 0, 0)';
+		  ctx.moveTo(e.clientX, e.clientY);
+		};
+		el.onmousemove = function(e) {
+		  if (isDrawing) {
+		    ctx.lineTo(e.clientX, e.clientY);
+		    ctx.stroke();
+		  }
+		};
+		el.onmouseup = function() {
+		  isDrawing = false;
+		};
 	</script>
-	
+
 </body>

@@ -10,7 +10,7 @@
 	/* 60% - #post-entry_toggle height */
 	height: 60%;
 	width: 100%;
-	background-color: lightgrey;
+	background-image: url('/images/blurred.jpg');
 }
 
 /* Button that toggles post entry fields */
@@ -60,7 +60,7 @@
 	/* 100% - post_entry_button width / 2 */
 	width: calc((100% - 144px) / 2);
 	border: none;
-	border-left: 1px solid black;	
+	border-left: 1px solid black;
 	border-right: 1px solid black;
 }
 
@@ -69,12 +69,21 @@
 	height: 50px;
 	/* 100% - post_entry_button width / 2 */
 	width: calc((100% - 144px) / 2);
-	border: none;	
+	border: none;
 	border-right: 1px solid black;
 }
 
 /* "Image" button */
 #post_image_select {
+	height: 50px;
+	width: 72px;
+	background-color: white;
+	border: none;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+#post_canvas_open{
 	height: 50px;
 	width: 72px;
 	background-color: white;
@@ -92,14 +101,14 @@
 		float: right;
 		border-left: 1px solid black;
 	}
-	
+
 	/* Content */
 	#content {
 		width: 30%;
 		/* 100% - banner height */
 		height: calc(100% - 50px);
 	}
-	
+
 	/* Button that toggles post entry fields */
 	#post_entry_toggle {
 		border-top: none;
