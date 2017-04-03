@@ -77,7 +77,9 @@ function imageUpload(file, mobile) {
     xhr.open("POST", "https://api.imgur.com/3/image.json");
 	//Update image link field if not using mobile version
 	if(!mobile){
+		//Change placeholder text
 		document.getElementById("post_entry_imglink").value = "Generating image link...";
+		//Disable image selction
 		document.getElementById("post_entry_imglink").disabled = true;
 		document.getElementById("post_image_select").disabled = true;
 	}
@@ -91,10 +93,15 @@ function imageUpload(file, mobile) {
 		angular.element(document.querySelector("body")).scope().imglink = link;
 		//Reset image link field if not using mobile version
 		if(!mobile){
+			//Change text to link
 			document.getElementById("post_entry_imglink").value = link;
+			//Enable image selction
 			document.getElementById("post_entry_imglink").disabled = false;
 			document.getElementById("post_image_select").disabled = false;
-			document.getElementById("preview").style.height = "500px";
+			//Open image preview
+			document.getElementById("preview").style.height = "300px";
+			document.getElementById("previewimg").src = link;
+			document.getElementById('posts').style.height = "calc(100% - 400px)";
 		}
 		//Preview image if using mobile version
 		if(mobile){
