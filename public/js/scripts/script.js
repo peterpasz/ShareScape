@@ -32,9 +32,21 @@ function geolocationSuccess(position) {
 		mapInit(userPos.lat, userPos.lon);
 		angular.element(document.querySelector("body")).scope().makeMarkers();
 	}
+
+
+
+//3 - Uncomment this
+/*
+function getGeolocation() {
+	navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationFailure);
+}
+*/
+
+
 	
 	id = navigator.geolocation.watchPosition(trackUser, geolocationFailure);
 }
+
 
 function trackUser(position){
 	userPos = {lat: position.coords.latitude, lon: position.coords.longitude};
