@@ -35,8 +35,9 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 		$http.get('/api/posts')
 			.success(function (posts) {
 				for(var i=0; i<posts.length; i++){
-					if($scope.haversine(posts[i].pos.lat, posts[i].pos.lon)) {
-						console.log($scope.haversineDistance(posts[i].pos.lat, posts[i].pos.lon, parseFloat(userLat), parseFloat(userLon)) + posts[i].title);
+					var distance = $scope.haversineDistance(posts[i].pos.lat, posts[i].pos.lon, parseFloat(userLat), parseFloat(userLon));
+					if(distance != 0) {
+						console.log($scope.haversineDistance(posts[i].pos.lat, posts[i].pos.lon, parseFloat(userLat), parseFloat(userLon)));
 						//console.log($scope.haversineDistance(posts[i].pos.lat, posts[i].pos.lon, 43.5821429, -79.6333674));
 						//console.log(userLat, userLon);
 						//console.log(posts[i].pos.lat, posts[i].pos.lon);
@@ -235,7 +236,7 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 			//console.log("c: " + c);
 			
 			var d = R * c;
-			d = (d/1000).toFixed(2) + "km";
+			d = parseFloat((d/1000).toFixed(2));
 			//console.log("d: " + d);
 			return d;
 		}
