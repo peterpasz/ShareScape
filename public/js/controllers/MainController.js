@@ -28,15 +28,17 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 			.success(function (posts) {
 				$scope.posts = posts
 			});
+		*/
 		
-		/*
-		
-		/*/
 		$http.get('/api/posts')
 			.success(function (posts) {
+				//Goes through all the posts in the database
 				for(var i=0; i<posts.length; i++){
+					//Checks if post in database is close enough to user
 					if($scope.haversine(posts[i].pos.lat, posts[i].pos.lon)) {
+						//Places post from database into local list
 						$scope.posts.unshift(posts[i]);
+						//Adds marker for that post
 						$scope.makeMarker(posts[i].pos.lat, posts[i].pos.lon, posts[i].title, i, posts[i].imglink);
 					}
 				}
@@ -78,6 +80,7 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 			*/
 			console.log($localStorage.votedQuestions.indexOf(postid))
 			//console.log($localStorage.votedQuestions[0].postid[0].vote)
+			document.getElementById(postid).style.color = "orange";
 			if ($localStorage.votedQuestions.indexOf(postid) === -1) {
 				$localStorage.votedQuestions.push(postid)
 				/*
@@ -110,7 +113,7 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 			} 
 			else{
        			console.log("You already voted to this question");
-				document.getElementById(postid+"vote").style.visibility = "visible"
+				document.getElementById(postid+"vote").style.height = "25px";
     		}
 		}
 		

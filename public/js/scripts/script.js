@@ -157,7 +157,7 @@ function closeView() {
 
 //Close voting prompt
 function dismissPrompt(postid) {
-	document.getElementById(postid+"vote").style.visibility = "hidden";
+	document.getElementById(postid+"vote").style.height = "0";
 }
 
 //Redirects user to mobile site

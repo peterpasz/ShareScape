@@ -39,7 +39,7 @@ html, body {
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 2;
+    z-index: 10;
     top: 0;
     left: 0;
 	/* For browsers that don't support RGBA */
@@ -91,7 +91,7 @@ html, body {
 	max-height: 80%;
 	opacity: 0;
 	transition: 0.5s;
-	z-index: 2;
+	z-index: 10;
 }
 
 /* File selector */
@@ -119,36 +119,43 @@ html, body {
 	border-radius: 3px;
 }
 
-/* Left side of the post */
-.left {
-	width: 60px;
-	text-align:center;
-	line-height: 30px;
-	display: table-cell;
-	padding: 10px;
-	float: left;
-}
-
-.upvote:disabled {
-	color: lightgrey;
-	cursor: auto;
-}
-
-.downvote:disabled {
-	color: lightgrey;
-	cursor: auto;
-}
-
 /* Right side of the post */
 .right {
 	height: 100%;
 	width: 100%;
 }
 
+/* Post up and down vote buttons */
+.upvote {
+	height: 25px;
+	width: 25px;
+	background-image: url("../images/thumbsup.png");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	color: grey;
+	border: none;
+	font-weight: bold;
+	font-size: 20px;
+	cursor: pointer;
+	float: right;
+	margin: 3px;
+}
+
+/* Post rating */
+.rating {
+	float: left;
+	font-weight: bold;
+	font-size: 22px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 3px;
+}
+
 /* Post title */
 .title {
 	float: left;
 	font-size: 20px;
+	padding-top: 3px;
 }
 
 /* Post image */
@@ -160,62 +167,26 @@ html, body {
 	background-color: white;
 }
 
-/* Post rating */
-.rating {
-	float: left;
-	font-weight: bold;
-	font-size: 20px;
-	padding-left: 10px;
-	padding-right: 10px;
-}
-
-/* Post up and down vote buttons */
-.upvote, .downvote {
-	height: 30px;
-	width: 30px;
-	background-color: white;
-	background-image: url("../images/thumbsup.png");
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-	color: grey;
-	border: 1px solid lightgrey;
-	font-weight: bold;
-	font-size: 20px;
-	cursor: pointer;
-	float: right;
-}
-
-/* When mouse is held down, buttons change appearance */
-.upvote:active, .downvote:active {
-	height: 30px;
-	width: 30px;
-	background-color: black;
-	color: grey;
-	border: 1px solid lightgrey;
-	font-weight: bold;
-	font-size: 20px;
-	cursor: pointer;
-}
-
+/* Vote prompt */
 .voteprompt{
-	visibility: hidden;
-	position: relative;
-    bottom: 100px;
-	color: white;
-	background-color: #93278F;
-	width: 80%;
-	margin: 0 auto;
-	z-index: 5;
-	border: 1px solid black;
+	height: 0;
+    width: 100%;
+	overflow: hidden;
+	transition: 0.5s;
+	line-height: 25px;
 }
 
+/* Vote prompt button */
 .votepromptbutton{
-	color: white;
-	background-color: #E17C36;
-	border: 1px solid black;
-	overflow: hidden;
-	box-shadow: 0px 0px 5px #888888;
-	border-radius: 3px;
-	text-align: center;
-	width: 100%;
+	float: left;
+	border: none;
+	width: 25px;
+	height: 25px;
+	cursor: pointer;
+}
+
+/* Vote prompt text */
+.voteprompttext{
+	float: left;
+	font-size: 12px;
 }
