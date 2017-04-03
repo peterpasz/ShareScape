@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		//var myVar = setInterval(getGeolocation, 1000);
 		//2 - Comment out this line
 		navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationFailure);
-		if(map && currentMarker)
+		//if(map && currentMarker)
 			id = navigator.geolocation.watchPosition(trackUser, geolocationFailure);
 	} else {
 		console.log("This browser doesn't support geolocation.");
@@ -63,8 +63,10 @@ function geolocationSuccess2(position) {
 
 function trackUser(position){
 	userPos = {lat: position.coords.latitude, lng: position.coords.longitude};
-	angular.element(document.querySelector("body")).scope().centerOnUser();
 	currentMarker.setPosition({lat: (position.coords.latitude-0.0002), lng: position.coords.longitude});
+	map.panTo(userPos);
+	//angular.element(document.querySelector("body")).scope().centerOnUser();
+	console.log("Update");
 }
 
 //Geolocation failure callback
