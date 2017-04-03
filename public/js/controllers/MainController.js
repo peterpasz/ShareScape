@@ -36,7 +36,10 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 			.success(function (posts) {
 				for(var i=0; i<posts.length; i++){
 					if($scope.haversine(posts[i].pos.lat, posts[i].pos.lon)) {
-						console.log($scope.haversineDistance(posts[i].pos.lat, posts[i].pos.lon, parseInt(userLat), parseInt(userLon)));
+						console.log($scope.haversineDistance(posts[i].pos.lat, posts[i].pos.lon, parseFloat(userLat), parseFloat(userLon)) + posts[i].title);
+						//console.log($scope.haversineDistance(posts[i].pos.lat, posts[i].pos.lon, 43.5821429, -79.6333674));
+						//console.log(userLat, userLon);
+						//console.log(posts[i].pos.lat, posts[i].pos.lon);
 						$scope.posts.unshift(posts[i]);
 						$scope.makeMarker(posts[i].pos.lat, posts[i].pos.lon, posts[i].title, i, posts[i].imglink);
 					}
