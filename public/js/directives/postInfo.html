@@ -14,13 +14,16 @@
 	<div class="right" ng-click="openInfo(this.info.pos.lat, this.info.pos.lon, this.info.title)">
 		
 		<!-- Upvote button -->
-		<button ng-disabled="upvote" class="upvote {{this.info._id}}" ng-click="updateRating(this.info._id, this.info.rating, 1)"></button> 
+		<button class="upvote {{this.info._id}}" ng-click="updateRating(this.info._id, this.info.rating, 1)"></button> 
 		
 		<!-- Post rating -->
 		<div id={{this.info._id}} ng-model="ratingModel" class="rating">{{ info.rating }}</div>
 		
+		
+
 		<!-- Post title -->
-		<div class="title">{{ info.title }} {{distancesReturn(info.title)}} </div>
+		<div class="title">{{ info.title }} </div>
+		<div class="distance"> {{distancesReturn(info.title)}} </div>
 		
 		<!-- Vote Prompt -->
 		<div id={{this.info._id}}vote class="voteprompt" ng-click="dismissPrompt(this.info._id)">

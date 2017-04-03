@@ -40,9 +40,7 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 					
 					if (($localStorage.distances.indexOf(posts[i].title) === -1) && !(isNaN(distance))) {
 						$localStorage.distances.push(posts[i].title, distance)}
-					if(distance != "NaN") {
-						console.log($scope.haversineDistance(posts[i].pos.lat, posts[i].pos.lon, parseFloat(userLat), parseFloat(userLon)));
-						
+					if(distance != 0) {						
 						//console.log($scope.haversineDistance(posts[i].pos.lat, posts[i].pos.lon, 43.5821429, -79.6333674));
 						//console.log(userLat, userLon);
 						//console.log(posts[i].pos.lat, posts[i].pos.lon);
@@ -237,8 +235,7 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 		$scope.distancesReturn = function(title){
 			var index = $scope.distances.indexOf(title)
 			var distance = $scope.distances[index+1]
-			console.log(distance)
-			return distance
+			return distance + "km"
 		}
 		
 		//Position of the user, set by "js/scripts/script.js" when the user shares position
