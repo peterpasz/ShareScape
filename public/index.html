@@ -30,7 +30,7 @@
 	
 	<!-- Map -->
 	<div id="map">
-		<div class="mapWarning">Please enable location services and access this page using a secure connection (https://)</div>
+		<div id="mapWarning">Please enable location services and access this page using a secure connection (https://)</div>
 	</div>
 	
 	<!-- Hidden Image Enlargement Overlay -->
@@ -69,6 +69,11 @@
 			<!-- Folder browser -->
 			<input type="file" 	 id="post_image_upload"  onchange="imageUpload(this.files[0], false)">
 		</form>
+		
+		<!-- Image preview -->
+		<div id="preview">
+			<img ng-src="{{ imglink }}">
+		</div>
 
 		<!-- Posts -->
 		<div id="posts">

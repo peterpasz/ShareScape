@@ -22,19 +22,19 @@
 		<!-- Post title -->
 		<div class="title">{{ info.title }} {{distancesReturn(info.title)}} </div>
 		
-		<!-- Post image -->
-		<img id="image" style="cursor:pointer" ng-click="openView(this.info.imglink)" ng-src="{{ info.imglink }}"/>
-		
 		<!-- Vote Prompt -->
 		<div id={{this.info._id}}vote class="voteprompt" ng-click="dismissPrompt(this.info._id)">
-			
-			<!-- Vote Prompt close button -->
-			<button class="votepromptbutton" ng-click="dismissPrompt(this.info._id)">&times;</button>
 			
 			<!-- Vote Prompt text -->
 			<div class="voteprompttext">You've already shared your vote!</div>
 			
+			<!-- Vote Prompt close button -->
+			<button class="votepromptbutton" ng-click="dismissPrompt(this.info._id)">&times;</button>
+			
 		</div>
+		
+		<!-- Post image -->
+		<img id="image" style="cursor:pointer" ng-click="openView(this.info.imglink)" ng-src="{{ info.imglink }}"/>
 	
 	</div>
 	

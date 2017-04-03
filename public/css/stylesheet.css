@@ -178,7 +178,7 @@ html, body {
 
 /* Vote prompt button */
 .votepromptbutton{
-	float: left;
+	float: right;
 	border: none;
 	width: 25px;
 	height: 25px;
@@ -189,9 +189,10 @@ html, body {
 .voteprompttext{
 	float: left;
 	font-size: 12px;
+	padding-left: 10px;
 }
 
-.mapWarning{
+#mapWarning{
 	color: red;
 	text-align: center;
 }
