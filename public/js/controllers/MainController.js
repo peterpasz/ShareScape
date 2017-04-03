@@ -5,16 +5,18 @@ myApp.run(['$localStorage', function($localStorage) {
          	
  		}else{
  			$localStorage.votedQuestions = [];
-			 /*
-			$localStorage.downvotes = [];
-			$localStorage.upvotes = [];
-			*/
+ 		}
+
+		if($localStorage.distances != null){
+         	
+ 		}else{
+ 			$localStorage.distances = [];
  		}
 		console.log($localStorage);
 	}])
 
 myApp.controller("MainController", ["$scope", "$http", "$localStorage", function($scope, $http, $localStorage) {
-		$scope.message = "Hello World!";
+		
 		
 		/*
 		When deploying to heroku, change 
@@ -35,6 +37,7 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 				//Goes through all the posts in the database
 				for(var i=0; i<posts.length; i++){
 					var distance = $scope.haversineDistance(posts[i].pos.lat, posts[i].pos.lon, parseFloat(userLat), parseFloat(userLon));
+					$localStorage.distances.push(posts[i].title, distance)
 					if(distance != 0) {
 						console.log($scope.haversineDistance(posts[i].pos.lat, posts[i].pos.lon, parseFloat(userLat), parseFloat(userLon)));
 						//console.log($scope.haversineDistance(posts[i].pos.lat, posts[i].pos.lon, 43.5821429, -79.6333674));
@@ -253,12 +256,15 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 		$scope.markers = [];
 		
 		$scope.posts = [];
+
+		$scope.distances = $localStorage.distances;
 	}])
 	
 	//Post template
 	.directive("postInfo", function() {
 		return {
 			restrict: "E",
+			controller: "MainController",
 			scope: {
 				info: "="
 			},
