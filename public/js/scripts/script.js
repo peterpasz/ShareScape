@@ -49,18 +49,6 @@ function getGeolocation() {
 }
 */
 
-//Romy's geolocation success callback
-function geolocationSuccess2(position) {
-	userPos = {lat: position.coords.latitude, lon: position.coords.longitude};
-	
-	angular.element(document.querySelector("body")).scope().userPos = userPos;
-	
-	angular.element(document.querySelector("body")).scope().centerOnUser();
-	angular.element(document.querySelector("body")).scope().currentLocation(position.coords.latitude, position.coords.longitude);
-	
-	console.log("Intial Location found");
-}
-
 function trackUser(position){
 	userPos = {lat: position.coords.latitude, lng: position.coords.longitude};
 	currentMarker.setPosition({lat: (position.coords.latitude-0.0002), lng: position.coords.longitude});

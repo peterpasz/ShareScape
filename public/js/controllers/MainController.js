@@ -6,7 +6,7 @@ myApp.run(['$localStorage', function($localStorage) {
  		}else{
  			$localStorage.votedQuestions = [];
  		}
-
+		$localStorage.distances = [];
 		if($localStorage.distances != null){
          	
  		}else{
@@ -36,10 +36,13 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 			.success(function (posts) {
 				//Goes through all the posts in the database
 				for(var i=0; i<posts.length; i++){
-					var distance = $scope.haversineDistance(posts[i].pos.lat, posts[i].pos.lon, parseFloat(userLat), parseFloat(userLon));
-					$localStorage.distances.push(posts[i].title, distance)
-					if(distance != 0) {
+					var distance = parseFloat($scope.haversineDistance(posts[i].pos.lat, posts[i].pos.lon, parseFloat(userLat), parseFloat(userLon)));
+					
+					if (($localStorage.distances.indexOf(posts[i].title) === -1) && !(isNaN(distance))) {
+						$localStorage.distances.push(posts[i].title, distance)}
+					if(distance != "NaN") {
 						console.log($scope.haversineDistance(posts[i].pos.lat, posts[i].pos.lon, parseFloat(userLat), parseFloat(userLon)));
+						
 						//console.log($scope.haversineDistance(posts[i].pos.lat, posts[i].pos.lon, 43.5821429, -79.6333674));
 						//console.log(userLat, userLon);
 						//console.log(posts[i].pos.lat, posts[i].pos.lon);
@@ -89,20 +92,6 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 			document.getElementById(postid).style.color = "orange";
 			if ($localStorage.votedQuestions.indexOf(postid) === -1) {
 				$localStorage.votedQuestions.push(postid)
-				/*
-				var rating = parseInt(document.getElementById(postid).innerHTML);
-				document.getElementById(postid).innerHTML = rating + value;
-				document.getElementById(postid+"up").enabled = false;
-				
-				if(value == 1){
-					$scope.upvote = true;
-					
-				}
-				else if(value == -1){
-					$scope.downvote = true;
-					
-				}
-				*/
 				document.getElementById(postid).innerHTML = postrating + value;
 				console.log("Thanks for Voting");
 
@@ -243,6 +232,13 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 			d = parseFloat((d/1000).toFixed(2));
 			//console.log("d: " + d);
 			return d;
+		}
+
+		$scope.distancesReturn = function(title){
+			var index = $scope.distances.indexOf(title)
+			var distance = $scope.distances[index+1]
+			console.log(distance)
+			return distance
 		}
 		
 		//Position of the user, set by "js/scripts/script.js" when the user shares position
