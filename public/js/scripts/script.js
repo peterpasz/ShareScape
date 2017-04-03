@@ -1,5 +1,7 @@
 //Global variables
 var userPos;
+var userLat;
+var userLon;
 var map;
 var id;//if you want to turn off real time geolocation
 var currentMarker;
@@ -30,6 +32,8 @@ function geolocationSuccess(position) {
 	userPos = {lat: position.coords.latitude, lon: position.coords.longitude};
 	console.log("Intial user location: " + userPos.lat + ", " + userPos.lon);
 	angular.element(document.querySelector("body")).scope().userPos = userPos;
+	userLat = userPos.lat;
+	userLon = userPos.lon;
 	
 	//Initialize map and place markers
 	if(!map) {

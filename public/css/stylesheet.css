@@ -190,3 +190,8 @@ html, body {
 	float: left;
 	font-size: 12px;
 }
+
+.mapWarning{
+	color: red;
+	text-align: center;
+}
