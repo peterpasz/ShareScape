@@ -3,23 +3,15 @@ var userPos;
 var userLat;
 var userLon;
 var map;
-var id;//if you want to turn off real time geolocation
+var id;
 var currentMarker;
 
 //On page load
 document.addEventListener("DOMContentLoaded", function() {
-
-	//document.getElementById("post_image_select").addEventListener("click", imageUpload);
 	
 	//Checks if geolocation is available for browser
 	if (navigator.geolocation) {
-		//Alex's jank location update, follow the 3 numbered steps
-		//1 - Uncomment this line
-		//var myVar = setInterval(getGeolocation, 1000);
-		//2 - Comment out this line
 		navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationFailure);
-		if(map && currentMarker)
-			id = navigator.geolocation.watchPosition(trackUser, geolocationFailure);
 	} else {
 		console.log("This browser doesn't support geolocation.");
 	}
@@ -30,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
 function geolocationSuccess(position) {
 	
 	userPos = {lat: position.coords.latitude, lon: position.coords.longitude};
-	console.log("Intial user location: " + userPos.lat + ", " + userPos.lon);
+	console.log("Intial user location:  " + userPos.lat.toFixed(7) + ", " + userPos.lon.toFixed(7));
 	angular.element(document.querySelector("body")).scope().userPos = userPos;
 	userLat = userPos.lat;
 	userLon = userPos.lon;
@@ -40,33 +32,15 @@ function geolocationSuccess(position) {
 		mapInit(userPos.lat, userPos.lon);
 		angular.element(document.querySelector("body")).scope().makeMarkers();
 	}
-}
-
-//3 - Uncomment this
-/*
-function getGeolocation() {
-	navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationFailure);
-}
-*/
-
-//Romy's geolocation success callback
-function geolocationSuccess2(position) {
-	userPos = {lat: position.coords.latitude, lon: position.coords.longitude};
 	
-	angular.element(document.querySelector("body")).scope().userPos = userPos;
-	
-	angular.element(document.querySelector("body")).scope().centerOnUser();
-	angular.element(document.querySelector("body")).scope().currentLocation(position.coords.latitude, position.coords.longitude);
-	
-	console.log("Intial Location found");
+	id = navigator.geolocation.watchPosition(trackUser, geolocationFailure);
 }
 
 function trackUser(position){
-	userPos = {lat: position.coords.latitude, lng: position.coords.longitude};
+	userPos = {lat: position.coords.latitude, lon: position.coords.longitude};
+	console.log("Current user location: " + userPos.lat.toFixed(7) + ", " + userPos.lon.toFixed(7));
 	currentMarker.setPosition({lat: (position.coords.latitude-0.0002), lng: position.coords.longitude});
 	map.panTo(userPos);
-	//angular.element(document.querySelector("body")).scope().centerOnUser();
-	console.log("Update");
 }
 
 //Geolocation failure callback
@@ -120,6 +94,7 @@ function imageUpload(file, mobile) {
 			document.getElementById("post_entry_imglink").value = link;
 			document.getElementById("post_entry_imglink").disabled = false;
 			document.getElementById("post_image_select").disabled = false;
+			document.getElementById("preview").style.height = "500px";
 		}
 		//Preview image if using mobile version
 		if(mobile){

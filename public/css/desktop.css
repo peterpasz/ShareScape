@@ -98,6 +98,15 @@
 	transition: background-color 0.5s;
 }
 
+#preview {
+	height: 0px;
+}
+
+#preview img {
+	min-width: 100%;
+	max-width: 100%;
+}
+
 /* 750px and up */
 @media only screen and (min-width: 750px) {
 	/* Map */
