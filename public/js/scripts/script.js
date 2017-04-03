@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		//var myVar = setInterval(getGeolocation, 1000);
 		//2 - Comment out this line
 		navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationFailure);
-		//if(map && currentMarker)
+		if(map && currentMarker)
 			id = navigator.geolocation.watchPosition(trackUser, geolocationFailure);
 	} else {
 		console.log("This browser doesn't support geolocation.");
