@@ -8,25 +8,25 @@ var currentMarker;
 
 //On page load
 document.addEventListener("DOMContentLoaded", function() {
-	
+
 	//Checks if geolocation is available for browser
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationFailure);
 	} else {
 		console.log("This browser doesn't support geolocation.");
 	}
-	
+
 });
 
 //Geolocation success callback
 function geolocationSuccess(position) {
-	
+
 	userPos = {lat: position.coords.latitude, lon: position.coords.longitude};
 	console.log("Intial user location:  " + userPos.lat.toFixed(7) + ", " + userPos.lon.toFixed(7));
 	angular.element(document.querySelector("body")).scope().userPos = userPos;
 	userLat = userPos.lat;
 	userLon = userPos.lon;
-	
+
 	//Initialize map and place markers
 	if(!map) {
 		mapInit(userPos.lat, userPos.lon);
@@ -43,7 +43,7 @@ function getGeolocation() {
 */
 
 
-	
+
 	id = navigator.geolocation.watchPosition(trackUser, geolocationFailure);
 }
 
@@ -57,7 +57,7 @@ function trackUser(position){
 
 //Geolocation failure callback
 function geolocationFailure(error) {
-	console.log ("Geolocation failed: " + error.message); 
+	console.log ("Geolocation failed: " + error.message);
 }
 
 //Initializes without placing a marker
@@ -158,9 +158,54 @@ function closeView() {
 	document.getElementById("closebtn").style.opacity = "0";
 }
 
+//Opens the image view overlay for canvas
+function openCanvas() {
+  document.getElementById("myCanvas").style.width = "100%";
+	document.getElementById("myCanvas").style.backgroundColor = "rgba(0, 0, 0, 0.9)";
+	document.getElementById("canvasImage").style.opacity = "1";
+	document.getElementById("canvasImage").style.backgroundColor = "white";
+	document.getElementById("canvasImage").style.border = "10px solid #A9A9A9";
+	document.getElementById("closeCanvasBtn").style.opacity = "1";
+	document.getElementById("saver").style.visibility = "visible";
+}
+
+//Closes the image view overlay
+function closeCanvas() {
+  document.getElementById("myCanvas").style.width = "0%";
+	document.getElementById("myCanvas").style.backgroundColor = "rgba(0, 0, 0, 0.0)";
+	document.getElementById("canvasImage").style.opacity = "0.0";
+	document.getElementById("closeCanvasBtn").style.opacity = "0";
+	var canvas = document.getElementById("canvasImage")
+	var context = canvas.getContext("2d");
+	context.clearRect(0, 0, canvas.width, canvas.height);
+}
+
 //Close voting prompt
 function dismissPrompt(postid) {
 	document.getElementById(postid+"vote").style.height = "0";
+}
+
+function getPicture(){
+	try {
+	    var img = document.getElementById('canvasImage').toDataURL('image/jpeg', 0.9).split(',')[1];
+	} catch(e) {
+	    var img = document.getElementById('canvasImage').toDataURL().split(',')[1];
+	}
+
+	$.ajax({
+	    url: 'https://api.imgur.com/3/image',
+	    type: 'post',
+	    headers: {
+	        Authorization: 'Client-ID 37aa31c2a25b049'
+	    },
+	    data: {
+	        image: img
+	    },
+	    dataType: 'json',
+	    success: function(response) {
+				angular.element(document.querySelector("body")).scope().imglink = response.data.link;
+	    }
+	});
 }
 
 //Redirects user to mobile site

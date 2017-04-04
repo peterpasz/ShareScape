@@ -1,42 +1,54 @@
 <div class="post">
-	
+
 	<div id="myNav" class="overlay">
-	
+
 		<a href="javascript:void(0)" class="closebtn" onclick="closeView()">&times;</a>
-		
+
 		<div class="overlay-content">
 			<img src="" id="bigImage"></img>
 		</div>
-		
+
 	</div>
-	
+
+	<div id="myCanvas" class="overlay">
+
+	<a href="javascript:void(0)" class="closeCanvasBtn" onclick="closeCanvas()">&times;</a>
+
+	<div class="overlay-content">
+		<button id="saver" width="0px"></button>
+		<canvas id="canvasImage" width="0px"></canvas>
+
+	</div>
+
+	</div>
+
 	<!-- Right portion of post -->
 	<div class="right" ng-click="openInfo(this.info.pos.lat, this.info.pos.lon, this.info.title)">
-		
+
 		<!-- Upvote button -->
-		<button class="upvote {{this.info._id}}" ng-click="updateRating(this.info._id, this.info.rating, 1)"></button> 
-		
+		<button class="upvote {{this.info._id}}" ng-click="updateRating(this.info._id, this.info.rating, 1)"></button>
+
 		<!-- Post rating -->
 		<div id={{this.info._id}} ng-model="ratingModel" class="rating">{{ info.rating }}</div>
-		
+
 		<!-- Post title -->
 		<div class="title">{{ info.title }} </div>
 		<div class="distance"> {{distancesReturn(info.title)}} </div>
-		
+
 		<!-- Vote Prompt -->
 		<div id={{this.info._id}}vote class="voteprompt" ng-click="dismissPrompt(this.info._id)">
-			
+
 			<!-- Vote Prompt text -->
 			<div class="voteprompttext">You've already shared your vote!</div>
-			
+
 			<!-- Vote Prompt close button -->
 			<button class="votepromptbutton" ng-click="dismissPrompt(this.info._id)">&times;</button>
-			
+
 		</div>
-		
+
 		<!-- Post image -->
 		<img id="image" style="cursor:pointer" ng-click="openView(this.info.imglink)" ng-src="{{ info.imglink }}"/>
-	
+
 	</div>
-	
+
 </div>

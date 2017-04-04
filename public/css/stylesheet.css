@@ -12,6 +12,10 @@ html, body {
 	font-family: Roboto, Helvetica, Arial, sans-serif;
 }
 
+canvas{
+	cursor: crosshair;
+}
+
 /* Banner */
 #banner {
 	height: 50px;
@@ -77,6 +81,27 @@ html, body {
 	color: #f1f1f1;
 }
 
+
+/* Close image viewing mode button */
+.closebtn:hover, .closebtn:focus {
+	color: #f1f1f1;
+}
+
+/* Close image viewing mode button */
+.closeCanvasBtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+	opacity: 0;
+	padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block;
+    transition: 0.5s;
+}
+
 /* Helper element to center image on the screen */
 .helper {
     display: inline-block;
@@ -92,6 +117,25 @@ html, body {
 	opacity: 0;
 	transition: 0.5s;
 	z-index: 10;
+}
+
+/* Canvas viewing mode image */
+.canvasImage{
+	vertical-align: middle;
+	max-width: 80%;
+	max-height: 80%;
+	opacity: 0;
+	transition: 0.5s;
+	z-index: 10;
+}
+
+.canvasButtons{
+	border: none;
+  padding: 20px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 9px auto;
 }
 
 /* File selector */
@@ -159,6 +203,10 @@ html, body {
 	float: left;
 	font-size: 12px;
 	line-height: 90%;
+}
+
+#saver{
+	visibility: hidden;
 }
 
 /* Post image */
