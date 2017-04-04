@@ -127,15 +127,12 @@ html, body {
 
 /* Post up and down vote buttons */
 .upvote {
-	height: 25px;
-	width: 25px;
+	height: 35px;
+	width: 35px;
 	background-image: url("../images/thumbsup.png");
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
-	color: grey;
 	border: none;
-	font-weight: bold;
-	font-size: 20px;
 	cursor: pointer;
 	float: right;
 	margin: 3px;
@@ -145,7 +142,7 @@ html, body {
 .rating {
 	float: left;
 	font-weight: bold;
-	font-size: 22px;
+	font-size: 30px;
 	padding-left: 10px;
 	padding-right: 10px;
 	padding-top: 3px;
@@ -153,9 +150,15 @@ html, body {
 
 /* Post title */
 .title {
-	float: left;
 	font-size: 20px;
 	padding-top: 3px;
+}
+
+/* Post distance */
+.distance {
+	float: left;
+	font-size: 12px;
+	line-height: 90%;
 }
 
 /* Post image */

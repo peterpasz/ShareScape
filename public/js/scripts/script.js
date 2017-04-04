@@ -87,6 +87,8 @@ function imageUpload(file, mobile) {
     fd.append("image", file);
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://api.imgur.com/3/image.json");
+	//Opens preview with loading icon
+	openPreview("images/loading.gif");
 	//Update image link field if not using mobile version
 	if(!mobile){
 		//Change placeholder text

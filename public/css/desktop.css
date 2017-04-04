@@ -107,7 +107,7 @@
 	height: 0;
 	background-color: #F3F3F3;
 	text-align: center;
-	transition: height 0.5s ease 0.5s;
+	transition: height 0.5s;
 	overflow-y: hidden;
 }
 
