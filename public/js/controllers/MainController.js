@@ -264,14 +264,3 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 			templateUrl: "js/directives/postInfo.html"
 		};
 	})
-	
-	//Adds a "+" in front of a number if it is positive
-	.filter('rating', function() {
-		return function(x) {
-			if(x > 0) {
-				return "+" + x;
-			} else {
-				return x;
-			}
-		};
-	})
