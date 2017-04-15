@@ -1,6 +1,7 @@
 var myApp = angular.module('myApp', ['ngStorage']);
 
 myApp.run(['$localStorage', function($localStorage) {
+		//Sets up local storage on user's first visit
 		if($localStorage.votedQuestions != null){
          	
  		}else{
@@ -12,25 +13,9 @@ myApp.run(['$localStorage', function($localStorage) {
  		}else{
  			$localStorage.distances = [];
  		}
-		console.log($localStorage);
 	}])
 
 myApp.controller("MainController", ["$scope", "$http", "$localStorage", function($scope, $http, $localStorage) {
-		
-		
-		/*
-		When deploying to heroku, change 
-		'http://localhost:3000/api/posts'
-		to
-		'https://sharescape.herokuapp.com/api/posts'
-		*/
-		
-		/*//Old version, tries to place map markers before map is loaded (sometimes?)
-		$http.get('http://localhost:3000/api/posts')
-			.success(function (posts) {
-				$scope.posts = posts
-			});
-		*/
 		
 		$http.get('/api/posts')
 			.success(function (posts) {
@@ -41,9 +26,6 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 					if (($localStorage.distances.indexOf(posts[i].title) === -1) && !(isNaN(distance))) {
 						$localStorage.distances.push(posts[i].title, distance)}
 					if(distance != 0) {						
-						//console.log($scope.haversineDistance(posts[i].pos.lat, posts[i].pos.lon, 43.5821429, -79.6333674));
-						//console.log(userLat, userLon);
-						//console.log(posts[i].pos.lat, posts[i].pos.lon);
 						$scope.posts.unshift(posts[i]);
 						//Adds marker for that post
 						$scope.makeMarker(posts[i].pos.lat, posts[i].pos.lon, posts[i].title, i, posts[i].imglink);
@@ -81,12 +63,7 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 		};
 
 		$scope.updateRating = function(postid, postrating, value){	
-			/*
-			console.log(document.getElementsByClassName(postid));
-			document.getElementsByClassName(postid).disabled = true;
-			*/
 			console.log($localStorage.votedQuestions.indexOf(postid))
-			//console.log($localStorage.votedQuestions[0].postid[0].vote)
 			document.getElementById(postid).style.color = "orange";
 			if ($localStorage.votedQuestions.indexOf(postid) === -1) {
 				$localStorage.votedQuestions.push(postid)
@@ -120,9 +97,6 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 		
 		//Places a marker at the specified lat and lon
 		$scope.makeMarker = function(x, y, markerTitle, count, imglink) {
-			//console.log(x, y)
-			//console.log($scope.map)
-			//console.log($scope.posts)
 			var infowindow = new google.maps.InfoWindow({
     			content: markerTitle
   			})
@@ -130,16 +104,11 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 				position: {lat: x, lng: y},
 				map: $scope.map,
 				title: markerTitle,
-				//animation: google.maps.Animation.DROP,
 				icon: '../../images/ShareScapeMapIcon3.png'
    			});
 			
 			$scope.markerHashMap.set(marker, imglink);
-			//console.log(imglink);
-			//console.log($scope.markerHashMap.size);
-			//console.log($scope.markerHashMap.get(marker));
-			
-			
+
 			marker.addListener('click', function() {
    				infowindow.open(map, marker);
 				
@@ -153,12 +122,6 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 		$scope.makeMarkers = function() {
 			for(var i = 0; i < $scope.posts.length; i++){
 				$scope.makeMarker($scope.posts[i].pos.lat, $scope.posts[i].pos.lon, $scope.posts[i].title, i, $scope.posts[i].imglink);
-				/*console.log(
-					"Post marked: " +
-					$scope.posts[i].pos.lat.toFixed(7) + ", " + 
-					$scope.posts[i].pos.lon.toFixed(7) + ", " + 
-					$scope.posts[i].title
-				)*/
 			}
 			console.log("Markers loaded");
 		}
@@ -194,8 +157,6 @@ myApp.controller("MainController", ["$scope", "$http", "$localStorage", function
 			if(str == ".jpg" || str == ".png" || str == ".gif")
 				return true;
 			console.log("Invalid file type");
-			//document.getElementById("post_entry_imglink").style.backgroundColor = "#FFADAD";
-			//document.getElementById("post_image_select").style.backgroundColor = "#FFADAD";
 			return false;
 		}
 		

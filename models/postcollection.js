@@ -1,4 +1,6 @@
 var db = require('../db')
+
+//Post Model
 var Post = db.model('postcollection', {
   title: { type: String, required: true },
   pos: { 

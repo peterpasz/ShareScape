@@ -33,21 +33,10 @@ function geolocationSuccess(position) {
 		angular.element(document.querySelector("body")).scope().makeMarkers();
 	}
 
-
-
-//3 - Uncomment this
-/*
-function getGeolocation() {
-	navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationFailure);
-}
-*/
-
-
-
 	id = navigator.geolocation.watchPosition(trackUser, geolocationFailure);
 }
 
-
+//Tracks user's position as they move
 function trackUser(position){
 	userPos = {lat: position.coords.latitude, lon: position.coords.longitude};
 	console.log("Current user location: " + userPos.lat.toFixed(7) + ", " + userPos.lon.toFixed(7));
@@ -185,6 +174,7 @@ function dismissPrompt(postid) {
 	document.getElementById(postid+"vote").style.height = "0";
 }
 
+//Turns image on drawing canvas into jpg, then retrieves imgur link
 function getPicture(){
 	try {
 	    var img = document.getElementById('canvasImage').toDataURL('image/jpeg', 0.9).split(',')[1];
