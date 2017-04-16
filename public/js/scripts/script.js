@@ -178,8 +178,6 @@ function dismissPrompt(postid) {
 //Turns image on drawing canvas into jpg, then retrieves imgur link
 function getPicture(){
     
-    console.log("hello");
-    
     try {
 	    var img = document.getElementById('canvasImage').toDataURL('image/jpeg', 0.9).split(',')[1];
 	} catch(e) {
@@ -199,8 +197,16 @@ function getPicture(){
 	    success: function(response) {
             console.log(response.data.link);
 			angular.element(document.querySelector("body")).scope().imglink = response.data.link;
+            //Change text to link
+            document.getElementById("post_entry_imglink").value = response.data.link;
+            //Open image preview
+			document.getElementById("preview").style.height = "300px";
+			document.getElementById("previewimg").src = response.data.link;
+			document.getElementById('posts').style.height = "calc(100% - 400px)";
 	    }
 	});
+    
+    closeCanvas();
 }
 
 //Redirects user to mobile site

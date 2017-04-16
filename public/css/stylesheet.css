@@ -129,15 +129,6 @@ canvas{
 	z-index: 10;
 }
 
-.canvasButtons{
-	border: none;
-    padding: 20px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    margin: 9px auto;
-}
-
 /* File selector */
 #post_image_upload {
 	display: none;

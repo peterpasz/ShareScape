@@ -47,15 +47,17 @@
 		<img src="" id="bigImage" class="bigImage"></img>
 	</div>
 
+    <!-- Hidden canvas overlay -->
 	<div id="myCanvas" class="overlay">
-		<!-- Area outside of the image clicking on which closes the viewer -->
+		<!-- Area outside of the canvas clicking on which closes the viewer -->
 		<div id="closeArea" onclick="closeCanvas()"></div>
 		<!-- Close button -->
 		<a href="javascript:void(0)" id="closeCanvasBtn" class="closeCanvasBtn" onclick="closeCanvas()">&times;</a>
-		<!-- Helper container to center image -->
+		<!-- Helper container to center canvas -->
 		<span class="helper"></span>
-		<!-- Image -->
-		<input type="button" id="saver" class="canvasButtons" onclick="getPicture()">
+		<!-- "Post button" -->
+		<input type="button" id="saver" class="canvasButtons" onclick="getPicture()" value="Post">
+        <!-- Canvas -->
 		<canvas id="canvasImage" class="canvasImage"></canvas>
 	</div>
 

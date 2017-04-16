@@ -134,12 +134,15 @@
 	max-height: 300px;
 }
 
-.canvasButtons {
-
-}
-
 #saver{
 	visibility: hidden;
+    height: 50px;
+	width: 50px;
+	background-color: #9c58b5;
+	color: white;
+	text-align: center;
+	cursor: pointer;
+    border: none;
 }
 
 /* 750px and up */
