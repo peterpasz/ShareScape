@@ -197,8 +197,8 @@ function getPicture(){
 	    },
 	    dataType: 'json',
 	    success: function(response) {
-                console.log(response.data.link);
-				angular.element(document.querySelector("body")).scope().imglink = response.data.link;
+            console.log(response.data.link);
+			angular.element(document.querySelector("body")).scope().imglink = response.data.link;
 	    }
 	});
 }
