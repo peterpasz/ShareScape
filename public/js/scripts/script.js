@@ -180,6 +180,11 @@ function getPicture(){
     
     try {
 	    var img = document.getElementById('canvasImage').toDataURL('image/jpeg', 0.9).split(',')[1];
+		//Change placeholder text
+		document.getElementById("post_entry_imglink").value = "Generating image link...";
+		//Disable image selction
+		document.getElementById("post_entry_imglink").disabled = true;
+		document.getElementById("post_image_select").disabled = true;
 	} catch(e) {
 	    var img = document.getElementById('canvasImage').toDataURL().split(',')[1];
 	}
@@ -203,6 +208,8 @@ function getPicture(){
 			document.getElementById("preview").style.height = "300px";
 			document.getElementById("previewimg").src = response.data.link;
 			document.getElementById('posts').style.height = "calc(100% - 400px)";
+			document.getElementById("post_entry_imglink").disabled = false;
+			document.getElementById("post_image_select").disabled = false;
 	    }
 	});
     
