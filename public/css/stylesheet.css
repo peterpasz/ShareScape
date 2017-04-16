@@ -131,11 +131,11 @@ canvas{
 
 .canvasButtons{
 	border: none;
-  padding: 20px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  margin: 9px auto;
+    padding: 20px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 9px auto;
 }
 
 /* File selector */
@@ -203,10 +203,6 @@ canvas{
 	float: left;
 	font-size: 12px;
 	line-height: 90%;
-}
-
-#saver{
-	visibility: hidden;
 }
 
 /* Post image */

@@ -149,7 +149,7 @@ function closeView() {
 
 //Opens the image view overlay for canvas
 function openCanvas() {
-  document.getElementById("myCanvas").style.width = "100%";
+    document.getElementById("myCanvas").style.width = "100%";
 	document.getElementById("myCanvas").style.backgroundColor = "rgba(0, 0, 0, 0.9)";
 	document.getElementById("canvasImage").style.opacity = "1";
 	document.getElementById("canvasImage").style.backgroundColor = "white";
@@ -160,10 +160,11 @@ function openCanvas() {
 
 //Closes the image view overlay
 function closeCanvas() {
-  document.getElementById("myCanvas").style.width = "0%";
+    document.getElementById("myCanvas").style.width = "0%";
 	document.getElementById("myCanvas").style.backgroundColor = "rgba(0, 0, 0, 0.0)";
 	document.getElementById("canvasImage").style.opacity = "0.0";
 	document.getElementById("closeCanvasBtn").style.opacity = "0";
+    document.getElementById("saver").style.visibility = "hidden";
 	var canvas = document.getElementById("canvasImage")
 	var context = canvas.getContext("2d");
 	context.clearRect(0, 0, canvas.width, canvas.height);
@@ -176,7 +177,10 @@ function dismissPrompt(postid) {
 
 //Turns image on drawing canvas into jpg, then retrieves imgur link
 function getPicture(){
-	try {
+    
+    console.log("hello");
+    
+    try {
 	    var img = document.getElementById('canvasImage').toDataURL('image/jpeg', 0.9).split(',')[1];
 	} catch(e) {
 	    var img = document.getElementById('canvasImage').toDataURL().split(',')[1];
@@ -193,6 +197,7 @@ function getPicture(){
 	    },
 	    dataType: 'json',
 	    success: function(response) {
+                console.log(response.data.link);
 				angular.element(document.querySelector("body")).scope().imglink = response.data.link;
 	    }
 	});
